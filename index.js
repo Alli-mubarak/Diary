@@ -35,8 +35,7 @@ app.get('/',(req, res)=>{
 //res.sendFile(__dirname, 'views/index.html');
 console.log(req.query)
 console.log('default path requested! \n');
-res.json({
-message: 'This is Mubarak diary server'
+    res.sendFile(__dirname + '/public/index.html');
 });
 });
 
