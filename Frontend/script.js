@@ -58,7 +58,7 @@ inputBox.onsubmit = (e) =>{
 const requestOptions = {
   method: 'post',
   headers: {
-    'Authorization': `Bearer ${apiKey}`, // Standard practice for API keys/tokens
+//    'Authorization': `Bearer ${apiKey}`, // Standard practice for API keys/tokens
     'Content-Type': 'application/json' // Specify the content type
   },
   body : entryText
