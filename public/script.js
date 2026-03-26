@@ -130,7 +130,7 @@ if(confirm('Are you sure you want to delete this entry?')){
     entryID = e.parentNode.id
     deleteApi = `${apiUrl}/deleteEntry/${entryID}`;
       const requestOptions = {
-  method: 'post',
+  method: 'delete',
   headers: {
     'Authorization': `Bearer ${apiKey}`, // Standard practice for API keys/tokens
     'Content-Type': 'application/json' // Specify the content type
