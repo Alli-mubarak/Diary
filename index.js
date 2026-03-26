@@ -39,7 +39,6 @@ console.log(req.query)
 console.log('default path requested! \n');
     res.sendFile(__dirname + '/public/index.html');
 });
-});
 
 //add entry route
 app.post('/add', createEntry);
