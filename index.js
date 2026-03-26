@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 app.use(express.static('icon'));
-
+const __dirname = import.meta.dirname;
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
