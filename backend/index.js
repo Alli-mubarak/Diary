@@ -18,12 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 app.use(express.static('icon'));
-
-
-//app.use(cors());
-app.use(cors({
-  origin: "https://diary-demo-eight.vercel.app/" // Replace with your frontend's actual origin
-}));
+app.use(cors());
 
 //middleware
 app.use(function middleware(req,res,next){
