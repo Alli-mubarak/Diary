@@ -43,7 +43,7 @@ toggleCtrl.onclick = () =>{
 }
 
 const apiKey = 'Arrfayygjjiggjvfgjkj7534ghgcc';
-const apiUrl = 'http://localhost:39693';
+const apiUrl = 'https://diary-ob230rto7-mubarak-allis-projects.vercel.app';
 
 
 // Function to add new entry
