@@ -50,7 +50,7 @@ app.get('/getEntries', getEntries);
 app.post('/editEntry/:id', updateEntry);
 
 //delete an entry
-app.post('/deleteEntry/:id', deleteEntry);
+app.delete('/deleteEntry/:id', deleteEntry);
 
 
 // Connect to the database
