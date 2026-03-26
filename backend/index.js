@@ -18,7 +18,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 app.use(express.static('icon'));
-app.use(cors());
+//app.use(cors());
+
+const corsOptions = {
+  origin: 'https://diary-demo-eight.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Include all methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Include custom headers
+  credentials: true // If using cookies/auth headers
+};
+app.use(cors(corsOptions));
+
 
 //middleware
 app.use(function middleware(req,res,next){
