@@ -21,6 +21,8 @@ app.use(express.static('icon'));
 
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 //middleware
 app.use(function middleware(req,res,next){
