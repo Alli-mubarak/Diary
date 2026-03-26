@@ -56,6 +56,7 @@ inputBox.onsubmit = (e) =>{
     const entryText = JSON.stringify(Object.fromEntries(formData.entries())); 
  const txtL = inputBox.description.value.length
   if(txtL > 0){
+      entryInput.disabled = true;
 const requestOptions = {
   method: 'post',
   headers: {
@@ -73,6 +74,9 @@ fetch(addApi, requestOptions)
       st+= i+':'+ data[i];
     }
     getEntries();
+      setTimeout(()=>{
+      entryInput.disabled = false;
+      },2000);
   })
   .catch(error => {
     alert(error)
