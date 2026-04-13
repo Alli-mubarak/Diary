@@ -94,7 +94,7 @@
           align-items:end;
           height:0;
           overflow:hidden;
-          width: calc(100vw - 50px);
+          width: calc(100vw - 40px);
           gap: 15px;
           background: var(--shadowC);
           margin: 15px auto 15px auto;
@@ -165,7 +165,7 @@
       color:var(--pC);
       }
       #entries{
-        width: calc(100vw - 50px);
+        width: calc(100vw - 40px);
         margin: auto;
         height: calc(100dvh - 130px);
         overflow-y: auto;
