@@ -14,7 +14,7 @@
          --txtC: #000;
          --btC: #fff;
          --entC: rgba(0,0,0,0.15);
-         --shadowC: rgba(0,0,0,0.15);
+         --shadowC: rgba(0,0,0,0.10);
      }
      html.dark{
          --pC : #fff;
@@ -193,7 +193,7 @@
 }
       #entries p{
       padding: 10px;
-      background: var(--entC);
+      background: var(--shadowC);
       color: var(--txtC);
       border-radius: 5px;
       }
