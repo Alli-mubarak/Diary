@@ -13,8 +13,9 @@
          --bgC : #fff;
          --txtC: #000;
          --btC: #fff;
-         --entC: rgba(0,0,0,0.1);
+         --entC: rgba(0,0,0,0.05);
          --shadowC: rgba(0,0,0,0.10);
+               --loaderC:rgba(0,0,0,0.03);
      }
      html.dark{
          --pC : #fff;
@@ -23,6 +24,7 @@
          --txtC: #fff;
          --entC: rgba(255, 255, 255, 0.1);
          --shadowC: rgba(255,255,255,0.15);
+        --loaderC: rgba(225,225,225,0.03);
      }
     body{
         background: var(--bgC);
@@ -236,7 +238,7 @@
       border-radius: 5px;
       }
       #entries p.loader{
-        height: 3.5rem;
+        height: 5rem;
         position: relative;
         overflow: hidden;
       }
