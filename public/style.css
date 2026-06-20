@@ -235,6 +235,28 @@
       color: var(--txtC);
       border-radius: 5px;
       }
+      #entries p.loader{
+        height: 3.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      #entries p.loader:before{
+        animation: load linear infinite 1.5s;
+        position: absolute;
+        content:'';
+        width:50%;
+        height: 100%;
+        top:0;
+        left:-50%;
+        background: var(--loaderC);
+      }
+      @keyframes load{
+        from {
+          left:-20%;
+        }to{
+          left:100%;
+        }
+      }
 #error-box{
         width: 90vw;
         padding:10px;
