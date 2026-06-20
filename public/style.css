@@ -239,6 +239,7 @@
       background: var(--entC);
       color: var(--txtC);
       border-radius: 5px;
+        width:100%;
       }
       #entries p.loader{
         height: 7rem;
