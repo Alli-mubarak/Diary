@@ -72,7 +72,7 @@ searchInput.addEventListener('input', () =>{
 })
 const apiKey = 'Arrfayygjjiggjvfgjkj7534ghgcc';
 //const apiUrl = 'http://localhost:39693';
-const apiUrl = 'https://diary-app-omega-lime.vercel.app'
+const apiUrl = ''
 
 //loader Function
 function load(){
@@ -148,7 +148,7 @@ function getEntries(fn){
 fetch(getAllApi, requestOptions)
   .then(response => response.json())
   .then(data => {
-    entriesDiv.style.height = '80dvh';
+    entriesDiv.style.height = 'calc(100dvh - 130px)';
     entriesDiv.innerHTML = '';
     fn(data)
 
