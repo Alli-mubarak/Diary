@@ -51,11 +51,12 @@ let searchText;
 searchIcon.onclick = () =>{
   searchForm.reset()
   if(!isSearchBoxOpen){
-  searchForm.style.display = 'flex'
-  isSearchBoxOpen = true
+  searchForm.style.display = 'flex';
+  isSearchBoxOpen = true;
 }else{
-  searchForm.style.display = 'none'
-  isSearchBoxOpen = false
+  searchForm.style.display = 'none';
+  isSearchBoxOpen = false;
+ getEntries(displayEntries);
 }
   
 }
