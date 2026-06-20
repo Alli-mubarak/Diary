@@ -108,9 +108,6 @@
           padding:5px;
           font-size:18px;
       }
-.input-box input{
-  border: 1px solid var(--txtC);
-}
       .input-box button{
         width: 20%;
       }
@@ -165,6 +162,9 @@
           cursor: pointer;
           transition: all 0.5s ease;
       }
+#add-button{
+  border: 1px solid var(--txtC);
+}
       button:hover{
         transform: scale(1.05);
       }
