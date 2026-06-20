@@ -144,6 +144,7 @@
         padding: 5px;
         background: var(--bgC);
         border: 1px solid var(--txtC);
+        border-radius:5px;
       }
       button#search-btn{
         color:var(--btC);
@@ -186,7 +187,7 @@
           padding: 15px;
       }
       input:focus{
-        border: 1px solid var(--pC);
+        border: 2px solid var(--pC);
       }
       
       .highlight{
