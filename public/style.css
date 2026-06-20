@@ -238,7 +238,7 @@
       border-radius: 5px;
       }
       #entries p.loader{
-        height: 5rem;
+        height: 7rem;
         position: relative;
         overflow: hidden;
       }
