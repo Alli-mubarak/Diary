@@ -63,8 +63,9 @@ searchIcon.onclick = () =>{
 searchForm.addEventListener('submit',(e) => {
   e.preventDefault()
   searchText = searchForm.search.value;
+    if(searchText.length > 0){
   getEntries(search)
-  
+    }
 })
 searchInput.addEventListener('input', () =>{
   if(searchInput.value === ''){
