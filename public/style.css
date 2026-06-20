@@ -186,7 +186,7 @@
           border-radius: inherit;
           padding: 15px;
       }
-      input:focus{
+     #entry:focus, #search-form input:focus{
         border: 2px solid var(--pC);
       }
       
