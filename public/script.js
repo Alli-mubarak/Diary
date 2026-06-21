@@ -253,3 +253,19 @@ fetch(editApi, requestOptions)
 }
 }
 getEntries(displayEntries);  
+
+//Google login
+// Example frontend function sending the token to your Node.js server
+async function handleGoogleLogin(response) {
+    const res = await fetch(`${apiUrl}/api/auth/google`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: response.credential }), // Sent to backend
+    });
+    const data = await res.json();
+    console.log('Logged in user data:', data);
+}
+
+errorBox.onclick = () =>{
+    handleGoogleLogin('Mubarak')
+}
