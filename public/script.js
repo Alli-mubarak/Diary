@@ -122,6 +122,7 @@ fetch(addApi, requestOptions)
       st+= i+':'+ data[i];
     }
     getEntries(displayEntries);
+      entryInput.disabled = false;
   })
   .catch(error => {
     alert(error)
