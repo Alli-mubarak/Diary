@@ -50,7 +50,6 @@
       }
       .theme{
           width: 30px; 
-          background:green;
           overflow:hidden;
         
       }
@@ -58,8 +57,11 @@
         cursor:pointer;
         font-size: 1.5rem;
         color: var(--pC);
-        
+        border-radius: 50%;
       }
+div > i:hover{
+  background: var(--entC);
+}
      
       .toggle{
           width: 26px; height:26px;
@@ -113,9 +115,6 @@
         position: relative;
         padding: 10px;
         border-radius: 8px;
-      }
-      #search:hover{
-        background: var(--entC);
       }
       
       
