@@ -18,11 +18,12 @@ themeToggle.onclick = () =>{
     if(isDark){
         html.removeAttribute('class','dark');
         isDark = false;
-        
+        themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>'
     }else{
         html.setAttribute('class','dark');
         isDark = true;
-        
+        themeToggle.innerHTML = '<i class="fa-regular fa-moon"></i>'
+    }else{
     }
 }
 
