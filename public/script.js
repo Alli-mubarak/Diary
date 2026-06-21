@@ -30,7 +30,7 @@ themeToggle.onclick = () =>{
 const d = new Date()
 const hour = d.getHours();
 alert(hour)
-if(hour > 6 && < 17){
+if(hour > 6 && hour < 17){
     html.setAttribute('class','dark');
         isDark = true;
         themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
