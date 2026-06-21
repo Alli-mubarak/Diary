@@ -5,7 +5,6 @@ const inputBox = document.getElementById('inputBox');
 const addButton = document.getElementById('add-button');
 const entriesDiv = document.getElementById('entries');
 const themeToggle = document.querySelector('.theme');
-const themeInner = document.querySelector('.t-inner');
 const searchIcon = document.getElementById('search');
 const searchForm = document.getElementById('search-form');
 const errorBox = document.getElementById('error-box');
@@ -19,15 +18,11 @@ themeToggle.onclick = () =>{
     if(isDark){
         html.removeAttribute('class','dark');
         isDark = false;
-        themeInner.style.left = '6px';
-        themeInner.style.boxShadow = '0 0 0 orange';
-        themeToggle.style.boxShadow = '-2px 0 1px #fff055 ';
+        
     }else{
         html.setAttribute('class','dark');
         isDark = true;
-        themeInner.style.left = '3%';
-        themeInner.style.boxShadow = '0 0 15px orange';
-        themeToggle.style.boxShadow = '0 0 0 #fff055 ';
+        
     }
 }
 
