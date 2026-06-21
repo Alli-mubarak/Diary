@@ -132,6 +132,7 @@ div > i:hover{
         top: 5px;
     padding: 5px;
         width: 250px;
+        background:var(--pC);
       }
       #search-form input{
         font-size: 1.2rem;
