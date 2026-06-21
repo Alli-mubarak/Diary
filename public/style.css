@@ -49,16 +49,16 @@
         position:relative;
       }
       .theme{
-          width: 30px; height:30px;
+          width: 30px; 
           background:green;
           overflow:hidden;
-        padding:0;
+        
       }
       div > i {
         cursor:pointer;
         font-size: 1.5rem;
         color: var(--pC);
-        background:red;
+        
       }
      
       .toggle{
