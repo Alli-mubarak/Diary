@@ -15,7 +15,7 @@
          --btC: #fff;
          --entC: rgba(0,0,0,0.05);
          --shadowC: rgba(0,0,0,0.10);
-               --loaderC:rgba(0,0,0,0.03);
+               --loaderC:rgba(0,0,0,0.01);
      }
      html.dark{
          --pC : #fff;
@@ -24,7 +24,7 @@
          --txtC: #fff;
          --entC: rgba(255, 255, 255, 0.1);
          --shadowC: rgba(255,255,255,0.15);
-        --loaderC: rgba(225,225,225,0.03);
+        --loaderC: rgba(225,225,225,0.01);
      }
     body{
         background: var(--bgC);
@@ -245,7 +245,7 @@ div > i:hover{
         height: 100%;
         top:0;
         left:-50%;
-        background: var(--loaderC);
+        background: linear-gradient(var(--loaderC), var(--entC), var(--loaderC));
       }
       @keyframes load{
         from {
