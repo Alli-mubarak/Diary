@@ -8,7 +8,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'node:path';
 dotenv.config();
-import bodyParser from 'body-parser'
+import bodyParser from 'body-parser';
+import { OAuth2Client } from 'google-auth-library';
 
 //let d = new Date();
 //let currentTime = d.toLocaleString();
@@ -66,7 +67,46 @@ process.on('SIGINT', async () => {
   console.log('MongoDB connection closed due to app termination');
   process.exit(0);
 });
-//response to all wrong paths
+
+
+//google login
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// Endpoint where frontend sends the Google ID Token
+app.post('/api/auth/google', async (req, res) => {
+    const { token } = req.body;
+
+    if (!token) {
+        return res.status(400).json({ message: 'Token is required' });
+    }
+
+    try {
+        // Verify the token integrity with Google
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID, 
+        });
+
+        // Extract the user profile data
+        const payload = ticket.getPayload();
+        const { sub, email, name, picture } = payload;
+
+        // DATABASE LOGIC GOES HERE:
+        // 1. Check if user with 'sub' (Google ID) or 'email' exists in database.
+        // 2. If not, create a new user record.
+        // 3. Generate your own session token (like a JWT) for your app.
+
+        res.status(200).json({
+            message: 'Authentication successful',
+            user: { id: sub, email, name, picture }
+        });
+
+    } catch (error) {
+        res.status(401).json({ message: 'Invalid Google token', error: error.message });
+    }
+});
+
+    //response to all wrong paths
 app.use((req, res)=>{
 console.log('wrong path invoked \n');
 res.status(404).json({
