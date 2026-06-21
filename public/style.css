@@ -163,7 +163,7 @@ div > i:hover{
           border:2px solid var(--pC);
           background :var(--bgC);
       }
-      .delete, #add-button{
+      .delete, #add-button,#sign-in-btn{
           color:var(--btC);
           background:var(--pC);
       }
