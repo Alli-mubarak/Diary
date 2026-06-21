@@ -39,8 +39,14 @@
           justify-content:space-between;
           box-shadow: 0 5px 6px var(--shadowC);
           padding-bottom:5px;
-          color: var(--txtC)
       }
+h1 a{
+  text-decoration: none;
+          color: var(--txtC);
+      }
+h1 a:hover{
+  text-decoration: underline;
+}
       .tt{
           display: flex;
           align-items:center;
