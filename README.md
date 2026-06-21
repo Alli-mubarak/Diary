@@ -1,5 +1,13 @@
 A full stack diary application 
 
-UI : HTML & CSS , 
-Server : Express - Nodejs, 
-Database: MongoDB
+-Functionalities
+* Add entry
+* Edit existing entry 
+* Delete existing entry
+* Search for entry
+* Switch theme
+
+-Development
+* UI : HTML & CSS , 
+* Server : Express - Nodejs, 
+* Database: MongoDB
