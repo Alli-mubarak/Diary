@@ -26,6 +26,10 @@ themeToggle.onclick = () =>{
     }
 }
 
+//theme autoset
+const d = new Date()
+const hour = d.getHours();
+alert(hour)
 
 // toggle the entry adder container
 let isAdderOpen = false;
