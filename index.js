@@ -10,6 +10,9 @@ import path from 'node:path';
 dotenv.config();
 import bodyParser from 'body-parser';
 import { OAuth2Client } from 'google-auth-library';
+import session from 'express-session';
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
 //let d = new Date();
 //let currentTime = d.toLocaleString();
@@ -24,6 +27,77 @@ const __dirname = import.meta.dirname;
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//google sign in
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Configure Passport Google Strategy
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL
+  },
+  (accessToken, refreshToken, profile, done) => {
+    // This is where you process or save user data to your database
+    // profile contains id, displayName, emails, photos, etc.
+    const user = {
+      googleId: profile.id,
+      name: profile.displayName,
+      email: profile.emails[0].value,
+      avatar: profile.photos[0].value
+    };
+    return done(null, user);
+  }
+));
+
+// Serialize and Deserialize User Session Data
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
+
+// --- Auth Routes ---
+
+// 1. Trigger Google Sign-Up / Login Flow
+app.get('/auth/google', 
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+// 2. Google OAuth Callback Route
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login-failed' }),
+  (req, res) => {
+    // Successful authentication, redirect to user dashboard or home.
+    res.redirect('/dashboard');
+  }
+);
+
+// --- Application Routes ---
+
+app.get('/dashboard', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send('Unauthorized. Please log in.');
+  }
+  res.send(`<h1>Welcome ${req.user.name}</h1><p>Email: ${req.user.email}</p><a href="/logout">Logout</a>`);
+});
+
+app.get('/login-failed', (req, res) => {
+  res.send('Authentication failed. Please try again.');
+});
+
+// Logout Route
+app.get('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.redirect('/');
+  });
+});
 
 //middleware
 app.use(function middleware(req,res,next){
