@@ -245,7 +245,7 @@ div > i:hover{
         height: 100%;
         top:0;
         left:-50%;
-        background: linear-gradient(var(--loaderC), var(--entC), var(--loaderC));
+        background: linear-gradient(45deg,var(--loaderC), var(--entC), var(--loaderC));
       }
       @keyframes load{
         from {
