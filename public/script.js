@@ -37,7 +37,7 @@ const BACKEND_URL = '';
             toggleCtrl.classList.remove('hidden');
             searchIcon.classList.remove('hidden');
             signInBtn.classList.add('hidden');
-            userDP.classlist.remove('hidden);
+            userDP.classlist.remove('hidden');
         } else {
           // User cookie expired or doesn't exist
           authSection.innerHTML = `
