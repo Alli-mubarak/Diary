@@ -115,7 +115,7 @@ app.get('/dashboard', (req, res) => {
   if (!req.isAuthenticated()) {
     return res.status(401).send('Unauthorized. Please log in.');
   }
-  res.send(`<h1>Welcome ${req.user.name}</h1><p>Email: ${req.user.email}</p><a href="/logout">Logout</a>`);
+  res.send(`<h1>Welcome ${req.user.firstName}</h1><p>Email: ${req.user.email}</p><a href="/logout">Logout</a>`);
 });
 
 app.get('/login-failed', (req, res) => {
