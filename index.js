@@ -14,7 +14,7 @@ import { OAuth2Client } from 'google-auth-library';
 import session from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import {MongoStore} from 'connect-mongo'; // used insted of express session to save session in db
+//import {MongoStore} from 'connect-mongo'; // used insted of express session to save session in db
 
 //let d = new Date();
 //let currentTime = d.toLocaleString();
