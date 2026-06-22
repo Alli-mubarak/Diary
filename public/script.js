@@ -284,7 +284,6 @@ async function handleGoogleLogin(response) {
 }
 function handleGoogleSignUp() {
     fetch(`${apiUrl}/auth/google`);
-    });
 }
 
 signInBtn.onclick = () =>{
