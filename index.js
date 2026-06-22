@@ -23,23 +23,60 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json())
 
+// Middleware (e.g., JSON parsing)
+app.use(express.json());
+
 app.use(express.static('icon'));
 const __dirname = import.meta.dirname;
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//google sign in
+
+
+// Connect to the database
+connectDB();
+
+
+// ... (after mongoose.connect)
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false, // Don't create empty sessions
+  //sessions are saved for 30 days
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    ttl: 30 * 24 * 60 * 60 // 30 days in seconds (removes expired sessions automatically)
+  }),
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+    httpOnly: true, // Prevents cross-site scripting (XSS) attacks
+    secure: process.env.NODE_ENV === 'production', // true if using HTTPS
+    sameSite: 'lax'
+  }
 }));
 
 // Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+//middleware - logs the method, path, ip address and time to the console
+app.use(function middleware(req,res,next){
+let d = new Date();
+let currentTime = d.toLocaleString();
+console.log(req.method, req.path, req.ip, currentTime,);
+next();
+});
+
+//default route
+app.get('/',(req, res)=>{
+//res.sendFile(__dirname, 'views/index.html');
+console.log(req.query)
+console.log('default path requested! \n');
+    res.sendFile(__dirname + '/public/index.html');
+
+});
 
 // Configure Passport Google Strategy
 // updated Passport Google Strategy with Async/Await Database Logic
@@ -139,22 +176,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-//middleware
-app.use(function middleware(req,res,next){
-let d = new Date();
-let currentTime = d.toLocaleString();
-console.log(req.method, req.path, req.ip, currentTime,);
-next();
-});
 
-//default route
-app.get('/',(req, res)=>{
-//res.sendFile(__dirname, 'views/index.html');
-console.log(req.query)
-console.log('default path requested! \n');
-    res.sendFile(__dirname + '/public/index.html');
-
-});
 
 //add entry route
 app.post('/add', createEntry);
@@ -169,32 +191,9 @@ app.post('/editEntry/:id', updateEntry);
 app.delete('/deleteEntry/:id', deleteEntry);
 
 
-// Connect to the database
-connectDB();
 
-
-// ... (after mongoose.connect)
-
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false, // Don't create empty sessions
-  //sessions are saved for 30 days
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
-    ttl: 30 * 24 * 60 * 60 // 30 days in seconds (removes expired sessions automatically)
-  }),
-  cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
-    httpOnly: true, // Prevents cross-site scripting (XSS) attacks
-    secure: process.env.NODE_ENV === 'production', // true if using HTTPS
-    sameSite: 'lax'
-  }
-}));
   
 
-// Middleware (e.g., JSON parsing)
-app.use(express.json());
 
 
 // Graceful shutdown
