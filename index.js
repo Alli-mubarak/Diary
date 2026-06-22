@@ -55,21 +55,7 @@ app.use(session({
   }
 }));
 
-// --- Auth Routes ---
 
-// 1. Trigger Google Sign-Up / Login Flow
-app.get('/auth/google', 
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
-
-// 2. Google OAuth Callback Route
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login-failed' }),
-  (req, res) => {
-    // Successful authentication, redirect to user dashboard or home.
-    res.redirect('/dashboard');
-  }
-);
 
 
 // Initialize Passport
@@ -147,6 +133,21 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+// --- Auth Routes ---
+
+// 1. Trigger Google Sign-Up / Login Flow
+app.get('/auth/google', 
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+// 2. Google OAuth Callback Route
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login-failed' }),
+  (req, res) => {
+    // Successful authentication, redirect to user dashboard or home.
+    res.redirect('/dashboard');
+  }
+);
 
 //user check route
 app.get('/api/auth/user', (req, res) => {
