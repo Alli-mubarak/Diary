@@ -11,6 +11,7 @@ const searchForm = document.getElementById('search-form');
 const errorBox = document.getElementById('error-box');
 const searchInput = document.getElementById('search-input');
 const signInBtn = document.getElementById('sign-in-btn');
+const userDP = document.getElementById('user-image');
 
 const BACKEND_URL = '';
 
