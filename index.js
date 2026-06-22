@@ -55,7 +55,7 @@ app.use(session({
     // Allows cookie transmissions via standard browser context cross-ports
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
   }
-  }
+  
 }));
 
 
