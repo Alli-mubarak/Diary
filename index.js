@@ -41,41 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Configure Passport Google Strategy
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL
-  },
-  (accessToken, refreshToken, profile, done) => {
-    // This is where you process or save user data to your database
-    // profile contains id, displayName, emails, photos, etc.
-    const newUser = {
-      googleId: profile.id,
-      displayName: profile.displayName,
-      firstName: profile.name.givenName,
-      lastName: profile.name.familyName,
-      email: profile.emails[0].value,
-      profilePic: profile.photos[0].value
-    };
 
-    try {
-      // Check if user already exists in our database
-      let user = await User.findOne({ googleId: profile.id });
-
-      if (user) {
-        // User exists, pass the user object to the next step
-        return done(null, user);
-      } else {
-        // User does not exist, create and save them to MongoDB
-        user = await User.create(newUser);
-        return done(null, user);
-      }
-    } catch (err) {
-      console.error(err);
-      return done(err, null);
-    }
-  }
-));
 
 // Serialize and Deserialize User Session Data
 //  Serialize user using the MongoDB object ID (_id) instead of the whole object
