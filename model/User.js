@@ -9,17 +9,16 @@ const UserSchema = new mongoose.Schema({
     unique: true
   },
   entries:[
-    {
-    description: {
+        {
+        description: {
             type: String,
             required: true,
             trim: true
         },
         
-    
+    },
     {
         timestamps: true
-      }
     }
   ],
   displayName: {
