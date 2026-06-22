@@ -39,7 +39,7 @@ const BACKEND_URL = '';
     }
 
     // Initialize check on load
-  //  checkAuthStatus();
+  checkAuthStatus();
 
 
 
