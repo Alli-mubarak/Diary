@@ -142,12 +142,8 @@ app.get('/',(req, res)=>{
 //res.sendFile(__dirname, 'views/index.html');
 console.log(req.query)
 console.log('default path requested! \n');
-//  if (req.isAuthenticated()) {
     res.sendFile(__dirname + '/public/index.html');
-//  }else{
-//    res.send('<h1>Home</h1><a href="/auth/google">Sign up / Log in with Google</a>');
-  
-//  }
+
 });
 
 //add entry route
