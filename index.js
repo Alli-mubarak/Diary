@@ -122,7 +122,7 @@ app.use(session({
   saveUninitialized: false, // Don't create empty sessions
   //sessions are saved for 30 days
   store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
+    mongoUrl: process.env.MONGODB_URI,
     ttl: 30 * 24 * 60 * 60 // 30 days in seconds (removes expired sessions automatically)
   }),
   cookie: {
