@@ -1,4 +1,4 @@
-// Get elements from HTML
+// Get DOM elements from HTML
 const entryInput = document.getElementById('entry');
 const toggleCtrl = document.querySelector('.toggle');
 const inputBox = document.getElementById('inputBox');
@@ -146,7 +146,7 @@ fetch(addApi, requestOptions)
 
 // get all entries
 function getEntries(fn){
-  load()
+  //load()
   errorBox.classList.add('hidden');
   const getAllApi = `${apiUrl}/getEntries`;
   const requestOptions = {
@@ -160,7 +160,7 @@ fetch(getAllApi, requestOptions)
   .then(response => response.json())
   .then(data => {
     entriesDiv.style.height = 'calc(100dvh - 130px)';
-    entriesDiv.innerHTML = '';
+    
     fn(data)
 
   })
@@ -171,6 +171,7 @@ fetch(getAllApi, requestOptions)
 
 //function that renders entries to the UI
 function displayEntries(data){
+    entriesDiv.innerHTML = '';
       for (let i=data.length-1; i >=0; i--){
       const d = new Date(data[i].createdAt);
       const timeDate = d.toLocaleString();
@@ -180,7 +181,8 @@ function displayEntries(data){
 }
 // function for searching
 function search(data){
-  let entryHTML = ''
+  let entryHTML = '';
+    
       for (let i=data.length-1; i >=0; i--){
       const d = new Date(data[i].createdAt);
       const timeDate = d.toLocaleString();
