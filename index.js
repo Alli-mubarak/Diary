@@ -36,8 +36,6 @@ app.use(cors({
   credentials: true // Crucial: Allows the browser to send cookies back and forth
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Connect to the database
 connectDB();
@@ -56,7 +54,8 @@ app.use(session({
   cookie: {
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
     httpOnly: true, // Prevents cross-site scripting (XSS) attacks
-   secure: process.env.NODE_ENV === 'production', 
+   //secure: process.env.NODE_ENV === 'production', 
+    secure:false,
     
     // Allows cookie transmissions via standard browser context cross-ports
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
@@ -64,7 +63,7 @@ app.use(session({
   
 }));
 
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Initialize Passport
