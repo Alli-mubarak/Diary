@@ -1,3 +1,49 @@
+const BACKEND_URL = '';
+
+    // 1. Check if user is logged in when page loads
+    async function checkAuthStatus() {
+      try {
+        // 'credentials: include' forces the browser to send the session cookie
+        const response = await fetch(`${BACKEND_URL}/api/auth/user`, { credentials: 'include' });
+        const data = await response.json();
+
+        const authSection = document.getElementById('auth-section');
+
+        if (data.loggedIn) {
+          // User is authenticated! Display details saved from MongoDB
+          authSection.innerHTML = `
+            <h2>Welcome back, ${data.user.displayName}!</h2>
+            <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
+            <p>Email: ${data.user.email}</p>
+            <p>Your Total Posts: ${data.user.posts.length}</p>
+            <button onclick="logoutUser()">Log Out</button>
+          `;
+        } else {
+          // User cookie expired or doesn't exist
+          authSection.innerHTML = `
+            <h2>Please sign up or log in</h2>
+            <!-- Point directly to your backend route -->
+            <a href="${BACKEND_URL}/auth/google"><button>Sign In with Google</button></a>
+          `;
+        }
+      } catch (err) {
+        console.error("Error verifying authentication status:", err);
+      }
+    }
+
+    // 2. Handle logging out
+    function logoutUser() {
+      // Redirect browser directly to backend logout route to clear cookie
+      window.location.href = `${BACKEND_URL}/logout`;
+    }
+
+    // Initialize check on load
+    checkAuthStatus();
+  </script>
+
+
+
+
 // Get DOM elements from HTML
 const entryInput = document.getElementById('entry');
 const toggleCtrl = document.querySelector('.toggle');
