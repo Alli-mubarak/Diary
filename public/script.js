@@ -204,14 +204,14 @@ function getEntries(fn){
   }
 }
 fetch(getAllApi, requestOptions)
-//  .then(response => response.json())
-//  .then(data => {
-//    entriesDiv.style.height = 'calc(100dvh - 130px)';
+  .then(response => response.json())
+  .then(data => {
+   entriesDiv.style.height = 'calc(100dvh - 130px)';
     
-//    fn(data)
+    fn(data)
 
-//  })
-    .then(data =>{console.log(data)})
+ })
+    
   .catch(error => {
     alert(error)
     console.error('Error:', error)})
