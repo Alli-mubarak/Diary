@@ -282,10 +282,8 @@ async function handleGoogleLogin(response) {
     const data = await res.json();
     console.log('Logged in user data:', data);
 }
-function handleGoogleSignUp() {
-    fetch(`${apiUrl}/auth/google`);
-}
+
 
 signInBtn.onclick = () =>{
-    handleGoogleSignUp();
+    console.log('initiating sign in....');
 }
