@@ -51,7 +51,7 @@ h1 a:hover{
           display: flex;
           align-items:center;
           justify-content: space-between;
-          gap:30px;
+          gap:20px;
         position:relative;
       }
       .theme{
