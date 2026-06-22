@@ -43,18 +43,7 @@ connectDB();
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false, // Don't create empty sessions
-  //sessions are saved for 30 days
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
-    ttl: 30 * 24 * 60 * 60 // 30 days in seconds (removes expired sessions automatically)
-  }),
-  cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
-    httpOnly: true, // Prevents cross-site scripting (XSS) attacks
-    secure: process.env.NODE_ENV === 'production', // true if using HTTPS
-    sameSite: 'lax'
-  }
+  saveUninitialized: true
 }));
 
 // Initialize Passport
