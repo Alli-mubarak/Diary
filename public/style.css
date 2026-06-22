@@ -150,7 +150,12 @@ div > i:hover{
         padding:5px;
         width:fit-content;
       }
-
+.tt img{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid var(--pC);
+}
         
       button, #add-button{
           padding:7px 10px;
