@@ -42,26 +42,12 @@ connectDB();
 
 
 // ... (after mongoose.connect)
-app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: false,
-      store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI,
-        collectionName: 'sessions',
-        ttl: 7 * 24 * 60 * 60, // 7 days in seconds
-        autoRemove: 'native',   // Uses MongoDB TTL index
-        stringify: false,        // Store session as BSON object, not JSON string
-      }),
-      cookie: {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
-      },
-    })
-  );
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));
