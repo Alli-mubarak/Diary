@@ -128,7 +128,7 @@ app.use(session({
   cookie: {
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
     httpOnly: true, // Prevents cross-site scripting (XSS) attacks
-  //  secure: process.env.NODE_ENV === 'production', // true if using HTTPS
+   secure: process.env.NODE_ENV === 'production', // true if using HTTPS
     sameSite: 'lax'
   }
 }));
