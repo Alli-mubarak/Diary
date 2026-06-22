@@ -1,4 +1,17 @@
 
+// Get DOM elements from HTML
+const entryInput = document.getElementById('entry');
+const toggleCtrl = document.querySelector('.toggle');
+const inputBox = document.getElementById('inputBox');
+const addButton = document.getElementById('add-button');
+const entriesDiv = document.getElementById('entries');
+const themeToggle = document.querySelector('.theme');
+const searchIcon = document.getElementById('search');
+const searchForm = document.getElementById('search-form');
+const errorBox = document.getElementById('error-box');
+const searchInput = document.getElementById('search-input');
+const signInBtn = document.getElementById('sign-in-btn');
+
 const BACKEND_URL = '';
 
     // 1. Check if user is logged in when page loads
@@ -12,13 +25,18 @@ const BACKEND_URL = '';
 
         if (data.loggedIn) {
           // User is authenticated! Display details saved from MongoDB
-          authSection.innerHTML = `
-            <h2>Welcome back, ${data.user.displayName}!</h2>
-            <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
-            <p>Email: ${data.user.email}</p>
-            <p>Your Total Posts: ${data.user.posts.length}</p>
-            <button onclick="logoutUser()">Log Out</button>
-          `;
+         // authSection.innerHTML = `
+         //   <h2>Welcome back, ${data.user.displayName}!</h2>
+        //    <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
+         //   <p>Email: ${data.user.email}</p>
+       //     <p>Your Total Posts: ${data.user.posts.length}</p>
+        //    <button onclick="logoutUser()">Log Out</button>
+     //     `;
+            authSection.innerHTML = '';
+            toggleCtrl.classList.remove('hidden');
+            searchIcon.classList.remove('hidden');
+            signInBtn.classList.add('hidden');
+            userDP.classlist.remove('hidden);
         } else {
           // User cookie expired or doesn't exist
           authSection.innerHTML = `
@@ -40,22 +58,6 @@ const BACKEND_URL = '';
 
     // Initialize check on load
   checkAuthStatus();
-
-
-
-
-// Get DOM elements from HTML
-const entryInput = document.getElementById('entry');
-const toggleCtrl = document.querySelector('.toggle');
-const inputBox = document.getElementById('inputBox');
-const addButton = document.getElementById('add-button');
-const entriesDiv = document.getElementById('entries');
-const themeToggle = document.querySelector('.theme');
-const searchIcon = document.getElementById('search');
-const searchForm = document.getElementById('search-form');
-const errorBox = document.getElementById('error-box');
-const searchInput = document.getElementById('search-input');
-const signInBtn = document.getElementById('sign-in-btn');
 
 
 // toggle theme
