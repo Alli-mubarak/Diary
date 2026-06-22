@@ -9,6 +9,7 @@ const searchIcon = document.getElementById('search');
 const searchForm = document.getElementById('search-form');
 const errorBox = document.getElementById('error-box');
 const searchInput = document.getElementById('search-input');
+const signInBtn = document.getElementById('sign-in-btn');
 
 
 // toggle theme
@@ -281,7 +282,11 @@ async function handleGoogleLogin(response) {
     const data = await res.json();
     console.log('Logged in user data:', data);
 }
+function handleGoogleSignUp() {
+    fetch(`${apiUrl}/auth/google`);
+    });
+}
 
-errorBox.onclick = () =>{
-    handleGoogleLogin('Mubarak')
+signInBtn.onclick = () =>{
+    handleGoogleSignUp();
 }
