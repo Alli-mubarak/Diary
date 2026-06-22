@@ -42,26 +42,27 @@ connectDB();
 
 
 // ... (after mongoose.connect)
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false, // Don't create empty sessions
-  //sessions are saved for 30 days
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI,
-    ttl: 30 * 24 * 60 * 60 // 30 days in seconds (removes expired sessions automatically)
-  }),
-  cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
-    httpOnly: true, // Prevents cross-site scripting (XSS) attacks
-   //secure: process.env.NODE_ENV === 'production', 
-    secure:true,
-    
-    // Allows cookie transmissions via standard browser context cross-ports
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
-  }
-  
-}));
+app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+        collectionName: 'sessions',
+        ttl: 7 * 24 * 60 * 60, // 7 days in seconds
+        autoRemove: 'native',   // Uses MongoDB TTL index
+        stringify: false,        // Store session as BSON object, not JSON string
+      }),
+      cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
+      },
+    })
+  );
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
