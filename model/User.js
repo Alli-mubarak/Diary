@@ -8,19 +8,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  entries:[
-        {
-        description: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        
-    },
-    {
-        timestamps: true
-    }
-  ],
+  entries:[entrySchema],
   displayName: {
     type: String,
     required: true
