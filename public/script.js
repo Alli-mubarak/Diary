@@ -25,6 +25,8 @@ const BACKEND_URL = '';
         const authSection = document.getElementById('auth-section');
 
         if (data.loggedIn) {
+            console.log(data);
+            alert(data)
           // User is authenticated! Display details saved from MongoDB
          // authSection.innerHTML = `
          //   <h2>Welcome back, ${data.user.displayName}!</h2>
