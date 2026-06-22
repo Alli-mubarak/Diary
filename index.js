@@ -1,6 +1,6 @@
 import connectDB from './config/db.js';
 import mongoose from 'mongoose';
-import User from './model/User.js'; // 2. Import User Model
+//import User from './model/User.js'; // 2. Import User Model
 import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/add.js';
 import express from 'express';
 import {Router} from 'express'
