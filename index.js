@@ -1,5 +1,6 @@
 import connectDB from './config/db.js';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import User from './model/User.js'; // 2. Import User Model
 import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/add.js';
 import express from 'express';
 import {Router} from 'express'
@@ -48,20 +49,49 @@ passport.use(new GoogleStrategy({
   (accessToken, refreshToken, profile, done) => {
     // This is where you process or save user data to your database
     // profile contains id, displayName, emails, photos, etc.
-    const user = {
+    const newUser = {
       googleId: profile.id,
-      name: profile.displayName,
+      displayName: profile.displayName,
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
       email: profile.emails[0].value,
-      avatar: profile.photos[0].value
+      profilePic: profile.photos[0].value
     };
-    return done(null, user);
+
+    try {
+      // Check if user already exists in our database
+      let user = await User.findOne({ googleId: profile.id });
+
+      if (user) {
+        // User exists, pass the user object to the next step
+        return done(null, user);
+      } else {
+        // User does not exist, create and save them to MongoDB
+        user = await User.create(newUser);
+        return done(null, user);
+      }
+    } catch (err) {
+      console.error(err);
+      return done(err, null);
+    }
   }
 ));
 
 // Serialize and Deserialize User Session Data
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((user, done) => done(null, user));
+//  Serialize user using the MongoDB object ID (_id) instead of the whole object
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
+// Deserialize user by fetching them from MongoDB using their ID
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
+});
 // --- Auth Routes ---
 
 // 1. Trigger Google Sign-Up / Login Flow
@@ -112,7 +142,12 @@ app.get('/',(req, res)=>{
 //res.sendFile(__dirname, 'views/index.html');
 console.log(req.query)
 console.log('default path requested! \n');
+  if (req.isAuthenticated()) {
     res.sendFile(__dirname + '/public/index.html');
+  }else{
+    res.send('<h1>Home</h1><a href="/auth/google">Sign up / Log in with Google</a>');
+  
+  }
 });
 
 //add entry route
