@@ -1,6 +1,19 @@
 
 import mongoose, {Schema} from "mongoose";
 
+const entrySchema = new Schema(
+    {
+        description: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        
+    },
+    {
+        timestamps: true
+    }
+)
 
 const UserSchema = new mongoose.Schema({
   googleId: {
