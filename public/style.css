@@ -179,6 +179,10 @@ div > i:hover{
           color:var(--btC);
           background:var(--pC);
       }
+#sign-in-btn a{
+  text-decoration:none;
+  color: var(--btC);
+}
       #entry{
           width:80%;
           resize:none;
