@@ -1,4 +1,5 @@
 import connectDB from './config/db.js';
+import MongoStore from 'connect-mongo' // used insted of express session to save session in db
 import mongoose from 'mongoose';
 import User from './model/User.js'; //  Import User Model
 import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/add.js';
@@ -108,6 +109,14 @@ app.get('/auth/google/callback',
     res.redirect('/dashboard');
   }
 );
+//user check route
+app.get('/api/auth/user', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ loggedIn: true, user: req.user });
+  } else {
+    res.json({ loggedIn: false, user: null });
+  }
+});
 
 // --- Application Routes ---
 
@@ -162,6 +171,27 @@ app.delete('/deleteEntry/:id', deleteEntry);
 
 // Connect to the database
 connectDB();
+
+
+// ... (after mongoose.connect)
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false, // Don't create empty sessions
+  //sessions are saved for 30 days
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    ttl: 30 * 24 * 60 * 60 // 30 days in seconds (removes expired sessions automatically)
+  }),
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+    httpOnly: true, // Prevents cross-site scripting (XSS) attacks
+    secure: process.env.NODE_ENV === 'production', // true if using HTTPS
+    sameSite: 'lax'
+  }
+}));
+  
 
 // Middleware (e.g., JSON parsing)
 app.use(express.json());
