@@ -29,7 +29,13 @@ app.use(express.json());
 app.use(express.static('icon'));
 const __dirname = import.meta.dirname;
 
-app.use(cors());
+//app.use(cors());
+
+app.use(cors({
+  origin: 'https://diary-app-omega-lime.vercel.app/', 
+  credentials: true // Crucial: Allows the browser to send cookies back and forth
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 
