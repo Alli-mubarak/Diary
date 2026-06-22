@@ -8,18 +8,20 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  entries:{
-description: {
+  entries:[
+    {
+    description: {
             type: String,
             required: true,
             trim: true
         },
         
-    },
+    
     {
         timestamps: true
-}
-  }
+      }
+    }
+  ],
   displayName: {
     type: String,
     required: true
