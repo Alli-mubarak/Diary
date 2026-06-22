@@ -1,5 +1,4 @@
 import connectDB from './config/db.js';
-import {MongoStore} from 'connect-mongo' // used insted of express session to save session in db
 import mongoose from 'mongoose';
 import User from './model/User.js'; //  Import User Model
 import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/add.js';
@@ -15,6 +14,7 @@ import { OAuth2Client } from 'google-auth-library';
 import session from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import {MongoStore} from 'connect-mongo'; // used insted of express session to save session in db
 
 //let d = new Date();
 //let currentTime = d.toLocaleString();
