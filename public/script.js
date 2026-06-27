@@ -33,10 +33,11 @@ const BACKEND_URL = '';
          <div class="user-dp>
          <img src="${data.user.profilePic}" width="40" height="40" style="border-radius:50%">
          </div>
-         <div
-           <h2>${data.user.displayName}!</h2>
+         <div class="other-info">
+           <h2>${data.user.displayName}</h2>
            <p>${data.user.email}</p>
            <p>${data.user.entries.length} Entries</p>
+           </div>
            </div>
            <button onclick="logoutUser()">Log Out</button>
          `;
