@@ -26,7 +26,7 @@ const BACKEND_URL = '';
 
         if (data.loggedIn) {
             console.log(data);
-            alert(data)
+            
           // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
            <h2>Welcome back, ${data.user.displayName}!</h2>
@@ -39,7 +39,7 @@ const BACKEND_URL = '';
             searchIcon.classList.remove('hidden');
             signInBtn.classList.add('hidden');
             userDP.classList.remove('hidden');
-            userDp.src=data.user.profilePic;
+            userDp.src = data.user.profilePic;
         } else {
           // User cookie expired or doesn't exist
           authSection.innerHTML = `
