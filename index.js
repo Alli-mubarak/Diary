@@ -43,12 +43,26 @@ connectDB();
 
 
 // ... (after mongoose.connect)
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: true
+// }));
 app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
+    secret: process.env.SESSION_SECRET, 
+    resave: false,                            // Prevents resaving unchanged sessions
+    saveUninitialized: false,                 // Prevents storing empty sessions
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+        ttl: 7 * 24 * 60 * 60,                // Time to live in MongoDB: 7 days (in seconds)
+        autoRemove: 'native'                  // Let MongoDB handle expired session cleanup
+    }),
+    cookie: {
+        maxAge: 7 * 24 * 60 * 60 * 1000,      // Cookie expiration: 7 days (in milliseconds)
+        httpOnly: true,                       // Protects against XSS attacks
+        secure: true                         // Set to true if using HTTPS in production
+    }
 }));
-
 
 
 app.use(express.static(path.join(__dirname, 'public')));
