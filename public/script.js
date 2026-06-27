@@ -39,7 +39,7 @@ const BACKEND_URL = '';
             searchIcon.classList.remove('hidden');
             signInBtn.classList.add('hidden');
             userDP.classList.remove('hidden');
-            userDp.src = data.user.profilePic;
+            userDP.src = data.user.profilePic;
         } else {
           // User cookie expired or doesn't exist
           authSection.innerHTML = `
