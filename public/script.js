@@ -31,12 +31,12 @@ const BACKEND_URL = '';
          authSection.innerHTML = `
          <div class="user-details>
          <div class="user-dp>
-         <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
+         <img src="${data.user.profilePic}" width="40" height="40" style="border-radius:50%">
          </div>
          <div
-           <h2>Welcome back, ${data.user.displayName}!</h2>
-           <p>Email: ${data.user.email}</p>
-           <p>Your Total Entries: ${data.user.entries.length} Entries</p>
+           <h2>${data.user.displayName}!</h2>
+           <p>${data.user.email}</p>
+           <p>${data.user.entries.length} Entries</p>
            </div>
            <button onclick="logoutUser()">Log Out</button>
          `;
