@@ -60,7 +60,7 @@ app.use(session({
     cookie: {
         maxAge: 7 * 24 * 60 * 60 * 1000,      // Cookie expiration: 7 days (in milliseconds)
         httpOnly: true,                       // Protects against XSS attacks
-        secure: true                         // Set to true if using HTTPS in production
+        secure: process.env.NODE_ENV === 'production'                       // Set to true if using HTTPS in production
     }
 }));
 
