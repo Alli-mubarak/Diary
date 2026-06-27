@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import User from './model/User.js'; //  Import User Model
 import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/add.js';
 import express from 'express';
-import bcrypt from 'bycryptjs';
+// import bcrypt from 'bycryptjs';
 import {Router} from 'express'
 const app = express();
 import cors from 'cors';
