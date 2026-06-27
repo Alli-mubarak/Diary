@@ -21,6 +21,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  password: { type: String, required: function() { return !this.googleId; } },
+  refreshToken: { type: String },
+  tokenExpiration: { type: Date },
   entries:[entrySchema],
   displayName: {
     type: String,
