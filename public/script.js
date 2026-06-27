@@ -27,7 +27,7 @@ const BACKEND_URL = '';
         if (data.loggedIn) {
             console.log(data);
             alert(data)
-          User is authenticated! Display details saved from MongoDB
+          // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
            <h2>Welcome back, ${data.user.displayName}!</h2>
            <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
