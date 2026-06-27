@@ -30,7 +30,6 @@ const BACKEND_URL = '';
           // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
            <h2>Welcome back, ${data.user.displayName}!</h2>
-           <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
            <p>Email: ${data.user.email}</p>
            <p>Your Total Entries: ${data.user.entries.length} Entries</p>
            <button onclick="logoutUser()">Log Out</button>
@@ -40,6 +39,7 @@ const BACKEND_URL = '';
             searchIcon.classList.remove('hidden');
             signInBtn.classList.add('hidden');
             userDP.classList.remove('hidden');
+            userDp.src=data.user.profilePic;
         } else {
           // User cookie expired or doesn't exist
           authSection.innerHTML = `
