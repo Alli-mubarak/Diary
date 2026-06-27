@@ -29,8 +29,8 @@ const BACKEND_URL = '';
             
           // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
-         <div class="user-details>
-         <div class="user-dp>
+         <div class="user-details">
+         <div class="user-dp">
          <img src="${data.user.profilePic}" width="40" height="40" style="border-radius:50%">
          </div>
          <div class="other-info">
