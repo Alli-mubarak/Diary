@@ -27,15 +27,15 @@ const BACKEND_URL = '';
         if (data.loggedIn) {
             console.log(data);
             alert(data)
-          // User is authenticated! Display details saved from MongoDB
-         // authSection.innerHTML = `
-         //   <h2>Welcome back, ${data.user.displayName}!</h2>
-        //    <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
-         //   <p>Email: ${data.user.email}</p>
-       //     <p>Your Total Posts: ${data.user.posts.length}</p>
-        //    <button onclick="logoutUser()">Log Out</button>
-     //     `;
-            authSection.innerHTML = '';
+          User is authenticated! Display details saved from MongoDB
+         authSection.innerHTML = `
+           <h2>Welcome back, ${data.user.displayName}!</h2>
+           <img src="${data.user.profilePic}" width="50" style="border-radius:50%">
+           <p>Email: ${data.user.email}</p>
+           <p>Your Total Entries: ${data.user.entries.length} Entries</p>
+           <button onclick="logoutUser()">Log Out</button>
+         `;
+            // authSection.innerHTML = '';
             toggleCtrl.classList.remove('hidden');
             searchIcon.classList.remove('hidden');
             signInBtn.classList.add('hidden');
