@@ -171,7 +171,7 @@ div > i:hover{
   color: var(--txtC);
 }
 #auth-section button{
-  color: var(--pC);
+  color: var(--btC);
 }
       button:hover{
         transform: scale(1.05);
