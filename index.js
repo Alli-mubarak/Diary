@@ -77,6 +77,12 @@ app.use(function middleware(req,res,next){
 let d = new Date();
 let currentTime = d.toLocaleString();
 console.log(req.method, req.path, req.ip, currentTime,);
+   console.log('--- Session Debug ---');
+  console.log('Incoming Cookie:', req.headers.cookie);
+  console.log('Session ID:', req.sessionID);
+  console.log('Session Data in memory:', req.session);
+  console.log('Is Authenticated?:', req.isAuthenticated ? req.isAuthenticated() : 'No passport');
+  console.log('User object:', req.user);
 next();
 });
 
