@@ -222,7 +222,15 @@ app.get('/login-failed', (req, res) => {
 app.get('/logout', (req, res) => {
   req.logout((err) => {
     if (err) return next(err);
-    res.redirect('/');
+    
+    // Destroy the session in MongoDB
+    req.session.destroy((err) => {
+      if (err) return res.send('Error logging out');
+      
+      // Clear the cookie on the client side
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
   });
 });
 
