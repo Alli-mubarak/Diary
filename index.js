@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import User from './model/User.js'; //  Import User Model
 import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/add.js';
 import express from 'express';
+import bcrypt from 'bycryptjs';
 import {Router} from 'express'
 const app = express();
 import cors from 'cors';
@@ -143,6 +144,33 @@ app.get('/auth/google/callback',
     res.redirect('/dashboard');
   }
 );
+
+app.post('/api/auth/signup', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Validate inputs
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // Check if email is taken
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already exists' });
+    }
+// Hash password and save user
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new User({ name, email, password: hashedPassword });
+    await newUser.save();
+
+    res.status(201).json({ message: 'Registration successful!' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 //user check route
 app.get('/api/auth/user', (req, res) => {
