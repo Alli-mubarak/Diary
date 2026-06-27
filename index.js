@@ -80,14 +80,7 @@ console.log(req.method, req.path, req.ip, currentTime,);
 next();
 });
 
-//default route
-app.get('/',(req, res)=>{
-//res.sendFile(__dirname, 'views/index.html');
-console.log(req.query)
-console.log('default path requested! \n');
-    res.sendFile(__dirname + '/public/index.html');
 
-});
 
 // Configure Passport Google Strategy
 // updated Passport Google Strategy with Async/Await Database Logic
@@ -158,6 +151,16 @@ app.get('/auth/google/callback',
     res.redirect('/dashboard');
   }
 );
+
+
+//default route
+app.get('/',(req, res)=>{
+//res.sendFile(__dirname, 'views/index.html');
+console.log(req.query)
+console.log('default path requested! \n');
+    res.sendFile(__dirname + '/public/index.html');
+
+});
 
 app.post('/api/auth/signup', async (req, res) => {
   try {
