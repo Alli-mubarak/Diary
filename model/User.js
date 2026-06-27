@@ -36,6 +36,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+    role: {
+    type: String,
+    enum: ['user', 'moderator', 'admin'], // Restricts values to this array
+    default: 'user'                      // Standard fallback role
+  },
   profilePic: String,
   createdAt: {
     type: Date,
