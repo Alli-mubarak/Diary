@@ -166,7 +166,13 @@ div > i:hover{
           cursor: pointer;
           transition: all 0.5s ease;
       }
-
+#auth-section{
+  text-align: center;
+  color: var(--txtC);
+}
+#auth-section button{
+  color: var(--pC);
+}
       button:hover{
         transform: scale(1.05);
       }
