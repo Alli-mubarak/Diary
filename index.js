@@ -145,32 +145,32 @@ app.get('/auth/google/callback',
   }
 );
 
-app.post('/api/auth/signup', async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+// app.post('/api/auth/signup', async (req, res) => {
+//   try {
+//     const { name, email, password } = req.body;
 
-    // Validate inputs
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
+//     // Validate inputs
+//     if (!name || !email || !password) {
+//       return res.status(400).json({ message: 'All fields are required' });
+//     }
 
-    // Check if email is taken
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Email already exists' });
-    }
-// Hash password and save user
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+//     // Check if email is taken
+//     const existingUser = await User.findOne({ email });
+//     if (existingUser) {
+//       return res.status(400).json({ message: 'Email already exists' });
+//     }
+// // Hash password and save user
+//     const salt = await bcrypt.genSalt(10);
+//     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({ name, email, password: hashedPassword });
-    await newUser.save();
+//     const newUser = new User({ name, email, password: hashedPassword });
+//     await newUser.save();
 
-    res.status(201).json({ message: 'Registration successful!' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+//     res.status(201).json({ message: 'Registration successful!' });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 //user check route
 app.get('/api/auth/user', (req, res) => {
@@ -187,7 +187,8 @@ app.get('/dashboard', (req, res) => {
   if (!req.isAuthenticated()) {
     return res.status(401).send('Unauthorized. Please log in.');
   }
-  res.send(`<h1>Welcome ${req.user.firstName}</h1><p>Email: ${req.user.email}</p><a href="/logout">Logout</a>`);
+  // res.send(`<h1>Welcome ${req.user.firstName}</h1><p>Email: ${req.user.email}</p><a href="/logout">Logout</a>`);
+  res.redirect('/');
 });
 
 app.get('/login-failed', (req, res) => {
