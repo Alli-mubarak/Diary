@@ -21,7 +21,7 @@
          --pC : #fff;
          --bgC : #002;
          --btC: #005;
-         --txtC: #fff;
+         --txtC: #ddd;
          --entC: rgba(255, 255, 255, 0.1);
          --shadowC: rgba(255,255,255,0.15);
         --loaderC: rgba(225,225,225,0.01);
@@ -67,4 +67,95 @@ h1 a:hover{
       }
 div > i:hover{
   background: var(--entC);
-  }
+}
+
+ #sign-in-form{
+            width:80dvw;
+            max-width:400px;
+            margin: 60px auto;
+            padding:20px;
+            display:flex;
+            flex-direction: column;
+            gap: 15px;
+            background: transparent;
+            color:var(--txtC);
+             box-shadow:0 0 13px 4px var(--shadowC);
+            border-radius:5px;
+        }
+        #sign-in-form h2{
+            text-align:center;
+            font-weight:700;
+        }
+        #sign-in-form p{
+            
+           
+        }
+        #sign-in-form > p::before, #sign-in-form > p::after{
+            content:'____________';
+            transform: translateY(-7px);
+            display:inline-block;
+            padding: 0 10px;
+        }
+        #google-login{
+            text-decoration:none;
+            display :flex ;
+            align-items: center;
+            justify-content:space-between;
+            font-size:1.3rem;
+           width :fit-content;
+          gap:10px;
+           border: 2px solid var(--pC);
+           color:var(--pC);
+           margin:10px auto;
+           border-radius: 30px;
+           padding:10px 20px;
+        }
+        #google-login img{
+            width:35px; 
+            height: 35px;
+           
+            background:var(--shadowC);
+            border-radius:50%;
+        }
+           .input-group label{
+           font-size:1.3rem;
+           
+           }
+        .input-group input{
+            border: 2px solid var(--shadowC);
+            font-size:1.1rem;
+            color:var(--txtC);
+            width:100%;
+            display:block;
+            padding: 10px;
+            outline:none; 
+            border-radius:5px;
+          background: transparent;
+        }
+        .input-group input:focus{
+            border-color: var(--pC);
+        }
+           .input-group span{
+               color:red;
+               font-size: 0.97rem;
+           }
+        #sign-up-form p{
+            text-align: center;
+            font-size:1.1rem;
+        }
+        p a{
+            text-decoration: none;
+            color: var(--pC);
+        }
+        
+        #sign-in-form button{
+            width:100%;
+            padding: 10px;
+            outline:none;
+             border-radius:5px;
+            display:block;
+            background:var(--pC);
+            color:var(--btC);
+            font-size:1.4rem;
+            cursor:pointer;
+        }
