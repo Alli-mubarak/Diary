@@ -23,16 +23,29 @@ const createEntry = async (req, res) => {
     }
     try {
         const { description} = req.body;
+       const userId = req.user.id;
         if( !description){
             return res.status(400).json({
                 message: "All fields are required!"
             });
         }
-    
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { 
+        $push: { 
+          entries: { 
+            userId,
+            description 
+          } 
+        } 
+      },
+      { new: true, runValidators: true }
+    );
+            
        
-      const user = await User.findById(req.user.id);
-  user.entries.push({ userId: req.user.id, description: description});
-    await user.save();
+//      const user = await User.findById(req.user.id);
+//  user.entries.push({ userId: req.user.id, description: description});
+ //   await user.save();
     
         console.log('Entry added successfully');
         res.status(201).json({
