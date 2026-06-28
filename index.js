@@ -262,7 +262,7 @@ app.get('/logout', (req, res) => {
 //app.post('/add' createEntry);
 
 //get all entries route
-//app.get('/getEntries', getEntries);
+app.get('/getEntries', getEntries);
 
 //edit an entry
 app.post('/editEntry/:id', updateEntry);
