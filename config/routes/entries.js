@@ -68,9 +68,9 @@ const getAnEntry= async (req, res) => {
 
 // update entry
 const updateEntry = async (req, res) => {
-    if(!req){
-        return res.status(401).json({message: "You are not Authorized, please log in" });
-    }
+  //  if(!req){
+     //   return res.status(401).json({message: "You are not Authorized, please log in" });
+//    }
     try {
         
         // basic validation to check if the body is empty
