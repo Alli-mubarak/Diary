@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diary - Sign Up</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav>
+  <h1><a href="/">Diary</a>
+  <div class="tt">
+   <div class="theme">
+       <i class="fa-solid fa-moon"></i>
+   </div>
+  </div>
+  </h1>
+ <form id="sign-up-form">
+        <h2>Sign Up with Email</h2>
+        <p>Or</p>
+        <a href="#" id="google-login">Continue with Google
+        <img src="g.png" alt="google-logo"/></a>
+        <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" placeholder="Enter Username.." type="text" required>
+        <span id="username-msg">username is used, try another one</span>
+        </div>
+        <div class="input-group">
+        <label for="email">Email</label>
+        <input id="email" placeholder="Enter Email Adress.." type="email" required>
+        <span id="email-msg"></span>
+        </div>
+        <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" placeholder="********" type="password" required>
+        <span id="pwd-msg"></span>
+        </div>
+        <div>
+        <p>Already have an account? <a href="/sign-in">Log In</a></p>
+        </div>
+        <button type="submit">
+            Sign Up
+        </button>
+        
+    </form>
+  
+  <script src="script/sign-up.js"></script>
+</body>
+</html>
