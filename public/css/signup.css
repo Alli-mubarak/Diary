@@ -78,7 +78,7 @@ div > i:hover{
             flex-direction: column;
             gap: 15px;
             background: transparent;
-            color:green;
+            color:var(--txtC);
              box-shadow:0 0 13px 4px var(--shadowC);
             border-radius:5px;
         }
@@ -91,7 +91,7 @@ div > i:hover{
            
         }
         #sign-up-form > p::before, #sign-up-form > p::after{
-            content:'_______________';
+            content:'____________';
             transform: translateY(-5px);
             display:inline-block;
             padding: 0 10px;
@@ -102,9 +102,9 @@ div > i:hover{
             align-items: center;
             justify-content:space-between;
             font-size:1.3rem;
-           width :230px;
+           width :250px;
            border: 2px solid var(--txtC);
-           color:var(--txtC);
+           color:var(--pC);
            margin:10px auto;
            border-radius: 30px;
            padding:10px 20px;
@@ -121,7 +121,7 @@ div > i:hover{
            
            }
         .input-group input{
-            border: 2px solid transparent;
+            border: 2px solid var(--pC);
             font-size:1.1rem;
             color:var(--txtC);
             width:100%;
@@ -129,12 +129,13 @@ div > i:hover{
             padding: 10px;
             outline:none; 
             border-radius:5px;
+          background: var(--loaderC);
         }
         .input-group input:focus{
             border: 2px solid var(--txtC);
         }
            .input-group span{
-               color:var(--pC);
+               color:red;
                font-size: 0.97rem;
            }
         #sign-up-form p{
