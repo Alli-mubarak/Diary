@@ -95,9 +95,7 @@ const updateEntry = async (req, res) => {
         })
     }
     }else{
-        res.status(401).json({
-            message: "You are not Authorized, please log in"
-        })
+        res.status(401).json({message: "You are not Authorized, please log in" })
     }
 }
 
