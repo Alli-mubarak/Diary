@@ -31,7 +31,7 @@ const createEntry = async (req, res) => {
     
        
       const user = await User.findById(req.user.id);
-  user.entries.push({ description: description, userId: req.user.id, user: req.user});
+  user.entries.push({ userId: req.user.id, description: description});
     await user.save();
     
         console.log('Entry added successfully');
