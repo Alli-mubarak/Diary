@@ -1,7 +1,7 @@
 import connectDB from './config/db.js';
 import mongoose from 'mongoose';
 import User from './model/User.js'; //  Import User Model
-import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/add.js';
+import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/routes/entries.js';
 import express from 'express';
 import bcrypt from 'bcrypt';
 import {Router} from 'express'
