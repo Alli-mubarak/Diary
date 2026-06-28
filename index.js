@@ -1,7 +1,7 @@
 import connectDB from './config/db.js';
 import mongoose from 'mongoose';
 import User from './model/User.js'; //  Import User Model
-import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/routes/entries.js';
+//import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/routes/entries.js';
 import express from 'express';
 import bcrypt from 'bcrypt';
 import {Router} from 'express'
@@ -259,16 +259,16 @@ app.get('/logout', (req, res) => {
 
 
 //add entry route
-app.post('/add' createEntry);
+//app.post('/add' createEntry);
 
 //get all entries route
-app.get('/getEntries', getEntries);
+//app.get('/getEntries', getEntries);
 
 //edit an entry
-app.post('/editEntry/:id', updateEntry);
+//app.post('/editEntry/:id', updateEntry);
 
 //delete an entry
-app.delete('/deleteEntry/:id', deleteEntry);
+//app.delete('/deleteEntry/:id', deleteEntry);
 
 
 
