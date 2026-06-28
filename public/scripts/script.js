@@ -88,7 +88,7 @@ themeToggle.onclick = () =>{
 const d = new Date()
 const hour = d.getHours();
 
-if(hour > 6 && hour < 17){
+if(hour > 6 && hour < 19){
     html.removeAttribute('class','dark');
         isDark = false;
         themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`
