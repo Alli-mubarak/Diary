@@ -1,0 +1,70 @@
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+ *{
+    font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+    }
+    html{
+         --pC : #005;
+         --bgC : #fff;
+         --txtC: #000;
+         --btC: #fff;
+         --entC: rgba(0,0,0,0.05);
+         --shadowC: rgba(0,0,0,0.10);
+               --loaderC:rgba(0,0,0,0.01);
+     }
+     html.dark{
+         --pC : #fff;
+         --bgC : #002;
+         --btC: #005;
+         --txtC: #fff;
+         --entC: rgba(255, 255, 255, 0.1);
+         --shadowC: rgba(255,255,255,0.15);
+        --loaderC: rgba(225,225,225,0.01);
+     }
+    body{
+        background: var(--bgC);
+    }
+      h1{
+      margin:5px 0;
+      width: 100%;
+      height: 60px;
+      padding: 0 15px;
+          display:flex;
+          align-items :center;
+          justify-content:space-between;
+          box-shadow: 0 5px 6px var(--shadowC);
+          padding-bottom:5px;
+      }
+h1 a{
+  text-decoration: none;
+          color: var(--txtC);
+      }
+h1 a:hover{
+  text-decoration: underline;
+}
+      .tt{
+          display: flex;
+          align-items:center;
+          justify-content: space-between;
+          gap:20px;
+        position:relative;
+      }
+      .theme{
+          width: 30px; 
+          overflow:hidden;
+        
+      }
+      div > i {
+        cursor:pointer;
+        font-size: 1.5rem;
+        color: var(--pC);
+        border-radius: 50%;
+      }
+div > i:hover{
+  background: var(--entC);
+  }
