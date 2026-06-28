@@ -28,10 +28,16 @@ const createEntry = async (req, res) => {
                 message: "All fields are required!"
             });
         }
+        const newEntry = new Entry({
+      description,
+      userId: req.user?.id || req.user?._id // 
+    });
      //   const newEntry = await Entry.create({ description});
-        const user = await User.findById(req.user.id);
-      user.entries.push({ description: description});
-       await user.save();
+   //     const user = await User.findById(req.user.id);
+  //    user.entries.push({ description: description});
+  //     await user.save();
+        const savedEntry = await newEntry.save();
+    
         console.log('Entry added successfully');
         res.status(201).json({
             message: "Entry added successfully",
