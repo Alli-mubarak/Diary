@@ -31,7 +31,7 @@ const BACKEND_URL = '';
          authSection.innerHTML = `
          <div class="user-details">
          <div class="user-dp">
-         <img src="${data.user.profilePic}" width="40" height="40" style="border-radius:50%">
+         <img src="${data.user.profilePic}" width="50" height="50" style="border-radius:50%">
          </div>
          <div class="other-info">
            <h2>${data.user.displayName}</h2>
