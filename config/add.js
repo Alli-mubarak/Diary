@@ -68,8 +68,9 @@ const getAnEntry= async (req, res) => {
 
 // update entry
 const updateEntry = async (req, res) => {
+    if(req.isAuthenticated()){
     try {
-        console.log(Object.keys(req.body).length);
+        
         // basic validation to check if the body is empty
         // {name:x, description:y, age:z} --> [name, description, age]
         if(Object.keys(req.body).length === 0){
@@ -91,6 +92,11 @@ const updateEntry = async (req, res) => {
         res.status(500).json({
             message: "Internal Server Error",
             error: error.message
+        })
+    }
+    }else{
+        res.status(401).json({
+            message: "You are not Authorized, please log in"
         })
     }
 }
