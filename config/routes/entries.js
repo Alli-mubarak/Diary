@@ -94,7 +94,9 @@ const updateEntry = async (req, res) => {
                 message: "No data provided for update"
             });
         }
-        const entry = await Entry.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        const user = await User.findById(req.user.id);
+        const entry = await user.entries.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        await user.save()
         if(!entry){
             return res.status(404).json({
                 message: "Entry not found"
