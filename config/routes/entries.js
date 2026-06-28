@@ -53,7 +53,8 @@ const getEntries = async (req, res) => {
       return res.status(401).json({message: "You are not Authorized, please log in" });
     }
     try {
-        const entries = await Entry.find();
+        const user = await User.findById(req.user.id);
+        const entries = user.entries
         res.status(200).json(entries)
     } catch (error) {
         res.status(500).json({
