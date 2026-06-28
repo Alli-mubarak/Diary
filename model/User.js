@@ -3,6 +3,7 @@ import mongoose, {Schema} from "mongoose";
 
 const entrySchema = new Schema(
     {
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, 
         description: {
             type: String,
             required: true,
