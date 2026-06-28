@@ -34,8 +34,8 @@ const createEntry = async (req, res) => {
       { 
         $push: { 
           entries: { 
-            userId,
-            description 
+           userId: userId,
+            description: description 
           } 
         } 
       },
