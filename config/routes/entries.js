@@ -17,6 +17,9 @@ const entrySchema = new Schema(
 const Entry = mongoose.model("Entry", entrySchema);
 
 const createEntry = async (req, res) => {
+    if(!req.isAuthenticated()){
+      return res.status(401).json({message: "You are not Authorized, please log in" });
+    }
     try {
         const { description} = req.body;
         if( !description){
@@ -43,6 +46,9 @@ const createEntry = async (req, res) => {
 
 // get all entries
 const getEntries = async (req, res) => {
+    if(!req.isAuthenticated()){
+      return res.status(401).json({message: "You are not Authorized, please log in" });
+    }
     try {
         const entries = await Entry.find();
         res.status(200).json(entries)
@@ -56,6 +62,9 @@ const getEntries = async (req, res) => {
 
 // get an entry
 const getAnEntry= async (req, res) => {
+    if(!req.isAuthenticated()){
+      return res.status(401).json({message: "You are not Authorized, please log in" });
+    }
     try {
         const post = await Entry.findById(req.params.id);
         res.status(200).json(post)
@@ -102,6 +111,9 @@ const updateEntry = async (req, res) => {
 
 // delete post
 const deleteEntry = async (req, res) =>{
+    if(!req.isAuthenticated()){
+      return res.status(401).json({message: "You are not Authorized, please log in" });
+    }
     try {
         const deleted = await Entry.findByIdAndDelete(req.params.id);
         if(!deleted){
