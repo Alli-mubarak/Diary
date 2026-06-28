@@ -259,7 +259,7 @@ app.get('/logout', (req, res) => {
 
 
 //add entry route
-app.post('/add' createEntry);
+app.post('/add', createEntry);
 
 //get all entries route
 app.get('/getEntries', getEntries);
