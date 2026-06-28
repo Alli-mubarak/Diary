@@ -79,7 +79,7 @@ div > i:hover{
             gap: 15px;
             background: transparent;
             color:green;
-             box-shadow:0 0 13px 4px rgba(0,0,0,0.2);
+             box-shadow:0 0 13px 4px var(--shadowC);
             border-radius:5px;
         }
         #sign-up-form h2{
@@ -103,8 +103,8 @@ div > i:hover{
             justify-content:space-between;
             font-size:1.3rem;
            width :230px;
-           border: 2px solid green;
-           color:green;
+           border: 2px solid var(--txtC);
+           color:var(--txtC);
            margin:10px auto;
            border-radius: 30px;
            padding:10px 20px;
@@ -113,7 +113,7 @@ div > i:hover{
             width:35px; 
             height: 35px;
            
-            background:pink;
+            background:var(--shadowC);
             border-radius:50%;
         }
            .input-group label{
@@ -123,7 +123,7 @@ div > i:hover{
         .input-group input{
             border: 2px solid transparent;
             font-size:1.1rem;
-            color:red;
+            color:var(--txtC);
             width:100%;
             display:block;
             padding: 10px;
@@ -131,10 +131,10 @@ div > i:hover{
             border-radius:5px;
         }
         .input-group input:focus{
-            border: 2px solid yellow;
+            border: 2px solid var(--txtC);
         }
            .input-group span{
-               color:red;
+               color:var(--pC);
                font-size: 0.97rem;
            }
         #sign-up-form p{
@@ -143,7 +143,7 @@ div > i:hover{
         }
         p a{
             text-decoration: none;
-            color: pink;
+            color: var(--pC);
         }
         
         #sign-up-form button{
@@ -152,8 +152,8 @@ div > i:hover{
             outline:none;
              border-radius:5px;
             display:block;
-            background:#005;
-            color:#fff;
+            background:var(--pC);
+            color:var(--btC);
             font-size:1.4rem;
             cursor:pointer;
         }
