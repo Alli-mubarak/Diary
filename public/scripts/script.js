@@ -14,7 +14,7 @@ const userDP = document.getElementById('user-image');
 
 const BACKEND_URL = '';
 
-    // 1. Check if user is logged in when page loads
+    // check if user is logged in when page loads
     async function checkAuthStatus() {
       try {
         // 'credentials: include' forces the browser to send the session cookie
@@ -24,13 +24,11 @@ const BACKEND_URL = '';
         const authSection = document.getElementById('auth-section');
 
         if (data.loggedIn) {
-            console.log(data);
-            
           // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
          <div class="user-details">
          <div class="user-dp">
-         <img src="${data.user.profilePic}" width="50" height="50" style="border-radius:50%">
+         <img src="${data.user.profilePic}" width="55" height="55" style="border-radius:50%">
          </div>
          <div class="other-info">
            <h2>${data.user.displayName}</h2>
@@ -48,9 +46,10 @@ const BACKEND_URL = '';
             userDP.src = data.user.profilePic;
         } else {
           // User cookie expired or doesn't exist
+            userDP.classList.add('hidden');
+            signInBtn.classList.remove('hidden');
           authSection.innerHTML = `
             <h2>Please sign up or log in</h2>
-            <!-- Point directly to your backend route -->
             <a href="${BACKEND_URL}/auth/google"><button>Sign In with Google</button></a>
           `;
         }
@@ -59,9 +58,9 @@ const BACKEND_URL = '';
       }
     }
 
-    // 2. Handle logging out
+    // Handle logging out
     function logoutUser() {
-      // Redirect browser directly to backend logout route to clear cookie
+      // Redirect browser directly to backend logout route to clear cookie and destroy session 
       window.location.href = `${BACKEND_URL}/logout`;
     }
 
