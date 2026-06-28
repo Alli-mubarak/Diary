@@ -92,7 +92,7 @@ div > i:hover{
         }
         #sign-up-form > p::before, #sign-up-form > p::after{
             content:'____________';
-            transform: translateY(-5px);
+            transform: translateY(-7px);
             display:inline-block;
             padding: 0 10px;
         }
