@@ -168,9 +168,17 @@ div > i:hover{
       }
 #auth-section{
   color: var(--txtC);
+  padding:30px;
+  width:90dvw;
+  margin:auto;
+  border:2px solid var(--pC);
 }
 #auth-section button{
   color: var(--btC);
+  display:block;
+  width:100%;
+  border-radius:30px;
+  
 }
 .user-details{
   display:flex;
