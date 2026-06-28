@@ -94,19 +94,23 @@ const updateEntry = async (req, res) => {
                 message: "No data provided for update"
             });
         }
-        const updatedEntry = await Entry.findOneAndUpdate(
-      { _id: entryId, userId: req.user.id}, 
+        const entryId = req.params.id;
+    const userId = req.user.id; 
+    const updates = req.body;   // The new data to save
+
+    // Find entry by its ID AND ensure it belongs to the logged-in user
+    const updatedEntry = await Entry.findOneAndUpdate(
+      { _id: entryId, userId: userId }, 
       { $set: updates },
       { new: true, runValidators: true } // Returns the updated doc & enforces schema rules
     );
-        if(!entry){
+        if(!updatedEntry){
             return res.status(404).json({
                 message: "Entry not found"
             })
         }
         res.status(200).json({
-            message: "Entry Updated Successfully",
-            entry: entry
+            message: "Entry Updated Successfully"
         })
     } catch (error) {
         res.status(500).json({
