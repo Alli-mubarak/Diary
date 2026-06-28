@@ -265,10 +265,10 @@ app.get('/logout', (req, res) => {
 //app.get('/getEntries', getEntries);
 
 //edit an entry
-//app.post('/editEntry/:id', updateEntry);
+app.post('/editEntry/:id', updateEntry);
 
 //delete an entry
-//app.delete('/deleteEntry/:id', deleteEntry);
+app.delete('/deleteEntry/:id', deleteEntry);
 
 
 
