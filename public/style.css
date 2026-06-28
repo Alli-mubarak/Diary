@@ -185,6 +185,9 @@ div > i:hover{
   gap:10px;
   align-items:center;
 }
+.user-details img{
+  border: 2px solid var(--pC);
+}
       button:hover{
         transform: scale(1.05);
       }
