@@ -69,7 +69,7 @@ const getAnEntry= async (req, res) => {
 
 // update entry
 const updateEntry = async (req, res) => {
-    if(!req.isAuthenticated(){
+    if(!req.isAuthenticated()){
       return res.status(401).json({message: "You are not Authorized, please log in" });
    }
     try {
