@@ -268,7 +268,12 @@ app.post('/add', (req, res)=>{
 app.get('/getEntries', getEntries);
 
 //edit an entry
-app.post('/editEntry/:id', updateEntry);
+app.post('/editEntry/:id',(req, res)=>{
+  if (req.isAuthenticated()){
+   updateEntry
+ }else{
+    return res.status(401).send('Unauthorized, please log in!');
+ } } );
 
 //delete an entry
 app.delete('/deleteEntry/:id', deleteEntry);
