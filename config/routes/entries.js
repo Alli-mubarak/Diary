@@ -119,8 +119,8 @@ const updateEntry = async (req, res) => {
       { _id: userId, "entries._id": entryId }, // Find user AND specific entry
       { 
         $set: { 
-          "entries.$.title": title, 
-          "entries.$.content": content 
+          "entries.$.description": description 
+        
         } 
       },
       { new: true, runValidators: true } // Returns the modified document
