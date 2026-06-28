@@ -115,12 +115,17 @@ const updateEntry = async (req, res) => {
     const updates = req.body;   // The new data to save
 
     // Find entry by its ID AND ensure it belongs to the logged-in user
-    const updatedEntry = await Entry.findOneAndUpdate(
-      { _id: entryId, userId: userId }, 
-      { $set: updates },
-      { new: true, runValidators: true } // Returns the updated doc & enforces schema rules
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId, "entries._id": entryId }, // Find user AND specific entry
+      { 
+        $set: { 
+          "entries.$.title": title, 
+          "entries.$.content": content 
+        } 
+      },
+      { new: true, runValidators: true } // Returns the modified document
     );
-        if(!updatedEntry){
+        if(!updateduser){
             return res.status(404).json({
                 message: "Entry not found"
             })
