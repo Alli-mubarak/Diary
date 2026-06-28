@@ -161,13 +161,35 @@ app.get('/auth/google/callback',
 
 //default route
 app.get('/',(req, res)=>{
-//res.sendFile(__dirname, 'views/index.html');
 console.log(req.query)
 console.log('default path requested! \n');
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/pages/index.html');
 
 });
 
+//sign up route
+app.get('/sign-up',(req, res)=>{
+console.log(req.query)
+console.log('sign up page  requested! \n');
+  if (req.isAuthenticated()){
+   return  res.redirect('/');
+  }
+    res.sendFile(__dirname + '/public/pages/signup.html');
+
+});
+
+//sign in route
+app.get('/sign-in',(req, res)=>{
+console.log(req.query)
+console.log('sign in page  requested! \n');
+  if (req.isAuthenticated()){
+   return  res.redirect('/');
+  }
+    res.sendFile(__dirname + '/public/pages/signin.html');
+
+});
+
+//sign up API
 app.post('/api/auth/signup', async (req, res) => {
   try {
     const { name, email, password } = req.body;
