@@ -112,7 +112,7 @@ const updateEntry = async (req, res) => {
         }
         const entryId = req.params.id;
     const userId = req.user.id; 
-    const updates = req.body;   // The new data to save
+    const { description} = req.body;   // The new data to save
 
     // Find entry by its ID AND ensure it belongs to the logged-in user
     const updatedUser = await User.findOneAndUpdate(
