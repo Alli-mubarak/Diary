@@ -6,7 +6,7 @@ function encrypt(text, salt){
 const keyDigit = chars / 2
    const helperDigit = keyDigit % salt;
          let encryptedText = '';
-         for (let i=0; i < word.length; i++){
+         for (let i=0; i < text.length; i++){
         let textToAdd = chars.charAt(chars.indexOf(text.charAt(i)) + helperDigit);
          encryptedText += textToAdd ;
          }
