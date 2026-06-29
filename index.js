@@ -4,6 +4,7 @@ import User from './model/User.js'; //  Import User Model
 import {createEntry, getEntries, getAnEntry, updateEntry, deleteEntry} from './config/routes/entries.js';
 import express from 'express';
 import bcrypt from 'bcrypt';
+import {encrypt, decrypt} from './Utils/Crypt.js'; // encrypter and decrypter function import
 import {Router} from 'express'
 const app = express();
 import cors from 'cors';
@@ -83,6 +84,9 @@ console.log(req.method, req.path, req.ip, currentTime,);
   console.log('Session Data in memory:', req.session);
   console.log('Is Authenticated?:', req.isAuthenticated ? req.isAuthenticated() : 'No passport');
   console.log('User object:', req.user);
+  let enc = encrypt('We are running fine.', 5);
+  console.log(enc);
+  console.log(decrypt(enc, 5));
 next();
 });
 
