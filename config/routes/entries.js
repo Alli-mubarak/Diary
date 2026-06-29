@@ -122,7 +122,7 @@ const updateEntry = async (req, res) => {
       },
       { new: true, runValidators: true } // Returns the modified document
     );
-        if(!updateduser){
+        if(!updatedUser){
             return res.status(404).json({
                 message: "Entry not found"
             })
