@@ -1,5 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 import User from '../../model/User.js'; //  Import User Model
+import {encrypt, decrypt} from './Utils/Crypt.js'; // encrypter and decrypter function import
+
 const entrySchema = new Schema(
     {
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, 
@@ -29,6 +31,7 @@ const createEntry = async (req, res) => {
                 message: "All fields are required!"
             });
         }
+    description = encrypt(description, 5);
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { 
