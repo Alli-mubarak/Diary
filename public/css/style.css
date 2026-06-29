@@ -215,6 +215,38 @@ text-align:right;
   text-decoration:none;
   color: var(--btC);
 }
+
+.default {
+  margin-top:300px;
+  text-align:center;
+
+}
+.default i{
+  opacity: 0.6;
+  color: var(--pC);
+  font-size: 7rem;
+
+}
+  .default h2{
+    color: var(-txtC);
+    font-size: 2rem;
+  }
+.default p{
+  color: var(--txtC);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
+}
+.default a{
+  margin-top:20px;
+  color: var(--btC);
+  display:block;
+  width:100%;
+  border-radius:30px;
+  padding: 10px 0;
+  background: var(--pC);
+}
+
       #entry{
           width:80%;
           resize:none;
