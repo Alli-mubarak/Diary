@@ -55,6 +55,16 @@ const BACKEND_URL = '';
             <h2>Please sign up or log in</h2>
             <a href="${BACKEND_URL}/auth/google"><button>Sign In with Google</button></a>
           `;
+            entriesDiv.innerHTML = `
+            <div id="default">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <h2>Create your Diary account Today! </h2>
+            <p>Entries are encrypted in the Database, you can make it personal.</p>
+            <a href="sign-up">Create Your Account Today</a>
+            <p>Or</p>
+            <a href="sign-in">Log In To Your Account</a>
+            </div>
+            `
         }
       } catch (err) {
         console.error("Error verifying authentication status:", err);
