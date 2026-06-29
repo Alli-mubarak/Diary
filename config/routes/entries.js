@@ -149,22 +149,25 @@ const deleteEntry = async (req, res) =>{
     const userId = req.user.id;         
     const entryId = req.params.entryId; 
 
-    // Remove the specific entry from the array
+    // Strict check: Find the user AND ensure they possess this specific entry ID
     const updatedUser = await User.findOneAndUpdate(
-      { _id: userId },
+      { _id: userId, "entries._id": entryId }, 
       { 
         $pull: { entries: { _id: entryId } } 
       },
-      { new: true } // Returns the document after deletion
+      { new: true }
     );
 
-    // If user doesn't exist or entry wasn't found
+    // If updatedUser comes back null, either the user ID or entry ID was wrong
     if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
-     }
+      return res.status(404).json({ 
+        message: 'Delete failed. User not found or entry does not belong to this user.' 
+      });
+    }
+
     res.status(200).json({
-            message: "Entry deleted successfully!"
-        })
+      message: 'Entry deleted successfully'
+    });
     } catch (error) {
         console.log(error)
         res.status(500).json({
