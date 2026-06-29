@@ -68,7 +68,8 @@ const getEntries = async (req, res) => {
     }
     try {
         const user = await User.findById(req.user.id);
-        const entries = user.entries
+        let entries = user.entries
+        entries = entries.map(e => decrypt(e.description, 5))
         res.status(200).json(entries)
     } catch (error) {
         console.log(error)
