@@ -68,6 +68,7 @@ const getEntries = async (req, res) => {
         const entries = user.entries
         res.status(200).json(entries)
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: "Internal Server Error",
             error: error.message
@@ -84,6 +85,7 @@ const getAnEntry= async (req, res) => {
         const post = await Entry.findById(req.params.id);
         res.status(200).json(post)
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: "Internal Server Error",
             error: error.message
@@ -129,11 +131,11 @@ const updateEntry = async (req, res) => {
             message: "Entry Updated Successfully"
         })
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             message: "Internal Server Error",
             error: error.message
-            console.log(error);
-        })
+        });
     }
 
 }
@@ -154,6 +156,7 @@ const deleteEntry = async (req, res) =>{
             message: "Entry deleted successfully!"
         })
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: "Internal Server Error",
             error: error.message
