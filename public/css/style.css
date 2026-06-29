@@ -172,14 +172,15 @@ div > i:hover{
   background: var(--bgC);
   text-align: center;
   padding:30px;
-  width:90dvw;
+  width:100dvw;
   margin:auto;
   border:2px solid var(--pC);
   position: absolute;
-  left: 5dvw;
+  left: 0;
   top:0;
 }
 #auth-section button{
+  margin-top:20px;
   color: var(--btC);
   display:block;
   width:100%;
