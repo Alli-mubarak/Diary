@@ -64,8 +64,7 @@ userDP.onclick = () =>{
 authSection.classList.remove('hidden');
 }
 closer.onclick = () =>{
-    const box = closer.parentElement;
-    box.classList.set('hidden');
+    authSection.classList.set('hidden');
 
 }
     // Handle logging out
