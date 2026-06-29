@@ -230,6 +230,38 @@ app.get('/api/auth/user', (req, res) => {
   }
 });
 
+// API for changing users role
+app.post('/api/user/:id/:role', async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send('Unauthorized. Please log in.');
+  }
+  const userId = req.params.id;
+  const role = req.params.role;
+
+  const roles = ["admin", "user", "moderator"];
+  try{
+  if(!userId){
+    return res.status(400).json({message: "user id is missing"});
+  }
+  if(!role || !roles.includes(role){
+    return res.status(400).json({message: "role is missing or not identified"});
+  }
+  const existingUser = await User.findById(userId);
+  if(!existingUser){
+    return res.status(400).json({message: "user not found!"});
+  }
+  const admin = await User.findById(req.user.id);
+  if(admin.role !== "admin"){
+    return res.status(401).send('You are not authorized to change roles.')
+  }
+  
+    res.status(201).json({ message: 'You are authorized to change user roles' });
+  }
+  catch(error){
+    res.status(500).json({ error: err.message });
+  }
+})
+  
 // --- Application Routes ---
 
 app.get('/dashboard', (req, res) => {
