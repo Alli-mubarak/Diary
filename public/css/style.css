@@ -179,6 +179,9 @@ div > i:hover{
   left: 0;
   top:0;
 }
+#closer{
+text-align:left;
+}
 #auth-section button{
   margin-top:20px;
   color: var(--btC);
