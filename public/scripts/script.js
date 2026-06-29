@@ -1,6 +1,7 @@
 // Get DOM elements from HTML
 const entryInput = document.getElementById('entry');
 const toggleCtrl = document.querySelector('.toggle');
+const closer = document.getElementById('closer');
 const inputBox = document.getElementById('inputBox');
 const addButton = document.getElementById('add-button');
 const entriesDiv = document.getElementById('entries');
@@ -26,6 +27,7 @@ const BACKEND_URL = '';
         if (data.loggedIn) {
           // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
+         <div id='closer'>x</div>
          <div class="user-details">
          <div class="user-dp">
          <img src="${data.user.profilePic}" width="55" height="55" style="border-radius:50%">
@@ -49,6 +51,7 @@ const BACKEND_URL = '';
             userDP.classList.add('hidden');
             signInBtn.classList.remove('hidden');
           authSection.innerHTML = `
+          <div id='closer'>x</div>
             <h2>Please sign up or log in</h2>
             <a href="${BACKEND_URL}/auth/google"><button>Sign In with Google</button></a>
           `;
@@ -57,7 +60,11 @@ const BACKEND_URL = '';
         console.error("Error verifying authentication status:", err);
       }
     }
+closer.onclick = () =>{
+    const box = closer.parentElement;
+    box.classList.set('hidden');
 
+}
     // Handle logging out
     function logoutUser() {
       // Redirect browser directly to backend logout route to clear cookie and destroy session 
