@@ -228,7 +228,7 @@ text-align:right;
 
 }
   .default h2{
-    color: var(-txtC);
+    color: var(--txtC);
     font-size: 2rem;
   }
 .default p{
