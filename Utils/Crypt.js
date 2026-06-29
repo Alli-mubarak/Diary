@@ -13,9 +13,9 @@ const keyDigit = chars / 2
          return encryptedText;  
 }
 function decrypt(encryptedText, salt){
-  keyDigit = chars / 2;
+    const keyDigit = chars / 2;
          let plainText = '';
-         helperDigit = keyDigit % salt;
+    const helperDigit = keyDigit % salt;
          
          for (let i = 0; i < encryptedText.length; i++){
          const inDex = chars.indexOf(encryptedText.charAt(i)) - helperDigit;
