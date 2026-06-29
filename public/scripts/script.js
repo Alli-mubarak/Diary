@@ -14,6 +14,8 @@ const searchInput = document.getElementById('search-input');
 const signInBtn = document.getElementById('sign-in-btn');
 const userDP = document.getElementById('user-image');
 
+let data;
+
 const BACKEND_URL = '';
 
     // check if user is logged in when page loads
@@ -21,7 +23,7 @@ const BACKEND_URL = '';
       try {
         // 'credentials: include' forces the browser to send the session cookie
         const response = await fetch(`${BACKEND_URL}/api/auth/user`, { credentials: 'include' });
-        const data = await response.json();
+        data = await response.json();
 
         
         if (data.loggedIn) {
@@ -46,6 +48,7 @@ const BACKEND_URL = '';
             signInBtn.classList.add('hidden');
             userDP.classList.remove('hidden');
             userDP.src = data.user.profilePic;
+            getEntries(displayEntries);  
         } else {
           // User cookie expired or doesn't exist
             userDP.classList.add('hidden');
@@ -79,8 +82,10 @@ function closeAuth(){
 }
     // Handle logging out
     function logoutUser() {
+        if (data.loggedIn) {
       // Redirect browser directly to backend logout route to clear cookie and destroy session 
       window.location.href = `${BACKEND_URL}/logout`;
+        }
     }
 
     // Initialize check on load
@@ -173,6 +178,7 @@ function load(){
 
 // Function to add new entry
 inputBox.onsubmit = (e) =>{
+    if (data.loggedIn) {
   e.preventDefault();
   // . Gather form data
     const formData = new FormData(inputBox);
@@ -219,9 +225,11 @@ fetch(addApi, requestOptions)
   alert('Input cannot be empty!')
   }
 }
+}
 
 // get all entries
 function getEntries(fn){
+    if (data.loggedIn) {
   //load()
   errorBox.classList.add('hidden');
   const getAllApi = `${apiUrl}/getEntries`;
@@ -245,7 +253,7 @@ fetch(getAllApi, requestOptions)
     alert(error)
     console.error('Error:', error)})
 }
-
+}
 //function that renders entries to the UI
 function displayEntries(data){
     entriesDiv.innerHTML = '';
@@ -265,7 +273,7 @@ function search(data){
       const timeDate = d.toLocaleString();
       searchText = new RegExp(searchText,"gi");
       
-      if(data[i].description.search(searchText) > 0){
+      if(data[i].description.search(searchText) >= 0){
         
       entryHTML+= `<p id='${data[i]._id}'><b>${data[i].description}</b> <button class="edit" onclick='editEntry(this)'>Edit</button> <button class="delete" onclick='deleteEntry(this)'>Delete</button><span class='timeAdded'>${timeDate}</span></p>`;
       }
@@ -280,6 +288,7 @@ function search(data){
 
 // Function to delete entry
 function deleteEntry(e) {
+    if (data.loggedIn) {
 if(confirm('Are you sure you want to delete this entry?')){
     entryID = e.parentNode.id
     deleteApi = `${apiUrl}/deleteEntry/${entryID}`;
@@ -306,9 +315,11 @@ fetch(deleteApi, requestOptions)
     console.error('Error:', error)})
 }
 }
+}
  
 
 function editEntry(e){
+    if (data.loggedIn) {
 let container = e.parentNode
   let text =  container.children[0];
   if(text.innerHTML.length > 0){
@@ -345,7 +356,9 @@ fetch(editApi, requestOptions)
     console.error('Error:', error)})
 }
 }
-getEntries(displayEntries);  
+}
+
+
 
 //Google login
 // Example frontend function sending the token to your Node.js server
