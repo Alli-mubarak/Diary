@@ -234,8 +234,8 @@ margin-bottom: 3rem;
 #default p{
   color: var(--txtC);
   font-size: 1rem;
-  margin-bottom: 1rem;
-background: transparent;
+background: transparent !important;
+  
 }
 #default a{
   margin-top:20px;
