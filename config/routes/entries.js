@@ -70,7 +70,6 @@ const getEntries = async (req, res) => {
         const user = await User.findById(req.user.id);
         let entries = user.entries
         entries = entries.map(e => ({_id:e._id, createdAt:e.createdAt, description:decrypt(e.description, 5)}));
-        console.log(entries);
         res.status(200).json(entries)
     } catch (error) {
         console.log(error)
