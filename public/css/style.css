@@ -28,6 +28,7 @@
      }
     body{
         background: var(--bgC);
+      position: relative;
     }
       h1{
       margin:5px 0;
@@ -172,6 +173,9 @@ div > i:hover{
   width:90dvw;
   margin:auto;
   border:2px solid var(--pC);
+  position: absolute;
+  left: 5dvw;
+  top:0;
 }
 #auth-section button{
   color: var(--btC);
