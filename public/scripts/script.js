@@ -64,7 +64,7 @@ const BACKEND_URL = '';
             <p>Or</p>
             <a href="sign-in">Log In To Your Account</a>
             </div>
-            `
+            `;
         }
       } catch (err) {
         console.error("Error verifying authentication status:", err);
