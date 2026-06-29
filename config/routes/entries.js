@@ -146,13 +146,23 @@ const deleteEntry = async (req, res) =>{
       return res.status(401).json({message: "You are not Authorized, please log in" });
     }
     try {
-        const deleted = await Entry.findByIdAndDelete(req.params.id);
-        if(!deleted){
-            return res.status(404).json({
-                message: "Entry not found!"
-            })
-        }
-        res.status(200).json({
+    const userId = req.user.id;         
+    const entryId = req.params.entryId; 
+
+    // Remove the specific entry from the array
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId },
+      { 
+        $pull: { entries: { _id: entryId } } 
+      },
+      { new: true } // Returns the document after deletion
+    );
+
+    // If user doesn't exist or entry wasn't found
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+     }
+    res.status(200).json({
             message: "Entry deleted successfully!"
         })
     } catch (error) {
