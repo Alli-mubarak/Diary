@@ -27,7 +27,7 @@ const BACKEND_URL = '';
         if (data.loggedIn) {
           // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
-         <div id='closer'>x</div>
+         <div id="closer" onclick="closeAuth()" ><i class="fa-solid fa-xmark"></i></div>
          <div class="user-details">
          <div class="user-dp">
          <img src="${data.user.profilePic}" width="55" height="55" style="border-radius:50%">
@@ -51,7 +51,7 @@ const BACKEND_URL = '';
             userDP.classList.add('hidden');
             signInBtn.classList.remove('hidden');
           authSection.innerHTML = `
-          <div id='closer'>x</div>
+          <div id="closer" onclick="closeAuth()"><i class="fa-solid fa-xmark"></i></div>
             <h2>Please sign up or log in</h2>
             <a href="${BACKEND_URL}/auth/google"><button>Sign In with Google</button></a>
           `;
@@ -63,7 +63,7 @@ const BACKEND_URL = '';
 userDP.onclick = () =>{
 authSection.classList.remove('hidden');
 }
-closer.onclick = () =>{
+function closeAuth(){
     authSection.classList.set('hidden');
 
 }
