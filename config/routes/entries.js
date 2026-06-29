@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import User from '../../model/User.js'; //  Import User Model
-import {encrypt, decrypt} from './Utils/Crypt.js'; // encrypter and decrypter function import
+import {encrypt, decrypt} from '../../Utils/Crypt.js'; // encrypter and decrypter function import
 
 const entrySchema = new Schema(
     {
