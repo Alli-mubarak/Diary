@@ -8,6 +8,7 @@ const entriesDiv = document.getElementById('entries');
 const themeToggle = document.querySelector('.theme');
 const searchIcon = document.getElementById('search');
 const searchForm = document.getElementById('search-form');
+const authSection = document.getElementById('auth-section');
 const errorBox = document.getElementById('error-box');
 const searchInput = document.getElementById('search-input');
 const signInBtn = document.getElementById('sign-in-btn');
@@ -22,8 +23,7 @@ const BACKEND_URL = '';
         const response = await fetch(`${BACKEND_URL}/api/auth/user`, { credentials: 'include' });
         const data = await response.json();
 
-        const authSection = document.getElementById('auth-section');
-
+        
         if (data.loggedIn) {
           // User is authenticated! Display details saved from MongoDB
          authSection.innerHTML = `
@@ -60,6 +60,9 @@ const BACKEND_URL = '';
         console.error("Error verifying authentication status:", err);
       }
     }
+userDP.onclick = () =>{
+authSection.classList.remove('hidden');
+}
 closer.onclick = () =>{
     const box = closer.parentElement;
     box.classList.set('hidden');
