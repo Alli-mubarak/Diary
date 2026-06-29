@@ -147,7 +147,7 @@ const deleteEntry = async (req, res) =>{
     }
     try {
     const userId = req.user.id;         
-    const entryId = req.params.entryId; 
+    const entryId = req.params.id; 
 
     // Strict check: Find the user AND ensure they possess this specific entry ID
     const updatedUser = await User.findOneAndUpdate(
