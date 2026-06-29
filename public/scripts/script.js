@@ -217,7 +217,7 @@ fetch(getAllApi, requestOptions)
   .then(response => response.json())
   .then(data => {
    entriesDiv.style.height = 'calc(100dvh - 130px)';
-    
+    console.log(data)
     fn(data)
 
  })
