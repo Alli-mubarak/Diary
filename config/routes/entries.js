@@ -42,11 +42,6 @@ const createEntry = async (req, res) => {
       { new: true, runValidators: true }
     );
             
-       
-//      const user = await User.findById(req.user.id);
-//  user.entries.push({ userId: req.user.id, description: description});
- //   await user.save();
-    
         console.log('Entry added successfully');
         res.status(201).json({
             message: "Entry added successfully",
@@ -137,6 +132,7 @@ const updateEntry = async (req, res) => {
         res.status(500).json({
             message: "Internal Server Error",
             error: error.message
+            console.log(error);
         })
     }
 
