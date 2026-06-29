@@ -3,7 +3,7 @@
 const chars = `F.,éêēèëūüúûùìïíîīóôöòœøōõàáâäāåãæßñç'"@:&~70°)r^K•B6;/PDH#_T=seXhu✓vJM(I®©?LQa¢YNm5A|8fG€inZwgx9√%W!t¥jpdU4co$2V3Rklq1y£zOEbCS F.,éêēèëūüúûùìïíîīóôöòœøōõàáâäāåãæßñç'"@:&~70°)r^K•B6;/PDH#_T=seXhu✓vJM(I®©?LQa¢YNm5A|8fG€inZwgx9√%W!t¥jpdU4co$2V3Rklq1y£zOEbCS `;
 
 function encrypt(text, salt){
-const keyDigit = chars / 2
+const keyDigit = chars.length / 2
    const helperDigit = keyDigit % salt;
          let encryptedText = '';
          for (let i=0; i < text.length; i++){
@@ -13,7 +13,7 @@ const keyDigit = chars / 2
          return encryptedText;  
 }
 function decrypt(encryptedText, salt){
-    const keyDigit = chars / 2;
+    const keyDigit = chars.length / 2;
          let plainText = '';
     const helperDigit = keyDigit % salt;
          
