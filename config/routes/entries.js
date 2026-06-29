@@ -24,7 +24,7 @@ const createEntry = async (req, res) => {
       return res.status(401).json({message: "You are not Authorized, please log in" });
     }
     try {
-        const { description} = req.body;
+        let { description} = req.body;
        const userId = req.user.id;
         if( !description){
             return res.status(400).json({
