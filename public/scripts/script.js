@@ -64,7 +64,7 @@ const BACKEND_URL = '';
             <h2>Create your Diary account Today! </h2>
             <p>Entries are encrypted in the Database, you can make it personal.</p>
             <a href="sign-up">Create Your Account Today</a>
-            <p>Or</p>
+            <p id="or">Or</p>
             <a href="sign-in">Log In To Your Account</a>
             </div>
             `;
