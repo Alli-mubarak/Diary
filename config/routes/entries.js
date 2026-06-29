@@ -87,8 +87,12 @@ const getAnEntry= async (req, res) => {
       return res.status(401).json({message: "You are not Authorized, please log in" });
     }
     try {
-        const post = await Entry.findById(req.params.id);
-        res.status(200).json(post)
+        const entry = await Entry.findById(req.params.id);
+        res.status(200).json({
+            _id : entry._id,
+            description: decrypt(entry.description, 5),
+            createdAt : entry.createdAt
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -114,7 +118,8 @@ const updateEntry = async (req, res) => {
         }
         const entryId = req.params.id;
     const userId = req.user.id; 
-    const { description} = req.body;   // The new data to save
+    let { description} = req.body;   // The new data to save
+    description = encrypt(description, 5);
 
     // Find entry by its ID AND ensure it belongs to the logged-in user
     const updatedUser = await User.findOneAndUpdate(
