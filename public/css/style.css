@@ -217,15 +217,15 @@ text-align:right;
 }
 
 #default {
-  margin-top:300px;
+  margin-top:140px;
   text-align:center;
 
 }
 #default i{
-  opacity: 0.6;
+  opacity: 0.4;
   color: var(--pC);
-  font-size: 7rem;
-
+  font-size: 13rem;
+margin-bottom: 3rem;
 }
   #default h2{
     color: var(--txtC);
@@ -235,7 +235,7 @@ text-align:right;
   color: var(--txtC);
   font-size: 1rem;
   margin-bottom: 1rem;
-
+background: transparent;
 }
 #default a{
   margin-top:20px;
@@ -245,6 +245,8 @@ text-align:right;
   border-radius:30px;
   padding: 10px 0;
   background: var(--pC);
+  text-decoration:none;
+  font-size: 1.2rem;
 }
 
       #entry{
