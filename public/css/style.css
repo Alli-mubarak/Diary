@@ -216,28 +216,28 @@ text-align:right;
   color: var(--btC);
 }
 
-.default {
+#default {
   margin-top:300px;
   text-align:center;
 
 }
-.default i{
+#default i{
   opacity: 0.6;
   color: var(--pC);
   font-size: 7rem;
 
 }
-  .default h2{
+  #default h2{
     color: var(--txtC);
     font-size: 2rem;
   }
-.default p{
+#default p{
   color: var(--txtC);
   font-size: 1rem;
   margin-bottom: 1rem;
 
 }
-.default a{
+#default a{
   margin-top:20px;
   color: var(--btC);
   display:block;
