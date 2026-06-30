@@ -287,11 +287,12 @@ background: transparent !important;
       .timeAdded{
       display:block;
       margin-left:auto;
-      margin-top:-20px;
+      margin-top:-30px;
       width:fit-content;
       background:var(--bgC);
-      padding:3px;
+      padding:5px;
       color:var(--pC);
+        border-radius:5px;
       }
       #entries{
         width: calc(100vw - 40px);
