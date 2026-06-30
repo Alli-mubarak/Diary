@@ -27,3 +27,62 @@ if(hour > 6 && hour < 19){
         isDark = true;
         themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
 }
+
+
+const signupForm = document.getElementById('sign-up-form');
+const formMessage = document.getElementById('form-message');
+
+
+const API_URL = '/api/sign-up';
+
+
+signupForm.addEventListener('submit', async (e) => {
+  
+  e.preventDefault(); 
+  
+  
+  const submitButton = signupForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+
+  // Automatically extract data from the input fields
+  const formData = new FormData(signupForm);
+  const payload = Object.fromEntries(formData.entries());
+
+  try {
+    // Send a POST request to the server API
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Inform server we are sending JSON data
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload) // Convert JavaScript object into a JSON string
+    });
+
+    // 6. Parse the server JSON response
+    const data = await response.json();
+
+    // 7. Handle success vs server-side validation/errors
+    if (response.ok) {
+      formMessage.textContent = 'Registration successful! Redirecting...';
+      formMessage.style.color = 'green';
+      signupForm.reset(); // Clear form fields
+      
+       window.location.href = '/dashboard';
+    } else {
+      // Server returned a bad status code (e.g., 400 Bad Request, 409 Email Exists)
+      formMessage.textContent = data.message || 'Signup failed. Please try again.';
+      formMessage.style.color = 'red';
+    }
+
+  } catch (error) {
+    // Network errors (e.g., server is offline or internet disconnected)
+    console.error('Network Error:', error);
+    formMessage.textContent = 'Network error. Cannot reach the server.';
+    formMessage.style.color = 'red';
+  } finally {
+    // Always re-enable the submit button when the operation finishes
+    submitButton.disabled = false;
+  }
+});
+    
