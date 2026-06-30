@@ -254,15 +254,15 @@ background: transparent !important;
   opacity: 0.4;
   color: var(--pC);
   font-size: 8rem;
-margin-bottom: 2rem;
+margin-bottom: 5rem;
 }
 #no-entry{
-  color: var(--txtC);
-  font-size: 0.8rem;
+  color: var(--pC);
+  font-size: 1.2rem;
 background: transparent !important;
   margin: 0 !important;
   padding: 0 !important;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
       #entry{
