@@ -216,7 +216,7 @@ text-align:right;
   color: var(--btC);
 }
 
-#default {
+#default, #no-entry-box {
   margin-top:140px;
   text-align:center;
 
@@ -237,6 +237,7 @@ margin-bottom: 3rem;
 background: transparent !important;
   margin: 0 !important;
   padding: 0 !important;
+  opacity: 0.9;
 }
 #default a{
   margin:20px 0;
@@ -248,6 +249,20 @@ background: transparent !important;
   background: var(--pC);
   text-decoration:none;
   font-size: 1.2rem;
+}
+#no-entry-box i{
+  opacity: 0.4;
+  color: var(--pC);
+  font-size: 8rem;
+margin-bottom: 2rem;
+}
+#no-entry{
+  color: var(--txtC);
+  font-size: 0.8rem;
+background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0.6;
 }
 
       #entry{
