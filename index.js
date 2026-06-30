@@ -148,6 +148,12 @@ passport.deserializeUser(async (id, done) => {
 
 // --- Auth Routes ---
 
+// 2. Email Login
+app.post('/auth/login', passport.authenticate('local', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/login-failure'
+}));
+
 // 1. Trigger Google Sign-Up / Login Flow
 app.get('/auth/google', 
   passport.authenticate('google', { scope: ['profile', 'email'] })
