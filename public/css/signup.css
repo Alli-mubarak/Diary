@@ -80,7 +80,7 @@ div > i:hover{
             background: transparent;
             color:var(--txtC);
              box-shadow:0 0 13px 4px var(--shadowC);
-            border-radius:5px;
+            border-radius:10px;
         }
         #sign-up-form h2{
             text-align:center;
@@ -126,7 +126,7 @@ div > i:hover{
             display:block;
             padding: 10px;
             outline:none; 
-            border-radius:5px;
+            border-radius:10px;
           background: transparent;
         }
         .input-group input:focus{
@@ -149,7 +149,7 @@ div > i:hover{
             width:100%;
             padding: 10px;
             outline:none;
-             border-radius:5px;
+             border-radius:10px;
             display:block;
             background:var(--pC);
             color:var(--btC);
