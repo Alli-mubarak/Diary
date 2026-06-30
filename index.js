@@ -212,7 +212,7 @@ app.post('/api/sign-up', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({ displayName: username, email, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({ message: 'Registration successful!' });
