@@ -19,7 +19,6 @@ const entrySchema = new Schema(
 const UserSchema = new mongoose.Schema({
   googleId: {
     type: String,
-    required: true,
     unique: true
   },
   password: { type: String, required: function() { return !this.googleId; } },
