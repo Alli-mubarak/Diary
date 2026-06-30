@@ -9,7 +9,11 @@ const keyDigit = chars.length / 2
          for (let i=0; i < text.length; i++){
      if(chars.includes(text.charAt(i))){
         let textToAdd = chars.charAt(chars.indexOf(text.charAt(i)) + helperDigit);
+        if(textToAdd === " "){
+            encryptedText += '📝'
+        }else{
          encryptedText += textToAdd ;
+         }
          }else{
              encryptedText += text.charAt(i)
      }
@@ -21,6 +25,11 @@ function decrypt(encryptedText, salt){
     const keyDigit = chars.length / 2;
          let plainText = '';
     const helperDigit = keyDigit % salt;
+    
+    if(encryptedText.includes('📝')){
+    encryptedText = encryptedText.replaceAll('📝', ' ')
+        
+    }
          
          for (let i = 0; i < encryptedText.length; i++){
             if(chars.includes(encryptedText.charAt(i))){
@@ -57,3 +66,4 @@ return Number(saltValues[2])
   }
 
 export {encrypt, decrypt, getSalt}
+   
