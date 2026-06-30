@@ -217,6 +217,7 @@ app.post('/api/sign-up', async (req, res) => {
 
     res.status(201).json({ message: 'Registration successful!' });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.message });
   }
 });
