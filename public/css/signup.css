@@ -73,7 +73,7 @@ div > i:hover{
             width:80dvw;
             max-width:400px;
             margin: 60px auto;
-            padding:20px;
+            padding:35px 20px;
             display:flex;
             flex-direction: column;
             gap: 15px;
@@ -86,10 +86,7 @@ div > i:hover{
             text-align:center;
             font-weight:700;
         }
-        #sign-up-form p{
-            
-           
-        }
+    
         #sign-up-form > p::before, #sign-up-form > p::after{
             content:'____________';
             transform: translateY(-7px);
