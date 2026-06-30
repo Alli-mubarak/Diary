@@ -240,7 +240,7 @@ background: transparent !important;
   opacity: 0.9;
 }
 #default a{
-  margin:20px 0;
+  margin-top:50px;
   color: var(--btC);
   display:block;
   width:100%;
