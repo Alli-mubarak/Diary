@@ -196,10 +196,10 @@ console.log('sign in page  requested! \n');
 //sign up API
 app.post('/api/sign-up', async (req, res) => {
   try {
-    const { userame, email, password } = req.body;
+    const { username, email, password } = req.body;
 
     // Validate inputs
-    if (!name || !email || !password) {
+    if (!username || !email || !password) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
