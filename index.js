@@ -194,9 +194,9 @@ console.log('sign in page  requested! \n');
 });
 
 //sign up API
-app.post('/api/auth/signup', async (req, res) => {
+app.post('/api/sign-up', async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { userame, email, password } = req.body;
 
     // Validate inputs
     if (!name || !email || !password) {
@@ -212,7 +212,7 @@ app.post('/api/auth/signup', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({ name, email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({ message: 'Registration successful!' });
