@@ -63,9 +63,9 @@ const BACKEND_URL = '';
             <i class="fa-solid fa-pen-to-square"></i>
             <h2>Create your Diary account Today! </h2>
             <p>Entries are encrypted in the Database, you can make it personal.</p>
-            <a href="sign-up">Create Your Account Today</a>
-            <p id="or">Or</p>
-            <a href="sign-in">Log In To Your Account</a>
+            <br><br>
+            <a href="sign-up">Get Started</a>
+            
             </div>
             `;
         }
@@ -254,8 +254,19 @@ fetch(getAllApi, requestOptions)
     console.error('Error:', error)})
 }
 }
+
 //function that renders entries to the UI
 function displayEntries(data){
+    if(data.length === 0){
+  entriesDiv.innerHTML = `
+  <div id="no-entry-box">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <p id="no-entry"> You have no entry yet, create one now! </p>
+    </div>
+    `
+        return
+
+    }
     entriesDiv.innerHTML = '';
       for (let i=data.length-1; i >=0; i--){
       const d = new Date(data[i].createdAt);
@@ -264,6 +275,7 @@ function displayEntries(data){
  entriesDiv.innerHTML += entryHTML;
     }
 }
+
 // function for searching
 function search(data){
   let entryHTML = '';
@@ -317,7 +329,7 @@ fetch(deleteApi, requestOptions)
 }
 }
  
-
+//function for entry deletion 
 function editEntry(e){
     if (data.loggedIn) {
 let container = e.parentNode
@@ -361,12 +373,11 @@ fetch(editApi, requestOptions)
 
 
 //Google login
-// Example frontend function sending the token to your Node.js server
 async function handleGoogleLogin(response) {
     const res = await fetch(`${apiUrl}/api/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: response.credential }), // Sent to backend
+        body: JSON.stringify({ token: response.credential }), 
     });
     const data = await res.json();
     console.log('Logged in user data:', data);
