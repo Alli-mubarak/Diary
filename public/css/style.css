@@ -287,7 +287,7 @@ background: transparent !important;
       .timeAdded{
       display:block;
       margin-left:auto;
-      margin-top:-30px;
+      margin-top:-35px;
       width:fit-content;
       background:var(--bgC);
       padding:5px;
