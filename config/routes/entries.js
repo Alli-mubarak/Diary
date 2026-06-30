@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import User from '../../model/User.js'; //  Import User Model
-import {encrypt, decrypt} from '../../Utils/Crypt.js'; // encrypter and decrypter function import
+import {encrypt, decrypt, getSalt} from '../../Utils/Crypt.js'; // encrypter and decrypter function import
 
 const entrySchema = new Schema(
     {
@@ -31,7 +31,8 @@ const createEntry = async (req, res) => {
                 message: "All fields are required!"
             });
         }
-    description = encrypt(description, 5);
+    const salt = getSalt(req.user.id);
+    description = encrypt(description, salt);
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { 
@@ -70,7 +71,8 @@ const getEntries = async (req, res) => {
         console.log(req.user.id);
         const user = await User.findById(req.user.id);
         let entries = user.entries
-        entries = entries.map(e => ({_id:e._id, createdAt:e.createdAt, description:decrypt(e.description, 5)}));
+        const salt = getSalt(req.user.id);
+        entries = entries.map(e => ({_id:e._id, createdAt:e.createdAt, description:decrypt(e.description, salt)}));
         res.status(200).json(entries)
     } catch (error) {
         console.log(error)
@@ -88,9 +90,10 @@ const getAnEntry= async (req, res) => {
     }
     try {
         const entry = await Entry.findById(req.params.id);
+        const salt = getSalt(req.user.id);
         res.status(200).json({
             _id : entry._id,
-            description: decrypt(entry.description, 5),
+            description: decrypt(entry.description, salt),
             createdAt : entry.createdAt
         })
     } catch (error) {
@@ -118,8 +121,9 @@ const updateEntry = async (req, res) => {
         }
         const entryId = req.params.id;
     const userId = req.user.id; 
+    const salt = getSalt(userId);
     let { description} = req.body;   // The new data to save
-    description = encrypt(description, 5);
+    description = encrypt(description, salt);
 
     // Find entry by its ID AND ensure it belongs to the logged-in user
     const updatedUser = await User.findOneAndUpdate(
