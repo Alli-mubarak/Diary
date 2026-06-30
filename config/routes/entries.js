@@ -67,6 +67,7 @@ const getEntries = async (req, res) => {
       return res.status(401).json({message: "You are not Authorized, please log in" });
     }
     try {
+        console.log(req.user.id);
         const user = await User.findById(req.user.id);
         let entries = user.entries
         entries = entries.map(e => ({_id:e._id, createdAt:e.createdAt, description:decrypt(e.description, 5)}));
