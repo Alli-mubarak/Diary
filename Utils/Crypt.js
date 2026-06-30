@@ -51,9 +51,9 @@ function getSalt(id){
          }
      }
 if(availables.length > 0){
-return availables.charAt(availables.length - 1)
+return Number(availables.charAt(availables.length - 1))
 }
-return saltValues[2]
+return Number(saltValues[2])
   }
 
 export {encrypt, decrypt, getSalt}
