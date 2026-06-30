@@ -7,17 +7,23 @@ const keyDigit = chars.length / 2
    const helperDigit = keyDigit % salt;
          let encryptedText = '';
          for (let i=0; i < text.length; i++){
+     if(chars.includes(text.charAt(i))){
         let textToAdd = chars.charAt(chars.indexOf(text.charAt(i)) + helperDigit);
          encryptedText += textToAdd ;
+         }else{
+             encryptedText += text.charAt(i)
+     }
          }
          return encryptedText;  
 }
+
 function decrypt(encryptedText, salt){
     const keyDigit = chars.length / 2;
          let plainText = '';
     const helperDigit = keyDigit % salt;
          
          for (let i = 0; i < encryptedText.length; i++){
+            if(chars.includes(encryptedText.charAt(i))){
          const inDex = chars.indexOf(encryptedText.charAt(i)) - helperDigit;
          if(inDex >= 0){
      plainText += chars.charAt(inDex);
@@ -25,6 +31,9 @@ function decrypt(encryptedText, salt){
          plainText +=chars.charAt(inDex + keyDigit);
          
      }
+      }else{
+         plainText += encryptedText.charAt(i)
+            }
          }
      return plainText;
          }
