@@ -37,4 +37,25 @@ function decrypt(encryptedText, salt){
          }
      return plainText;
          }
-export {encrypt, decrypt}
+
+function getSalt(id){
+ const saltValues = [3,5,7,9]
+ let availables = "";
+     for(let i=0;i<id.length;i++){
+    
+    
+         if(Number(id.charAt(i))){
+            let num = Number(id.charAt(i))
+            if(saltValues.includes(num)){
+                availables += num
+            }
+            
+         }
+     }
+if(availables.length > 0){
+return availables.charAt(availables.length - 1)
+}
+return saltValues[2]
+  }
+
+export {encrypt, decrypt, getSalt}
