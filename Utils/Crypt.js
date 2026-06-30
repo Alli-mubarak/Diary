@@ -41,10 +41,8 @@ function decrypt(encryptedText, salt){
 function getSalt(id){
  const saltValues = [3,5,7,9]
  let availables = "";
-     for(let i=0;i<id.length;i++){
-    
-    
-         if(Number(id.charAt(i))){
+  for(let i=0;i<id.length;i++){
+     if(Number(id.charAt(i))){
             let num = Number(id.charAt(i))
             if(saltValues.includes(num)){
                 availables += num
