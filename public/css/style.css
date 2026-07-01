@@ -218,8 +218,9 @@ text-align:right;
 }
 
 #default, #no-entry-box {
-  margin-top:140px;
+  margin:140px auto;
   text-align:center;
+  max-width: 400px;
 
 }
 #default i{
