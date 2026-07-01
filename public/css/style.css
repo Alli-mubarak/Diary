@@ -356,6 +356,7 @@ background: transparent !important;
       }
 #error-box{
         width: 90vw;
+        max-width: 500px;
         padding:10px;
         border-radius:5px;
         border: 1px solid red;
@@ -371,3 +372,15 @@ background: transparent !important;
       .hidden{
         display: none;
   }
+ 
+@media (max-width: 768px) {
+#auth-section{
+  width:350px;
+  margin-left:auto;
+}
+  #entries{
+    display:grid;
+    grid-template-column: 1fr 1fr;
+    gap:20px;
+  }
+}
