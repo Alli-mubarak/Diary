@@ -383,8 +383,7 @@ background: transparent !important;
   #entries{
     display:grid;
     width:100vw;
-    grid-template: 1fr 1fr/1fr;
     gap:20px;
-    height:fit-content;
+    height:80vh;
   }
 }
