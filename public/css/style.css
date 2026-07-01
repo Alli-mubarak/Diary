@@ -375,15 +375,10 @@ background: transparent !important;
         display: none;
   }
  
-@media (min-width: 768px) {
+@media (min-width: 800px) {
 #auth-section{
   width:350px;
   right:0;
 }
-  #entries{
-    display:grid;
-    width:100vw;
-    gap:20px;
-    height:80vh;
-  }
+  
 }
