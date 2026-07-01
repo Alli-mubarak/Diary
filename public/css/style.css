@@ -220,7 +220,7 @@ text-align:right;
 #default, #no-entry-box {
   margin:140px auto;
   text-align:center;
-  max-width: 400px;
+  max-width: 450px;
 
 }
 #default i{
@@ -378,7 +378,7 @@ background: transparent !important;
 @media (min-width: 800px) {
 #auth-section{
   width:350px;
-  right:0;
+  left: calc(100vw - 354px);
 }
   
 }
