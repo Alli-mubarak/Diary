@@ -37,7 +37,7 @@ const BACKEND_URL = '';
          <div class="other-info">
            <h2>${data.user.displayName}</h2>
            <p>${data.user.email}</p>
-           <p>${data.user.entries.length} Entries</p>
+           <p id="entries-amount">${data.user.entries.length} Entries</p>
            </div>
            </div>
            <button onclick="logoutUser()">Log Out</button>
@@ -244,7 +244,8 @@ fetch(getAllApi, requestOptions)
   .then(response => response.json())
   .then(data => {
    entriesDiv.style.height = 'calc(100dvh - 130px)';
-    console.log(data)
+let entriesCount = document.getElementById("entries-amount");
+      entriesCount.innerHTML = `${data.length} Entries`;
     fn(data)
 
  })
