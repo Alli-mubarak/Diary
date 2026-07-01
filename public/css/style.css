@@ -376,13 +376,13 @@ background: transparent !important;
 @media (min-width: 768px) {
 #auth-section{
   width:350px;
-  margin-left:auto;
+  right:0;
 }
   #entries{
     display:grid;
-    width:100%;
-    grid-template-rows: 1fr 1fr;
+    width:100vw;
+    grid-template: 1fr 1fr/1fr;
     gap:20px;
-    height:auto;
+    height:fit-content;
   }
 }
