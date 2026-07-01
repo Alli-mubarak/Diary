@@ -376,10 +376,11 @@ background: transparent !important;
 @media (min-width: 768px) {
 #auth-section{
   width:350px;
-  margin-right:auto;
+  margin-left:auto;
 }
   #entries{
     display:grid;
+    width:100%;
     grid-template-rows: 1fr 1fr;
     gap:20px;
     height:auto;
