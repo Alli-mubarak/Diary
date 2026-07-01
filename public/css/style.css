@@ -29,6 +29,7 @@
     body{
         background: var(--bgC);
       position: relative;
+      width:100vw;
     }
       h1{
       margin:5px 0;
