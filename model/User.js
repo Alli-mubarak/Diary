@@ -51,10 +51,3 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 export default User;
-
-// this drop the broken index, then restart your app
-User.collection.dropIndex('googleId_1')
-  .then(() => console.log('Old index dropped successfully'))
-  .catch(err => console.log('Index drop ignored (it might not exist yet):', err.message));
-    
-    
