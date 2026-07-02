@@ -15,7 +15,8 @@
          --btC: #fff;
          --entC: rgba(0,0,0,0.05);
          --shadowC: rgba(0,0,0,0.10);
-               --loaderC:rgba(0,0,0,0.01);
+          --loaderC:rgba(0,0,0,0.01);
+         --linkC: blue;
      }
      html.dark{
          --pC : #fff;
@@ -25,6 +26,7 @@
          --entC: rgba(255, 255, 255, 0.1);
          --shadowC: rgba(255,255,255,0.15);
         --loaderC: rgba(225,225,225,0.01);
+        --linkC: lightblue;
      }
     body{
         background: var(--bgC);
@@ -152,12 +154,14 @@ div > i:hover{
         font-size: 1.1rem;
         padding:5px;
         width:fit-content;
+        cursor:pointer;
       }
 .tt img{
         width: 35px;
         height: 35px;
         border-radius: 50%;
         border: 2px solid var(--pC);
+        cursor:pointer;
 }
         
       button, #add-button{
@@ -190,7 +194,7 @@ text-align:right;
   display:block;
   width:100%;
   border-radius:30px;
-  
+  cursor:pointer;
 }
 .user-details{
   display:flex;
@@ -389,6 +393,10 @@ background: transparent !important;
           opacity: 0.35;
           color:var(--txtC);
         }
+       footer p a{
+         text-decoration: none;
+         color: var(--linkC);
+       }
 @media (min-width: 800px) {
 #auth-section{
   width:350px;
