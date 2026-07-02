@@ -30,6 +30,8 @@
      }
     body{
         background: var(--bgC);
+      height:100dvh;
+      position: relative;
     }
 main{
   width:100%;
@@ -177,4 +179,19 @@ div > i:hover{
             color:var(--btC);
             font-size:1.4rem;
             cursor:pointer;
+        }
+
+      footer{
+          padding:20px;
+          position: absolute;
+          background: var(--shadowC);
+          text-align:center;
+          width:100vw;
+          bottom:0;
+          right:0;
+        }
+        footer p{
+          font-size: 0.85rem;
+          opacity: 0.35;
+          color:var(--txtC);
         }
