@@ -103,7 +103,7 @@ passport.use(new GoogleStrategy({
   async (accessToken, refreshToken, profile, done) => {
     // Structure the data coming from Google profile payload
     const newUser = {
-      googleId: profile.id,
+  //    googleId: profile.id,
       displayName: profile.displayName,
       firstName: profile.name.givenName,
       lastName: profile.name.familyName,
