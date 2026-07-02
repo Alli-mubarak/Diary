@@ -62,7 +62,7 @@ const emailInput = document.getElementById('email');
         return 
     
     } else {
- if(passwordInput.value = ''){
+ if(passwordInput.value === ''){
        formMessage.textContent = 'Please enter password';
         formMessage.style.color = 'red';
         setTimeout(()=>{
