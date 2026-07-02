@@ -62,6 +62,14 @@ const emailInput = document.getElementById('email');
         return 
     
     } else {
+ if(passwordInput.value = ''){
+       formMessage.textContent = 'Please enter password';
+        formMessage.style.color = 'red';
+        setTimeout(()=>{
+            formMessage.textContent = '';
+        },1600)
+        return 
+            }
   if(passwordInput.value.length < 8){
        formMessage.textContent = 'Please enter a longer password';
         formMessage.style.color = 'red';
