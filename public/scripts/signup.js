@@ -35,21 +35,21 @@ if(hour > 6 && hour < 19){
         themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
 }
 
-//password revealer function 
+//password toggle function 
+let isPasswordHidden = true;
 function revealPassword(){
+    if(isPasswordHidden){
     passwordInput.type = "text";
     passwordRevealer.classList.remove('fa-eye')
     passwordRevealer.classList.add('fa-eye-slash');
-    passwordRevealer.onclick = "hidePassword()";
-}
-
-//password hider function 
-function hidePassword(){
+    isPasswordHidden = false;
+}else{
     passwordInput.type = "password";
     passwordRevealer.classList.remove('fa-eye-slash')
     passwordRevealer.classList.add('fa-eye');
-    passwordRevealer.onclick = "revealPassword()";
+    isPasswordHidden = true;
     }
+}
 
 //form logic
 signupForm.addEventListener('submit', async (e) => {
