@@ -27,3 +27,18 @@ if(hour > 6 && hour < 19){
         isDark = true;
         themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
           }
+//password toggle function 
+let isPasswordHidden = true;
+function revealPassword(){
+    if(isPasswordHidden){
+    passwordInput.type = "text";
+    passwordRevealer.classList.remove('fa-eye')
+    passwordRevealer.classList.add('fa-eye-slash');
+    isPasswordHidden = false;
+}else{
+    passwordInput.type = "password";
+    passwordRevealer.classList.remove('fa-eye-slash')
+    passwordRevealer.classList.add('fa-eye');
+    isPasswordHidden = true;
+    }
+}
