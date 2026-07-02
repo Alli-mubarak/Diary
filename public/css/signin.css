@@ -120,6 +120,10 @@ div > i:hover{
             background:var(--shadowC);
             border-radius:50%;
         }
+        .input-group{
+           position:relative;
+           width:100%;
+        }
            .input-group label{
            font-size:1.3rem;
            
@@ -138,6 +142,12 @@ div > i:hover{
         .input-group input:focus{
             border-color: var(--pC);
         }
+       .input-group i{
+         font-size :1.2rem;
+         position: absolute;
+         top:5px;
+         right:0;
+       }
            .input-group span{
                color:red;
                font-size: 0.97rem;
@@ -148,7 +158,7 @@ div > i:hover{
         }
         p a{
             text-decoration: none;
-            color: var(--pC);
+            color: blue;
         }
         
         #sign-in-form button{
