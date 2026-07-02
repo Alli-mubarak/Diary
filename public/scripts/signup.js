@@ -41,18 +41,35 @@ signupForm.addEventListener('submit', async (e) => {
   e.preventDefault(); 
 const emailInput = document.getElementById('email');
   const emailValue = emailInput.value.trim();
+    const passwordInput = document.getElementById('password');
     
     // Strict Regex to enforce standard email format
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (emailValue === '') {
         formMessage.textContent = 'Email is required.';
-        return 
+        formMessage.style.color = 'red';
+        setTimeout(()=>{
+            formMessage.textContent = '';
+        },1600)
+        return
     } else if (!emailRegex.test(emailValue)) {
         formMessage.textContent = 'Please enter a valid email address.';
-        return
+        formMessage.style.color = 'red';
+        setTimeout(()=>{
+            formMessage.textContent = '';
+        },1600)
+        return 
+    
     } else {
-  
+  if(passwordInput.value.length < 8){
+       formMessage.textContent = 'Please enter a longer password';
+        formMessage.style.color = 'red';
+        setTimeout(()=>{
+            formMessage.textContent = '';
+        },1600)
+        return 
+  }
   const submitButton = signupForm.querySelector('button[type="submit"]');
   submitButton.disabled = true;
 
