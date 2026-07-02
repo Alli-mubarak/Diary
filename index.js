@@ -161,7 +161,8 @@ passport.use(new LocalStrategy(
 // Serialize and Deserialize User Session Data
 //  Serialize user using the MongoDB object ID (_id) instead of the whole object
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  const userId = user.id || user._id; 
+  done(null, userId);
 });
 
 // Deserialize user by fetching them from MongoDB using their ID
@@ -249,14 +250,16 @@ app.post('/api/sign-up', async (req, res) => {
     const newUser = new User({ displayName: username, email, password: hashedPassword, profilePic: "/user.png", googleId: ""});
     await newUser.save();
     // Log the user in automatically
-        req.login(newUser, (err) => {
+    // Convert the Mongoose document to a plain JavaScript object
+   const userObj = newUser.toObject();
+        req.login(userObj, (err) => {
             if (err) {
                 return next(err); // Handles passport login errors
             }
             // Success! The session is created.
             return res.status(201).json({ 
                 message: 'User registered and logged in successfully!', 
-                user: { id: newUser._id, email: newUser.email, name: newUser.name } 
+                user: userObj
             });
             // Or redirect them: res.redirect('/dashboard');
         });
