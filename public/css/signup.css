@@ -145,7 +145,7 @@ div > i:hover{
        .input-group i{
          font-size :1.2rem;
          position: absolute;
-         top:0;
+         top:5px;
          right:0;
        }
            .input-group span{
