@@ -1,4 +1,7 @@
 const themeToggle = document.querySelector('.theme');
+const passwordInput = document.getElementById('password');
+const passwordRevealer = document.querySelector('.revealer');
+
 // toggle theme
 const html = document.querySelector('html');
 let isDark = false;
