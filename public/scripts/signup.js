@@ -39,7 +39,7 @@ const API_URL = '/api/sign-up';
 signupForm.addEventListener('submit', async (e) => {
   
   e.preventDefault(); 
-const emailInput = signupForm.getElementById('email');
+const emailInput = document.getElementById('email');
   const emailValue = emailInput.value.trim();
     
     // Strict Regex to enforce standard email format
