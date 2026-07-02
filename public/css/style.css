@@ -29,6 +29,7 @@
     body{
         background: var(--bgC);
       position: relative;
+      height:100dvh;
       width:100vw;
     }
       h1{
@@ -373,8 +374,21 @@ background: transparent !important;
       }
       .hidden{
         display: none;
-  }
- 
+       }
+      footer{
+          padding:20px;
+          position: absolute;
+          background: var(--shadowC);
+          text-align:center;
+          width:100vw;
+          bottom:0;
+          right:0;
+        }
+        footer p{
+          font-size: 0.85rem;
+          opacity: 0.35;
+          color:var(--txtC);
+        }
 @media (min-width: 800px) {
 #auth-section{
   width:350px;
