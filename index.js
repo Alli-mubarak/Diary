@@ -159,8 +159,8 @@ passport.use(new LocalStrategy(
 // Serialize and Deserialize User Session Data
 //  Serialize user using the MongoDB object ID (_id) instead of the whole object
 passport.serializeUser((user, done) => {
-  const userId = user.id || user._id; 
-  done(null, userId);
+  const id = user.id || user._id; 
+  done(null, id);
 });
 
 // Deserialize user by fetching them from MongoDB using their ID
@@ -174,57 +174,6 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // --- Auth Routes ---
-
-// 2. Email Login
-app.post('/auth/login', passport.authenticate('local', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/login-failure'
-}));
-
-// 1. Trigger Google Sign-Up / Login Flow
-app.get('/auth/google', 
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
-
-// 2. Google OAuth Callback Route
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login-failed' }),
-  (req, res) => {
-    // Successful authentication, redirect to user dashboard or home.
-    res.redirect('/dashboard');
-  }
-);
-
-
-//default route
-app.get('/',(req, res)=>{
-console.log(req.query)
-console.log('default path requested! \n');
-    res.sendFile(__dirname + '/public/pages/index.html');
-
-});
-
-//sign up route
-app.get('/sign-up',(req, res)=>{
-console.log(req.query)
-console.log('sign up page  requested! \n');
-  if (req.isAuthenticated()){
-   return  res.redirect('/');
-  }
-    res.sendFile(__dirname + '/public/pages/signup.html');
-
-});
-
-//sign in route
-app.get('/sign-in',(req, res)=>{
-console.log(req.query)
-console.log('sign in page  requested! \n');
-  if (req.isAuthenticated()){
-   return  res.redirect('/');
-  }
-    res.sendFile(__dirname + '/public/pages/signin.html');
-
-});
 
 //sign up API
 app.post('/api/sign-up', async (req, res) => {
@@ -267,6 +216,58 @@ app.post('/api/sign-up', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+//  Email Login
+app.post('/auth/login', passport.authenticate('local', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/login-failure'
+}));
+
+// Trigger Google Sign-Up / Login Flow
+app.get('/auth/google', 
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+//  Google OAuth Callback Route
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login-failed' }),
+  (req, res) => {
+    // Successful authentication, redirect to user dashboard or home.
+    res.redirect('/dashboard');
+  }
+);
+
+
+//default route
+app.get('/',(req, res)=>{
+console.log(req.query)
+console.log('default path requested! \n');
+    res.sendFile(__dirname + '/public/pages/index.html');
+
+});
+
+//sign up route
+app.get('/sign-up',(req, res)=>{
+console.log(req.query)
+console.log('sign up page  requested! \n');
+  if (req.isAuthenticated()){
+   return  res.redirect('/');
+  }
+    res.sendFile(__dirname + '/public/pages/signup.html');
+
+});
+
+//sign in route
+app.get('/sign-in',(req, res)=>{
+console.log(req.query)
+console.log('sign in page  requested! \n');
+  if (req.isAuthenticated()){
+   return  res.redirect('/');
+  }
+    res.sendFile(__dirname + '/public/pages/signin.html');
+
+});
+
 
 //user check route
 app.get('/api/auth/user', (req, res) => {
