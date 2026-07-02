@@ -1,4 +1,11 @@
 const themeToggle = document.querySelector('.theme');
+const signupForm = document.getElementById('sign-up-form');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const passwordRevealer = document.querySelector('.revealer');
+const formMessage = document.getElementById('form-message');
+const API_URL = '/api/sign-up';
+
 // toggle theme
 const html = document.querySelector('html');
 let isDark = false;
@@ -28,20 +35,28 @@ if(hour > 6 && hour < 19){
         themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
 }
 
+//password revealer function 
+function revealPassword(){
+    passwordInput.type = "text";
+    passwordRevealer.classList.remove('fa-eye')
+    passwordRevealer.classList.add('fa-eye-slash');
+    passwordRevealer.onclick = "hidePassword()";
+}
 
-const signupForm = document.getElementById('sign-up-form');
-const formMessage = document.getElementById('form-message');
+//password hider function 
+function hidePassword(){
+    passwordInput.type = "password";
+    passwordRevealer.classList.remove('fa-eye-slash')
+    passwordRevealer.classList.add('fa-eye');
+    passwordRevealer.onclick = "revealPassword()";
+    }
 
-
-const API_URL = '/api/sign-up';
-
-
+//form logic
 signupForm.addEventListener('submit', async (e) => {
   
   e.preventDefault(); 
-const emailInput = document.getElementById('email');
+
   const emailValue = emailInput.value.trim();
-    const passwordInput = document.getElementById('password');
     
     // Strict Regex to enforce standard email format
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
