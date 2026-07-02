@@ -15,6 +15,7 @@ import bodyParser from 'body-parser';
 import { OAuth2Client } from 'google-auth-library';
 import session from 'express-session';
 import passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import MongoStore from 'connect-mongo'; // used insted of express session to save session in db
 
@@ -129,6 +130,33 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+// Add the Local Strategy for Email/Password
+passport.use(new LocalStrategy(
+    {
+        usernameField: 'email',    // Define 'email' as the username field
+        passwordField: 'password'
+    },
+    async (email, password, done) => {
+        try {
+            // 1. Find the user by email
+            const user = await User.findOne({ email: email });
+            if (!user) {
+                return done(null, false, { message: 'Incorrect email or password.' });
+            }
+
+            // 2. Validate password (assuming you hash passwords on signup)
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return done(null, false, { message: 'Incorrect email or password.' });
+            }
+
+            // 3. Success
+            return done(null, user);
+        } catch (err) {
+            return done(err);
+        }
+    }
+));
 
 // Serialize and Deserialize User Session Data
 //  Serialize user using the MongoDB object ID (_id) instead of the whole object
@@ -220,7 +248,18 @@ app.post('/api/sign-up', async (req, res) => {
 
     const newUser = new User({ displayName: username, email, password: hashedPassword });
     await newUser.save();
-
+    // Log the user in automatically
+        req.login(newUser, (err) => {
+            if (err) {
+                return next(err); // Handles passport login errors
+            }
+            // Success! The session is created.
+            return res.status(201).json({ 
+                message: 'User registered and logged in successfully!', 
+                user: { id: newUser._id, email: newUser.email, name: newUser.name } 
+            });
+            // Or redirect them: res.redirect('/dashboard');
+        });
     res.status(201).json({ message: 'Registration successful!' });
   } catch (err) {
     console.log(err);
@@ -236,6 +275,14 @@ app.get('/api/auth/user', (req, res) => {
     res.json({ loggedIn: false, user: null });
   }
 });
+
+// POST Route for logging in
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/sign-in',
+    failureFlash: false 
+}));
+
 
 // API for changing users role
 
