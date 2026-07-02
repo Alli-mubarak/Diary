@@ -201,7 +201,7 @@ app.post('/api/sign-up', async (req, res) => {
    const userObj = newUser.toObject();
         req.login(userObj, (err) => {
             if (err) {
-              console.log(err)
+              console.log(err + '--- ')
                 return next(err); // Handles passport login errors
             }
             console.log('Success! The session is created');
@@ -210,7 +210,7 @@ app.post('/api/sign-up', async (req, res) => {
         });
     res.status(201).json({ message: 'Registration successful!' });
   } catch (err) {
-    console.log(err);
+    console.log(err+ ', ' + err.message);
     res.status(500).json({ error: err.message });
   }
 });
