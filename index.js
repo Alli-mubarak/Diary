@@ -205,10 +205,9 @@ app.post('/api/sign-up', async (req, res) => {
                 return next(err); // Handles passport login errors
             }
             console.log('Success! The session is created');
-            res.status(201).redirect('/dashboard');
-        
+            res.status(201).json({ message: 'Registration successful!' });
         });
-   // res.status(201).json({ message: 'Registration successful!' });
+   
   } catch (err) {
     console.log(err+ ', ' + err.message);
     res.status(500).json({ error: err.message });
