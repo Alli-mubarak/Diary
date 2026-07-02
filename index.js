@@ -201,9 +201,10 @@ app.post('/api/sign-up', async (req, res) => {
    const userObj = newUser.toObject();
         req.login(userObj, (err) => {
             if (err) {
+              console.log(err)
                 return next(err); // Handles passport login errors
             }
-            // Success! The session is created.
+            console.log('Success! The session is created');
             return res.status(201).json({ 
                 message: 'User registered and logged in successfully!', 
                 user: userObj
