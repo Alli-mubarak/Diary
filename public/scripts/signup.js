@@ -112,7 +112,7 @@ signupForm.addEventListener('submit', async (e) => {
       formMessage.style.color = 'green';
       signupForm.reset(); // Clear form fields
       
-       window.location.href = '/dashboard';
+       //window.location.href = '/dashboard';
     } else {
       // Server returned a bad status code (e.g., 400 Bad Request, 409 Email Exists)
       formMessage.textContent = data.message || 'Signup failed. Please try again.';
