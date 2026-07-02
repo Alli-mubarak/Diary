@@ -178,3 +178,12 @@ div > i:hover{
             font-size:1.4rem;
             cursor:pointer;
         }
+        footer{
+          padding:20px;
+          background: var(--shadowC);
+          text-align:center;
+        }
+        footer p{
+          font-size: 0.7rem;
+          opacity: 0.35;
+        }
