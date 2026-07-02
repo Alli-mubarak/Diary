@@ -39,7 +39,19 @@ const API_URL = '/api/sign-up';
 signupForm.addEventListener('submit', async (e) => {
   
   e.preventDefault(); 
-  
+const emailInput = signupForm.getElementById('email');
+  const emailValue = emailInput.value.trim();
+    
+    // Strict Regex to enforce standard email format
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailValue === '') {
+        formMessage.textContent = 'Email is required.';
+        return 
+    } else if (!emailRegex.test(emailValue)) {
+        formMessage.textContent = 'Please enter a valid email address.';
+        return
+    } else {
   
   const submitButton = signupForm.querySelector('button[type="submit"]');
   submitButton.disabled = true;
@@ -84,5 +96,6 @@ signupForm.addEventListener('submit', async (e) => {
     // Always re-enable the submit button when the operation finishes
     submitButton.disabled = false;
   }
+    }
 });
     
