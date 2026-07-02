@@ -385,12 +385,12 @@ background: transparent !important;
           background: var(--shadowC);
           text-align:center;
           width:100vw;
+          opacity: 0.55;
           bottom:0;
           right:0;
         }
         footer p{
           font-size: 0.85rem;
-          opacity: 0.55;
           color:var(--txtC);
         }
        footer p a{
