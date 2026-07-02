@@ -247,7 +247,7 @@ app.post('/api/sign-up', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({ displayName: username, email, password: hashedPassword, profilePic: "/user.png", googleId: ""});
+    const newUser = new User({ displayName: username, email, password: hashedPassword, profilePic: "/user.png"});
     await newUser.save();
     // Log the user in automatically
     // Convert the Mongoose document to a plain JavaScript object
