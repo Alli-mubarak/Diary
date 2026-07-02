@@ -15,7 +15,8 @@
          --btC: #fff;
          --entC: rgba(0,0,0,0.05);
          --shadowC: rgba(0,0,0,0.10);
-               --loaderC:rgba(0,0,0,0.01);
+          --loaderC:rgba(0,0,0,0.01);
+        --linkC: blue;
      }
      html.dark{
          --pC : #fff;
@@ -25,6 +26,7 @@
          --entC: rgba(255, 255, 255, 0.1);
          --shadowC: rgba(255,255,255,0.15);
         --loaderC: rgba(225,225,225,0.01);
+        --linkC: lightblue;
      }
     body{
         background: var(--bgC);
@@ -162,7 +164,7 @@ div > i:hover{
         }
         p a{
             text-decoration: none;
-            color: blue;
+            color: var(--linkC);
         }
         
         #sign-in-form button{
