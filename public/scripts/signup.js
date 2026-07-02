@@ -111,12 +111,18 @@ signupForm.addEventListener('submit', async (e) => {
       formMessage.textContent = 'Registration successful! Redirecting...';
       formMessage.style.color = 'green';
       signupForm.reset(); // Clear form fields
+        setTimeout(()=>{
+            formMessage.textContent = '';
+        },1600)
       
-       //window.location.href = '/dashboard';
+       window.location.href = '/dashboard';
     } else {
       // Server returned a bad status code (e.g., 400 Bad Request, 409 Email Exists)
       formMessage.textContent = data.message || 'Signup failed. Please try again.';
       formMessage.style.color = 'red';
+        setTimeout(()=>{
+            formMessage.textContent = '';
+        },1600)
     }
 
   } catch (error) {
@@ -124,6 +130,9 @@ signupForm.addEventListener('submit', async (e) => {
     console.error('Network Error:', error);
     formMessage.textContent = 'Network error. Cannot reach the server.';
     formMessage.style.color = 'red';
+      setTimeout(()=>{
+            formMessage.textContent = '';
+        },1600)
   } finally {
     // Always re-enable the submit button when the operation finishes
     submitButton.disabled = false;
