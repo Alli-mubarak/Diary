@@ -29,8 +29,9 @@
         --linkC: lightblue;
      }
     body{
-        background: var(--bgC);
+      background: var(--bgC);
       position: relative;
+      height:100dvh;
     }
 main{
   width:100%;
