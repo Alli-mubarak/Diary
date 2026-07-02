@@ -60,10 +60,12 @@ h1 a:hover{
           justify-content: space-between;
           gap:20px;
         position:relative;
+        cursor:pointer;
       }
       .theme{
           width: 30px; 
           overflow:hidden;
+        cursor:pointer;
         
       }
       div > i {
@@ -71,6 +73,7 @@ h1 a:hover{
         font-size: 1.5rem;
         color: var(--pC);
         border-radius: 50%;
+        cursor:pointer;
       }
 div > i:hover{
   background: var(--entC);
@@ -147,6 +150,7 @@ div > i:hover{
          position: absolute;
          top:5px;
          right:0;
+         cursor:pointer;
        }
            .input-group span{
                color:red;
