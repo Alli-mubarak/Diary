@@ -44,12 +44,8 @@ app.use(cors({
 connectDB();
 
 
-// ... (after mongoose.connect)
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true
-// }));
+// ... (after mongoose is connected)
+
 app.use(session({
     secret: process.env.SESSION_SECRET, 
     resave: false,                            // Prevents resaving unchanged sessions
@@ -79,12 +75,14 @@ app.use(function middleware(req,res,next){
 let d = new Date();
 let currentTime = d.toLocaleString();
 console.log(req.method, req.path, req.ip, currentTime,);
-  // console.log('--- Session Debug ---');
- // console.log('Incoming Cookie:', req.headers.cookie);
-  //console.log('Session ID:', req.sessionID);
-//  console.log('Session Data in memory:', req.session);
-//  console.log('Is Authenticated?:', req.isAuthenticated ? req.isAuthenticated() : 'No passport');
-//  console.log('User object:', req.user);
+  
+console.log('--- Session Debug ---');
+ console.log('Incoming Cookie:', req.headers.cookie);
+  console.log('Session ID:', req.sessionID);
+ console.log('Session Data in memory:', req.session);
+ console.log('Is Authenticated?:', req.isAuthenticated ? req.isAuthenticated() : 'No passport');
+ console.log('User object:', req.user);
+  
   let enc = encrypt('We are running fine. Welcome to Diary app by Mubarak Alli', 5);
   console.log(enc);
   console.log(decrypt(enc, 5));
