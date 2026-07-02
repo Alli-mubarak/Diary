@@ -187,10 +187,13 @@ div > i:hover{
           text-align:center;
           width:100vw;
           bottom:0;
+          opacity: 0.55;
           right:0;
         }
         footer p{
           font-size: 0.85rem;
-          opacity: 0.35;
           color:var(--txtC);
         }
+       footer p a:hover{
+         text-decoration: underline;
+       }
