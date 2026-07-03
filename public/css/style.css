@@ -44,7 +44,6 @@
       display:flex;
       align-items :center;
       justify-content:space-between;
-      background:green;
       }
 header a{
   text-decoration: none;
@@ -93,7 +92,7 @@ div > i:hover{
           background:var(--pC);
           width:26px; height:3px;
           top:17px;
-          left: 2px; top: 50%;
+          left: 0; top: 11px;
           border-radius:20px;
       }
       .toggle div:nth-child(2){
