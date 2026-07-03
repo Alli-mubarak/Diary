@@ -128,11 +128,15 @@ toggleCtrl.onclick = () =>{
      inputBox.style.height = 'auto';
         isAdderOpen = true;
         toggleCtrl.style.transform = 'rotate(135deg)';
+        document.body.style.height = "calc(100dvh - 85px);";
+        entriesDiv.style.height = "calc(100dvh - 215px)";
         return 
     }
         inputBox.style.height = '0';
         isAdderOpen = false;
     toggleCtrl.style.transform = 'rotate(0deg)';
+    document.body.style.height = "100dvh";
+        entriesDiv.style.height = "calc(100dvh - 130px)";
 }
 //search Functionality
 let isSearchBoxOpen = false;
