@@ -403,15 +403,4 @@ background: transparent !important;
        footer p a:hover{
          text-decoration: underline;
        }
-@media (min-width: 800px) {
-#auth-section{
-  width:350px;
-  left: calc(100vw - 354px);
-}
-#default, #no-entry-box {
-  margin-top:40px;
-  }
-  #default i{
-    font-size: 9rem;
-  }
-}
+
