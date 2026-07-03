@@ -390,7 +390,7 @@ background: transparent !important;
         display: none;
        }
       footer{
-          padding:20px;
+          padding:8px;
           position: absolute;
           background: var(--shadowC);
           text-align:center;
@@ -401,7 +401,7 @@ background: transparent !important;
         z-index:3;
         }
         footer p{
-          font-size: 0.85rem;
+          font-size: 0.75rem;
           color:var(--txtC);
         }
        footer p a{
