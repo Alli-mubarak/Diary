@@ -17,6 +17,7 @@
          --shadowC: rgba(0,0,0,0.10);
           --loaderC:rgba(0,0,0,0.01);
          --linkC: blue;
+         --errC: red;
      }
      html.dark{
          --pC : #fff;
@@ -27,6 +28,7 @@
          --shadowC: rgba(255,255,255,0.15);
         --loaderC: rgba(225,225,225,0.01);
         --linkC: lightblue;
+       --errC: pink;
      }
     body{
         background: var(--bgC);
@@ -136,7 +138,7 @@ div > i:hover{
         gap: 10px;
         position: absolute;
       right: 110px;
-        top: 5px;
+        top: 2px;
     padding: 5px;
         width: 250px;
         background:var(--btC);
@@ -315,6 +317,8 @@ background: transparent !important;
         align-items :center;
         justify-content: start;
         gap: 10px;
+        padding: 0 20px;
+        width:100%;
       }
       #entries::-webkit-scrollbar-track{
     /* background of scroll bar */
@@ -368,14 +372,15 @@ background: transparent !important;
         max-width: 500px;
         padding:10px;
         border-radius:5px;
-        border: 1px solid red;
+        border: 1px solid var(--errC);
         margin: 20px auto;
         overflow: hidden;
+        opacity: 0.8;
       }
       #error-box p {
         text-align: center;
         font-size: 1.2rem;
-        color: #666;
+        color: var(--errC);
         font-weight: 700;
       }
       .hidden{
