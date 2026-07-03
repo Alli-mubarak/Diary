@@ -41,7 +41,7 @@
       z-index:3;
     }
     header{
-      box-shadow: 0 5px 6px var(--shadowC);
+      box-shadow: 0 5px 4px var(--shadowC);
       padding:0 20px;
       height:60px;
       display:flex;
@@ -108,7 +108,7 @@ div > i:hover{
           overflow:hidden;
           width: calc(100dvw - 40px);
           gap: 15px;
-          margin: 5px auto;
+          margin: 7px auto;
           border-radius: 5px;
       }
       
