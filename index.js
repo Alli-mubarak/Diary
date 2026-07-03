@@ -139,13 +139,13 @@ passport.use(new LocalStrategy(
             // 1. Find the user by email
             const user = await User.findOne({ email: email });
             if (!user) {
-                return done(null, false, { message: 'Incorrect email or password.' });
+                return done(null, false, { message: 'User not found!.' });
             }
 
             // 2. Validate password (assuming you hash passwords on signup)
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                return done(null, false, { message: 'Incorrect email or password.' });
+                return done(null, false, { message: 'Incorrect credentials.' });
             }
 
             // 3. Success
