@@ -86,11 +86,11 @@ signinForm.addEventListener('submit', async (e) => {
         },1600)
         return 
   }
-  const submitButton = signupForm.querySelector('button[type="submit"]');
+  const submitButton = signinForm.querySelector('button[type="submit"]');
   submitButton.disabled = true;
 
   // Automatically extract data from the input fields
-  const formData = new FormData(signupForm);
+  const formData = new FormData(signinForm);
   const payload = Object.fromEntries(formData.entries());
 
   try {
@@ -111,7 +111,7 @@ signinForm.addEventListener('submit', async (e) => {
     if (response.ok) {
       formMessage.textContent = 'Sign in successful! Redirecting...';
       formMessage.style.color = 'green';
-      signupForm.reset(); // Clear form fields
+      signinForm.reset(); // Clear form fields
         setTimeout(()=>{
             formMessage.textContent = '';
         },1600)
