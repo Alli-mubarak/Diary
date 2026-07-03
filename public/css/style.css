@@ -39,7 +39,8 @@
     }
     header{
       box-shadow: 0 5px 6px var(--shadowC);
-      padding: 20px;
+      padding:0 20px;
+      height:60px;
       display:flex;
       align-items :center;
       justify-content:space-between;
@@ -70,10 +71,10 @@ header a:hover{
         font-size: 1.5rem;
         color: var(--pC);
         border-radius: 50%;
-        padding: 10px;
+        transition:all 0.25s ease;
       }
 div > i:hover{
-  background: var(--entC);
+  transform:scale(1.1);
 }
      
       .toggle{
@@ -81,11 +82,10 @@ div > i:hover{
           cursor: pointer;
           position:relative;
           border-radius:50%;
-          transition:.25s ease;
-          padding:20px;
+          transition:all 0.25s ease;
       }
       .toggle:hover{
-          background: var(--entC);
+          transform:scale(1.1);
       }
       .toggle div{
           position: absolute;
