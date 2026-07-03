@@ -49,7 +49,9 @@
       }
 header a{
   text-decoration: none;
-          color: var(--txtC);
+    color: var(--txtC);
+  font-size: 3rem;
+  font-weight:700;
       }
 header a:hover{
   text-decoration: underline;
