@@ -45,7 +45,7 @@
       align-items :center;
       justify-content:space-between;
       }
-header a{
+header > a{
   text-decoration: none;
     color: var(--txtC);
   font-size: 2rem;
@@ -174,10 +174,7 @@ div > i:hover{
           cursor: pointer;
           transition: all 0.5s ease;
       }
-#sign-in-btn{
-  font-size: 1rem;
-  padding:5px 10px;
-}
+
 #auth-section{
   color: var(--txtC);
   background: var(--bgC);
