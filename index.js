@@ -215,10 +215,49 @@ app.post('/api/sign-up', async (req, res) => {
 });
 
 //  Email Login
-app.post('/auth/login', passport.authenticate('local', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/login-failure'
-}));
+app.post('/auth/login', (req, res, next) => {
+  // 1. Extract values to validate that the frontend sent the required data
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required.' });
+  }
+
+  // 2. Invoke Passport's Local Strategy
+  // "info" contains the custom error messages we wrote inside the strategy
+  passport.authenticate('local', (err, user, info) => {
+    
+    // Case A: A critical server or database error occurred
+    if (err) {
+      console.error('Passport Auth Error:', err);
+      return next(err); 
+    }
+
+    // Case B: Authentication failed (wrong password, account doesn't exist, etc.)
+    if (!user) {
+      return res.status(401).json({ message: info?.message || 'Invalid email or password.' });
+    }
+
+    // Case C: Credentials are correct! Establish the user session
+    req.login(user, (loginErr) => {
+      if (loginErr) {
+        console.error('Session creation failed:', loginErr);
+        return next(loginErr);
+      }
+
+      // Convert Mongoose document to a plain object to clean it up safely
+      const cleanUser = user.toObject();
+      delete cleanUser.password; // Never send the hashed password back to the frontend
+
+      
+      return res.status(200).json({
+        message: 'Logged in successfully.',
+        user: cleanUser
+      });
+    });
+
+  })(req, res, next); // Necessary to pass the request and response objects to Passport
+});
 
 // Trigger Google Sign-Up / Login Flow
 app.get('/auth/google', 
