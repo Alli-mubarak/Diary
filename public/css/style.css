@@ -245,7 +245,7 @@ margin-bottom: 3rem;
 }
   #default h2{
     color: var(--txtC);
-    margin-bottom: 2rem;
+    margin-bottom: 1.3rem;
     font-size: 2rem;
   }
 #default p{
@@ -257,7 +257,7 @@ background: transparent !important;
   opacity: 0.9;
 }
 #default a{
-  margin-top:30px;
+  margin-top:20px;
   color: var(--btC);
   display:block;
   width:100%;
@@ -312,7 +312,7 @@ background: transparent !important;
         border-radius:5px;
       }
       #entries{
-        height:calc(100dvh - 160px);
+        height:calc(100dvh - 210px);
         overflow-x:hidden;
         overflow-y:scroll;
         display: flex;
