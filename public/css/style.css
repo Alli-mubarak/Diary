@@ -83,6 +83,7 @@ div > i:hover{
           position:relative;
           border-radius:50%;
           transition:all 0.25s ease;
+        background:red;
       }
       .toggle:hover{
           transform:scale(1.1);
