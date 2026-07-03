@@ -312,6 +312,9 @@ background: transparent !important;
         border-radius:5px;
       }
       #entries{
+        height:calc(100dvh - 160px);
+        overflow-x:hidden;
+        overflow-y:scroll;
         display: flex;
         flex-direction: column;
         align-items :center;
