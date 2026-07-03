@@ -106,9 +106,9 @@ div > i:hover{
           align-items:end;
           height:0;
           overflow:hidden;
-          width: calc(100vw - 40px);
+          width: calc(100dvw - 40px);
           gap: 15px;
-          margin: 15px auto 15px auto;
+          margin: 5px auto;
           border-radius: 5px;
       }
       
