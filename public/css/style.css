@@ -305,11 +305,7 @@ background: transparent !important;
         border-radius:5px;
       }
       #entries{
-        width: calc(100vw - 40px);
-        margin: auto;
-        height: calc(100dvh - 130px);
-        overflow-y: auto;
-        overflow-x: hidden;
+        background:pink;
         display: flex;
         flex-direction: column;
         align-items :center;
