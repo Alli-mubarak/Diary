@@ -50,15 +50,17 @@
 header a{
   text-decoration: none;
     color: var(--txtC);
-  font-size: 3rem;
-  font-weight:700;
+  font-size: 2rem;
+  font-weight:500;
       }
 header a:hover{
   text-decoration: underline;
 }
+header button{
+display:none;
+}
       .tt{
-          /* display: flex;*/
-        display:none;
+          display: flex;
           align-items:center;
           justify-content: space-between;
           gap:20px;
@@ -67,7 +69,6 @@ header a:hover{
       .theme{
           width: 30px; 
           overflow:hidden;
-        
       }
       div > i {
         cursor:pointer;
