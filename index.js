@@ -76,12 +76,12 @@ let d = new Date();
 let currentTime = d.toLocaleString();
 console.log(req.method, req.path, req.ip, currentTime,);
   
-console.log('--- Session Debug ---');
- console.log('Incoming Cookie:', req.headers.cookie);
-  console.log('Session ID:', req.sessionID);
- console.log('Session Data in memory:', req.session);
- console.log('Is Authenticated?:', req.isAuthenticated ? req.isAuthenticated() : 'No passport');
- console.log('User object:', req.user);
+// console.log('--- Session Debug ---');
+//  console.log('Incoming Cookie:', req.headers.cookie);
+//   console.log('Session ID:', req.sessionID);
+//  console.log('Session Data in memory:', req.session);
+//  console.log('Is Authenticated?:', req.isAuthenticated ? req.isAuthenticated() : 'No passport');
+//  console.log('User object:', req.user);
   
   let enc = encrypt('We are running fine. Welcome to Diary app by Mubarak Alli', 5);
   console.log(enc);
@@ -201,10 +201,9 @@ app.post('/api/sign-up', async (req, res) => {
    const userObj = newUser.toObject();
         req.login(userObj, (err) => {
             if (err) {
-              console.log(err + '--- ')
                 return next(err); // Handles passport login errors
             }
-            console.log('Success! The session is created');
+            // Success! The session is created!
             res.status(201).json({ message: 'Registration successful!' });
         });
    
@@ -223,22 +222,22 @@ app.post('/auth/login', (req, res, next) => {
     return res.status(400).json({ message: 'Email and password are required.' });
   }
 
-  // 2. Invoke Passport's Local Strategy
+  // Invoke Passport's Local Strategy
   // "info" contains the custom error messages we wrote inside the strategy
   passport.authenticate('local', (err, user, info) => {
     
-    // Case A: A critical server or database error occurred
+    //  A critical server or database error occurred
     if (err) {
       console.error('Passport Auth Error:', err);
       return next(err); 
     }
 
-    // Case B: Authentication failed (wrong password, account doesn't exist, etc.)
+    //  Authentication failed (wrong password, account doesn't exist, etc.)
     if (!user) {
       return res.status(401).json({ message: info?.message || 'Invalid email or password.' });
     }
 
-    // Case C: Credentials are correct! Establish the user session
+    //  Credentials are correct! Establish the user session
     req.login(user, (loginErr) => {
       if (loginErr) {
         console.error('Session creation failed:', loginErr);
