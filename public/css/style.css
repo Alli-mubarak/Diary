@@ -314,7 +314,7 @@ background: transparent !important;
       #entries{
         height:calc(100dvh - 210px);
         overflow-x:hidden;
-        overflow-y:scroll;
+        overflow-y:auto;
         display: flex;
         flex-direction: column;
         align-items :center;
