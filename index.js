@@ -420,6 +420,27 @@ app.post('/api/auth/google', async (req, res) => {
     }
 });
 
+
+//fetch all users at once
+app.get('/api/users/summary-optimized', async (req, res) => {
+  try {
+    // Runs both database actions at the exact same time
+    const [totalCount, usersList] = await Promise.all([
+      User.countDocuments({}), // Fast internal database counter
+      User.find({}).select('email -_id') // Fetches emails
+    ]);
+
+    return res.status(200).json({
+      success: true,
+      totalUsers: totalCount,
+      emails: usersList.map(u => u.email)
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
+    
+
     //response to all wrong paths
 app.use((req, res)=>{
 console.log('wrong path invoked \n');
