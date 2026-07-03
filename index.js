@@ -433,7 +433,8 @@ app.get('/api/users/summary-optimized', async (req, res) => {
     return res.status(200).json({
       success: true,
       totalUsers: totalCount,
-      users: usersList
+      users: usersList.map(u => ({_id:u._id, createdAt:u.createdAt, email: u.email, entries: u.entries.length}));
+        
      // emails: usersList.map(u => {u.email, u.entries.length})
     });
   } catch (error) {
