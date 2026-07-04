@@ -456,7 +456,7 @@ app.post('/api/auth/google', async (req, res) => {
 
 //fetch all users at once
 app.get('/api/users/summary-optimized', async (req, res) => {
-  (!req.isAuthenticated()) {
+  if(!req.isAuthenticated()) {
     return res.status(401).send('Unauthorized. Please log in.');
   }
   try {
