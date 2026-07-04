@@ -109,7 +109,7 @@ main{
         }
     
         #sign-up-form > p::before, #sign-up-form > p::after{
-            content:'____________';
+            content:'_________';
             transform: translateY(-7px);
             display:inline-block;
             padding: 0 10px;
