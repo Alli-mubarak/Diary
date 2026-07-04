@@ -109,7 +109,7 @@ main{
         }
     
         #sign-in-form > p::before, #sign-in-form > p::after{
-            content:'____________';
+            content:'_________';
             transform: translateY(-7px);
             display:inline-block;
             padding: 0 10px;
