@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 // 1. Set up the connection to your domain's email server
 const transporter = nodemailer.createTransport({
-  host: '://https://diary-app-omega-lime.vercel.app', // Replace with your actual mail server
+  host: '://diary-app-omega-lime.vercel.app', // Replace with your actual mail server
   port: 465,                      // 465 is the standard secure port
   secure: true,                   // Use true for port 465
   auth: {
