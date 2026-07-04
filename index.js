@@ -328,7 +328,7 @@ app.post('/login', passport.authenticate('local', {
 // --- Application Routes ---
 
 app.get('/dashboard', async(req, res) => {
-   (!req.isAuthenticated()) {
+   if(!req.isAuthenticated()) {
     return res.status(401).send('Unauthorized. Please log in.');
   }
   // res.send(`<h1>Welcome ${req.user.firstName}</h1><p>Email: ${req.user.email}</p><a href="/logout">Logout</a>`);
