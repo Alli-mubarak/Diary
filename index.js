@@ -342,28 +342,7 @@ app.get('/dashboard', (req, res) => {
 //  </div>
 //`;
   //build the email notification content
-  const email = req.user.email
-  console.log(email)
-    const emailSubject = 'Security Alert: New Login Detected';
-    const currentTime = new Date().toLocaleString();
-    const emailHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px;">
-        <h2 style="color: #d9534f;">New Login Notification</h2>
-        <p>Hello,</p>
-        <p>We detected a new login to your account at <strong>${currentTime}</strong>.</p>
-        <p>If this was you, you can safely ignore this email. If this wasn't you, please change your password immediately.</p>
-        <br>
-        <p style="font-size: 12px; color: #777;">This is an automated security alert from your website application.</p>
-      </div>
-    `;
-
-    // 3. Trigger the email function (Fire-and-forget or awaited)
-    // We use a try/catch inside to ensure that even if the email system fails, the user still logs in successfully.
-    try {
-      await sendCustomEmail(email, emailSubject, emailHtml);
-    } catch (emailError) {
-      console.error('⚠️ User logged in, but security email failed to send:', emailError.message);
-    }
+  
   res.redirect('/');
 });
 
