@@ -327,12 +327,12 @@ app.post('/login', passport.authenticate('local', {
   
 // --- Application Routes ---
 
-app.get('/dashboard', (req, res) => {
-  if (!req.isAuthenticated()) {
+app.get('/dashboard', async(req, res) => {
+   (!req.isAuthenticated()) {
     return res.status(401).send('Unauthorized. Please log in.');
   }
   // res.send(`<h1>Welcome ${req.user.firstName}</h1><p>Email: ${req.user.email}</p><a href="/logout">Logout</a>`);
- // const targetUser = req.user.email;
+ // const taifrgetUser = req.user.email;
 //const emailSubject = 'Welcome to Our Website!';
 //const emailBody = `
 //  <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee;">
@@ -357,13 +357,14 @@ app.get('/dashboard', (req, res) => {
       </div>
     `;
 
-    // 3. Trigger the email function (Fire-and-forget or awaited)
+    //. Trigger the email function (Fire-and-forget or awaited)
     // We use a try/catch inside to ensure that even if the email system fails, the user still logs in successfully.
-  //  try {
-  //    await sendCustomEmail(email, emailSubject, emailHtml);
-  //  } catch (emailError) {
-  //    console.error('⚠️ User logged in, but security email failed to send:', emailError.message);
-        //      }
+  try {
+      await sendCustomEmail(email, emailSubject, emailHtml);
+    console.log('email sent!');
+   } catch (emailError) {
+    console.error('⚠️ User logged in, but security email failed to send:', emailError.message);
+           }
   res.redirect('/');
 });
 
@@ -455,6 +456,9 @@ app.post('/api/auth/google', async (req, res) => {
 
 //fetch all users at once
 app.get('/api/users/summary-optimized', async (req, res) => {
+  (!req.isAuthenticated()) {
+    return res.status(401).send('Unauthorized. Please log in.');
+  }
   try {
     // Runs both database actions at the exact same time
     const [totalCount, usersList] = await Promise.all([
