@@ -131,7 +131,7 @@ main{
         #google-login img{
             width:35px; 
             height: 35px;
-            background:var(--shadowC);
+            background: transparent;
             border-radius:50%;
         }
          .input-group{
