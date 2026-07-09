@@ -135,8 +135,11 @@ main{
          text-decoration: underline;
         }
 @media (min-width: 800px) {
+   .error-box{
+     padding:10px;
+   }
    .error-box img{
      width:auto;
-     height: calc(100dvh - 290px);
+     height: calc(100dvh - 210px);
    }
 }
