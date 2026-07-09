@@ -341,7 +341,8 @@ app.get('/dashboard', async(req, res) => {
   //  <a href="https://yourwebsiteurl.com" style="background: blue; color: white; padding: 10px; text-decoration: none;">Visit Dashboard</a>
 //  </div>
 //`;
-  //build the email notification content
+  
+  //build the email notification content - build later 
   const email = req.user.email;
   console.log(email)
     const emailSubject = 'Security Alert: New Login Detected';
@@ -358,13 +359,15 @@ app.get('/dashboard', async(req, res) => {
     `;
 
     //. Trigger the email function (Fire-and-forget or awaited)
-    // We use a try/catch inside to ensure that even if the email system fails, the user still logs in successfully.
-  try {
-      await sendCustomEmail(email, emailSubject, emailHtml);
-    console.log('email sent!');
-   } catch (emailError) {
-    console.error('⚠️ User logged in, but security email failed to send:', emailError.message);
-           }
+    // Will work on the mailing system later
+  
+//  try {
+ //     await sendCustomEmail(email, emailSubject, emailHtml);
+//    console.log('email sent!');
+//   } catch (emailError) {
+//    console.error('⚠️ User logged in, but security email failed to send:', emailError.message);
+//           }
+  
   res.redirect('/');
 });
 
