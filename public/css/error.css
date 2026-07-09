@@ -140,6 +140,6 @@ main{
    }
    .error-box img{
      width:auto;
-     height: calc(100dvh - 210px);
+     height: calc(100dvh - 225px);
    }
 }
