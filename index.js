@@ -482,9 +482,10 @@ app.get('/api/users/summary-optimized', async (req, res) => {
     //response to all wrong paths
 app.use((req, res)=>{
 console.log('wrong path invoked \n');
-res.status(404).json({
-error:'path not found'
-});
+//res.status(404).json({
+//error:'path not found'
+//})
+  res.sendFile(__dirname + '/public/pages/error.html');
 });
 
 const listener = app.listen(process.env.PORT,()=>{
