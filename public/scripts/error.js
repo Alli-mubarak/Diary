@@ -1,4 +1,5 @@
 const themeToggle = document.querySelector('.theme');
+const errorImage = document.querySelector('img');
 
 // toggle theme
 const html = document.querySelector('html');
@@ -7,11 +8,13 @@ themeToggle.onclick = () =>{
     if(isDark){
         html.removeAttribute('class','dark');
         isDark = false;
-        themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`
+        themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+        errorImage.src = "error.png";
     }else{
         html.setAttribute('class','dark');
         isDark = true;
-        themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
+        themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`;
+        errorImage.src = "error-dark.png";
     }
 }
 
