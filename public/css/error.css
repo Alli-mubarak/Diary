@@ -96,7 +96,8 @@ main{
        .error-box img {
          display:block;
          margin:auto;
-         width: 600px;
+         width: 80vw;
+         max-width: 500px;
          height:auto;
        }
         .error-box a{
