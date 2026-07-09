@@ -9,12 +9,12 @@ themeToggle.onclick = () =>{
         html.removeAttribute('class','dark');
         isDark = false;
         themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`;
-        errorImage.src = "error.png";
+        errorImage.src = "/images/error.png";
     }else{
         html.setAttribute('class','dark');
         isDark = true;
         themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`;
-        errorImage.src = "error-dark.png";
+        errorImage.src = "/images/error-dark.png";
     }
 }
 
