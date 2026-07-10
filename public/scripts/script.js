@@ -216,9 +216,9 @@ fetch(addApi, requestOptions)
       entryInput.disabled = false;
   })
   .catch(error => {
-    console.error('Error:', error)});
-      entryInput.value = "";
+    console.error('Error:', error);
       alert("An error occurred, please try again");
+  })
   // Add event listener to delete button
   const deleteButtons = document.getElementsByClassName('delete');
   for (let i = 0; i < deleteButtons.length; i++) {
