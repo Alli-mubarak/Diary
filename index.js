@@ -466,7 +466,7 @@ app.get('/api/users/summary-optimized', async (req, res) => {
     return res.status(200).json({
       success: true,
       totalUsers: totalCount,
-      users: usersList.map(u => ({id:u._id, createdAt:u.createdAt, email: u.email, entries: u.entries.length}));
+      users: usersList.map(u => ({id:u._id, createdAt:u.createdAt, email: u.email, entries: u.entries.length}))
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
