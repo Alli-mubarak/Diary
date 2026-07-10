@@ -6,11 +6,9 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import {encrypt, decrypt} from './Utils/Crypt.js'; // encrypter and decrypter function import
 import {Router} from 'express'
-const app = express();
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'node:path';
-dotenv.config();
 import bodyParser from 'body-parser';
 import { OAuth2Client } from 'google-auth-library';
 import session from 'express-session';
@@ -20,8 +18,9 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import MongoStore from 'connect-mongo'; // used insted of express session to save session in db
 import { sendCustomEmail } from './Utils/mailer.js';
 
-//let d = new Date();
-//let currentTime = d.toLocaleString();
+const app = express();
+
+dotenv.config();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -40,10 +39,8 @@ app.use(cors({
   credentials: true // Crucial: Allows the browser to send cookies back and forth
 }));
 
-
 // Connect to the database
 connectDB();
-
 
 // ... (after mongoose is connected)
 
@@ -65,7 +62,6 @@ app.use(session({
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Initialize Passport
 app.use(passport.initialize());
@@ -89,8 +85,6 @@ console.log(req.method, req.path, req.ip, currentTime,);
   console.log(decrypt(enc, 5));
 next();
 });
-
-
 
 // Configure Passport Google Strategy
 // updated Passport Google Strategy with Async/Await Database Logic
@@ -472,9 +466,7 @@ app.get('/api/users/summary-optimized', async (req, res) => {
     return res.status(200).json({
       success: true,
       totalUsers: totalCount,
-      users: usersList.map(u => ({id:u._id, createdAt:u.createdAt, email: u.email, entries: u.entries.length}))
-        
-     // emails: usersList.map(u => {u.email, u.entries.length})
+      users: usersList.map(u => ({id:u._id, createdAt:u.createdAt, email: u.email, entries: u.entries.length}));
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
@@ -482,12 +474,9 @@ app.get('/api/users/summary-optimized', async (req, res) => {
 });
     
 
-    //response to all wrong paths
+//response to all wrong paths
 app.use((req, res)=>{
 console.log('wrong path invoked \n');
-//res.status(404).json({
-//error:'path not found'
-//})
   res.sendFile(__dirname + '/public/pages/error.html');
 });
 
