@@ -1,4 +1,5 @@
 // Get DOM elements from HTML
+const html = document.querySelector('html');
 const entryInput = document.getElementById('entry');
 const toggleCtrl = document.querySelector('.toggle');
 const closer = document.getElementById('closer');
@@ -93,17 +94,24 @@ function closeAuth(){
 
 
 // toggle theme
-const html = document.querySelector('html');
 let isDark = false;
+
+function setLightTheme(){
+    html.removeAttribute('class','dark');
+    isDark = false;
+    themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`
+}
+function setDarkTheme(){
+    html.setAttribute('class','dark');
+    isDark = true;
+    themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
+
+}
 themeToggle.onclick = () =>{
     if(isDark){
-        html.removeAttribute('class','dark');
-        isDark = false;
-        themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`
+        setLightTheme();
     }else{
-        html.setAttribute('class','dark');
-        isDark = true;
-        themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
+        setDarkTheme();
     }
 }
 
@@ -112,13 +120,9 @@ const d = new Date()
 const hour = d.getHours();
 
 if(hour > 6 && hour < 19){
-    html.removeAttribute('class','dark');
-        isDark = false;
-        themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`
+    setLightTheme();
 }else{
-    html.setAttribute('class','dark');
-        isDark = true;
-        themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
+    setDarkTheme();
 }
 
 // toggle the entry adder container
@@ -208,11 +212,12 @@ fetch(addApi, requestOptions)
       st+= i+':'+ data[i];
     }
     getEntries(displayEntries);
+      entryInput.value = "";
       entryInput.disabled = false;
   })
   .catch(error => {
     console.error('Error:', error)});
-      entryInput.innerHTML = "";
+      entryInput.value = "";
       alert("An error occurred, please try again");
   // Add event listener to delete button
   const deleteButtons = document.getElementsByClassName('delete');
