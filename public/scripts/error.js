@@ -1,20 +1,30 @@
+const html = document.querySelector('html');
 const themeToggle = document.querySelector('.theme');
-const errorImage = document.querySelector('img');
+const errorImage = document.getElementById("error-image");
 
 // toggle theme
-const html = document.querySelector('html');
+
 let isDark = false;
+
+function setLightTheme(){
+    html.removeAttribute('class','dark');
+    isDark = false;
+    themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+    errorImage.src = "/images/error.png";
+}
+
+function setDarkTheme(){
+    html.setAttribute('class','dark');
+    isDark = true;
+    themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`;
+    errorImage.src = "/images/error-dark.png";
+}
+
 themeToggle.onclick = () =>{
     if(isDark){
-        html.removeAttribute('class','dark');
-        isDark = false;
-        themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`;
-        errorImage.src = "/images/error.png";
+        setLightTheme();
     }else{
-        html.setAttribute('class','dark');
-        isDark = true;
-        themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`;
-        errorImage.src = "/images/error-dark.png";
+        setDarkTheme();
     }
 }
 
@@ -23,11 +33,7 @@ const d = new Date()
 const hour = d.getHours();
 
 if(hour > 6 && hour < 19){
-    html.removeAttribute('class','dark');
-        isDark = false;
-        themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`
+    setLightTheme();
 }else{
-    html.setAttribute('class','dark');
-        isDark = true;
-        themeToggle.innerHTML = `<i class="fa-regular fa-moon"></i>`
-                         }
+    setDarkTheme();
+    }
