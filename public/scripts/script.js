@@ -211,9 +211,8 @@ fetch(addApi, requestOptions)
       entryInput.disabled = false;
   })
   .catch(error => {
-    alert(error)
     console.error('Error:', error)});
-  entryInput.value = '';
+      alert("An error occurred, please try again");
   // Add event listener to delete button
   const deleteButtons = document.getElementsByClassName('delete');
   for (let i = 0; i < deleteButtons.length; i++) {
@@ -255,7 +254,7 @@ let entriesCount = document.getElementById("entries-amount");
  })
     
   .catch(error => {
-    alert(error)
+    alert("An error occurred, please try again");
     console.error('Error:', error)})
 }
 }
@@ -328,7 +327,7 @@ fetch(deleteApi, requestOptions)
     getEntries(displayEntries);
   })
   .catch(error => {
-    alert(error)
+    alert("An error occurred, please try again");
     console.error('Error:', error)})
 }
 }
@@ -369,7 +368,7 @@ fetch(editApi, requestOptions)
     getEntries(displayEntries);
   })
   .catch(error => {
-    alert(error)
+    alert("An error occurred, please try again");
     console.error('Error:', error)})
 }
 }
@@ -385,7 +384,7 @@ async function handleGoogleLogin(response) {
         body: JSON.stringify({ token: response.credential }), 
     });
     const data = await res.json();
-    console.log('Logged in user data:', data);
+    
 }
 
 
