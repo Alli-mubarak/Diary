@@ -27,7 +27,7 @@ const BACKEND_URL = '';
 
         
         if (data.loggedIn) {
-          // User is authenticated! Display details saved from MongoDB
+          // User is authenticated! Display details saved from Database 
          authSection.innerHTML = `
          <div id="closer"  ><i class="fa-solid fa-xmark" onclick="closeAuth()"></i></div>
          <div class="user-details">
@@ -212,6 +212,7 @@ fetch(addApi, requestOptions)
   })
   .catch(error => {
     console.error('Error:', error)});
+      entryInput.innerHTML = "";
       alert("An error occurred, please try again");
   // Add event listener to delete button
   const deleteButtons = document.getElementsByClassName('delete');
