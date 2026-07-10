@@ -384,7 +384,11 @@ async function handleGoogleLogin(response) {
         body: JSON.stringify({ token: response.credential }), 
     });
     const data = await res.json();
-    
+    if(res.ok){
+        console.log("Log in successful!");
+    }else{
+        console.error("Log in failed!");
+    }
 }
 
 
