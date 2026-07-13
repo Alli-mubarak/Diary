@@ -201,6 +201,10 @@ text-align:right;
   border-radius:30px;
   cursor:pointer;
 }
+#auth-section a{
+text-decoration: none;
+color: var(--linkC);
+}
 .user-details{
   display:flex;
   gap:10px;
