@@ -207,11 +207,14 @@ text-align:right;
   align-items:start;
   text-align: left;
   width:100%;
-  background:pink;
 }
 
 .user-details img{
   border: 2px solid var(--pC);
+}
+.other-info{
+ width:100%;
+  background:pink;
 }
 #user-email{
   font-weight:600;
