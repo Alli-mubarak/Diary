@@ -204,7 +204,7 @@ text-align:right;
 .user-details{
   display:flex;
   gap:10px;
-  align-items:center;
+  align-items:start;
   text-align: left;
 }
 
@@ -214,7 +214,7 @@ text-align:right;
 #user-email{
   font-weight:600;
 }
-.amount-details{
+.amount-download{
   display:flex;
   align-items:center;
   justify-content: space-between;
