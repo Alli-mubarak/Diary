@@ -218,9 +218,6 @@ color: var(--linkC);
 #user-email{
   font-weight:600;
 }
-.other-info{
-  padding-top: 5px;
-}
       button:hover{
         transform: scale(1.05);
       }
