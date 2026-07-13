@@ -418,15 +418,19 @@ app.get('/user/download-txt', async (req, res) => {
     }
 
     //Format the user information nicely for the .txt file
-    //const userEntries = user.entries.map(e => ({entryId:  e._id, content:  e.description, created:  e.createdAt.toLocaleString(), lastUpdated:  e.updatedAt.toLocaleString()}))
-    const userEntries = user.entries
+    const userEntries = user.entries.map(e => ({entryId:  e._id, content:  e.description, created:  e.createdAt.toLocaleString(), lastUpdated:  e.updatedAt.toLocaleString()}))
+    const formattedEntries = user.entries && user.entries.length > 0
+      ? userEntries.map((item, index) => {
+          return `  ${index + 1}. ${item}`// [${new Date(item.timestamp || Date.now()).toLocaleDateString()}] - ${item.action || 'No Action'} (Status: ${item.status || 'N/A'})`;
+        }).join('\n')
+      : '  No entries found.';
     const fileContent = [
       `User Profile Report`,
       `===================`,
       `ID:         ${user._id}`,
       `Name:       ${user.displayName}`,
       `Email:      ${user.email}`,
-      `Entries:    ${user.entries.length} entries, ${userEntries}`,
+      `Entries:    ${user.entries.length} entries, ${formattedEntries}`,
       `Role:       ${user.role}`,
       `Joined On:  ${new Date(user.createdAt).toLocaleString()}`,
       `===================`,
