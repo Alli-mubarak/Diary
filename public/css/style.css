@@ -201,10 +201,6 @@ text-align:right;
   border-radius:30px;
   cursor:pointer;
 }
-#auth-section a{
-text-decoration: none;
-color: var(--linkC);
-}
 .user-details{
   display:flex;
   gap:10px;
@@ -217,6 +213,18 @@ color: var(--linkC);
 }
 #user-email{
   font-weight:600;
+}
+.amount-details{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+}
+.user-details a{
+text-decoration: none;
+color: var(--linkC);
+}
+.user-details a:hover{
+  text-decoration: underline;
 }
       button:hover{
         transform: scale(1.05);
