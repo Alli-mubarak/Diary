@@ -41,6 +41,7 @@ const BACKEND_URL = '';
            <p id="entries-amount">${data.user.entries.length} Entries</p>
            </div>
            </div>
+           <a href="/user/download-txt">Download your data </a>
            <button onclick="logoutUser()">Log Out</button>
          `;
             // authSection.innerHTML = '';
