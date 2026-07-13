@@ -181,7 +181,6 @@ div > i:hover{
 #auth-section{
   color: var(--txtC);
   background: var(--bgC);
-  text-align: center;
   padding:30px;
   width:100dvw;
   margin:auto;
@@ -190,6 +189,7 @@ div > i:hover{
   left: 0;
   top:0;
 }
+
 #closer{
 text-align:right;
 }
@@ -211,8 +211,12 @@ color: var(--linkC);
   align-items:center;
   text-align: left;
 }
+
 .user-details img{
   border: 2px solid var(--pC);
+}
+#user-email{
+  font-weight:600;
 }
       button:hover{
         transform: scale(1.05);
