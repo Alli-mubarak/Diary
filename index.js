@@ -399,8 +399,56 @@ app.post('/editEntry/:id', updateEntry);
 //delete an entry
 app.delete('/deleteEntry/:id', deleteEntry);
 
+//user details download route
+//app.get('/user/:id/download-txt', async (req, res) => {
+app.get('/user/download-txt', async (req, res) => {
+  if(!req.isAuthenticated()) {
+    return res.status(401).send('Unauthorized. Please log in.');
+  }
+  if(!req.user) {
+    return res.status(401).send('Unauthorized. Please log in.');
+  }
+  const user = req.user; 
+  const userId = user.id || user._id;
+  try {
+    // 1. Fetch user data from MongoDB
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
+    // 2. Format the user information nicely for the .txt file
+    const fileContent = [
+      `User Profile Report`,
+      `===================`,
+      `ID:         ${user._id}`,
+      `Name:       ${user.name}`,
+      `Email:      ${user.email}`,
+      `Entries:    ${user.entries.length} entries, ${user.entries}`,
+      `Role:       ${user.role || 'User'}`,
+      `Joined On:  ${new Date(user.createdAt).toDateString()}`,
+      `===================`,
+      `Generated on: ${new Date().toISOString()}`
+    ].join('\n'); // Separates lines correctly for text files
 
+    // 3. Set headers to force download and define the file extension
+    res.attachment(`${user.name.replace(/\s+/g, '_')}_profile.txt`);
+    res.type('text/plain');
+
+    // 4. Send the text content out directly
+    return res.send(fileContent);
+
+  } catch (error) {
+    console.error('Error exporting user data:', error);
+    
+    // Pro Tip: Make sure headers weren't already sent before replying with an error
+    if (!res.headersSent) {
+      return res.status(500).json({ error: 'Failed to generate user file.' });
+    }
+  }
+});
+                                        
   
 
 
