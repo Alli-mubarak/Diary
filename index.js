@@ -423,10 +423,10 @@ app.get('/user/download-txt', async (req, res) => {
       ? userEntries.map((item, index) => {
           return `  ${index + 1}. [
          entryId : ${item.entryId},
-         content:   ${item.content},
+         content: ${item.content},
          created : ${item.created},
          last updated: ${item.lastUpdated}
-          ]`;
+        ]`;
         }).join('\n')
       : '  No entries found.';
     const fileContent = [
