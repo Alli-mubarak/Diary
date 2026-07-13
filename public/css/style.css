@@ -181,7 +181,7 @@ div > i:hover{
 #auth-section{
   color: var(--txtC);
   background: var(--bgC);
-  padding:30px;
+  padding:10px 30px 30px 30px;
   width:100dvw;
   margin:auto;
   border:2px solid var(--pC);
