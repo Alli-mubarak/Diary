@@ -38,10 +38,13 @@ const BACKEND_URL = '';
          <div class="other-info">
            <h2>${data.user.displayName}</h2>
            <p id="user-email">${data.user.email}</p>
+           <div class="amount-download">
            <p id="entries-amount">${data.user.entries.length} Entries</p>
-           </div>
-           </div>
            <a href="/user/download-txt">Download your data </a>
+           </div>
+           </div>
+           </div>
+           
            <button onclick="logoutUser()">Log Out</button>
          `;
             // authSection.innerHTML = '';
