@@ -432,7 +432,7 @@ app.get('/user/download-txt', async (req, res) => {
     ].join('\n'); // Separates lines correctly for text files
 
     // 3. Set headers to force download and define the file extension
-    res.attachment(`${user.name.replace(/\s+/g, '_')}_profile.txt`);
+    res.attachment(`${user.displayName.replace(/\s+/g, '_')}_profile.txt`);
     res.type('text/plain');
 
     // 4. Send the text content out directly
