@@ -40,7 +40,7 @@ const BACKEND_URL = '';
            <p id="user-email">${data.user.email}</p>
            <div class="amount-download">
            <p id="entries-amount">${data.user.entries.length} Entries</p>
-           <a href="/user/download-txt">Download your data </a>
+           <a href="/user/download-txt">Download my data </a>
            </div>
            </div>
            </div>
