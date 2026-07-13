@@ -425,8 +425,9 @@ app.get('/user/download-txt', async (req, res) => {
       `ID:         ${user._id}`,
       `Name:       ${user.displayName}`,
       `Email:      ${user.email}`,
-      `Entries:    ${user.entries.length} entries, ${userEntries}`,
-      `Role:       ${user.role || 'User'}`,
+      `Entries:    ${user.entries.length} entries`, 
+       `${userEntries}`,
+      `Role:       ${user.role}`,
       `Joined On:  ${new Date(user.createdAt).toLocaleString()}`,
       `===================`,
       `Generated on: ${new Date().toLocaleString()}`
