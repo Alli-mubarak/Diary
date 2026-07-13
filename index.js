@@ -410,11 +410,9 @@ app.get('/user/download-txt', async (req, res) => {
   }
   
   const userId = req.user.id
-  console.log(userId);
   try {
     // 1. Fetch user data from MongoDB
     const user = await User.findById(userId);
-    console.log(user)
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -424,7 +422,7 @@ app.get('/user/download-txt', async (req, res) => {
       `User Profile Report`,
       `===================`,
       `ID:         ${user._id}`,
-      `Name:       ${user.name}`,
+      `Name:       ${user.displayName}`,
       `Email:      ${user.email}`,
       `Entries:    ${user.entries.length} entries, ${user.entries}`,
       `Role:       ${user.role || 'User'}`,
