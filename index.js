@@ -421,7 +421,12 @@ app.get('/user/download-txt', async (req, res) => {
     const userEntries = user.entries.map(e => ({entryId:  e._id, content:  e.description, created:  e.createdAt.toLocaleString(), lastUpdated:  e.updatedAt.toLocaleString()}))
     const formattedEntries = user.entries && user.entries.length > 0
       ? userEntries.map((item, index) => {
-          return `  ${index + 1}. ${item}`// [${new Date(item.timestamp || Date.now()).toLocaleDateString()}] - ${item.action || 'No Action'} (Status: ${item.status || 'N/A'})`;
+          return `  ${index + 1}. [
+         entryId : ${item.entryId},
+         content:   ${item.content},
+         created : ${item.created},
+         last updated: ${item.lastUpdated}
+          ]`;
         }).join('\n')
       : '  No entries found.';
     const fileContent = [
@@ -430,7 +435,8 @@ app.get('/user/download-txt', async (req, res) => {
       `ID:         ${user._id}`,
       `Name:       ${user.displayName}`,
       `Email:      ${user.email}`,
-      `Entries:    ${user.entries.length} entries, ${formattedEntries}`,
+      `Entries:    ${user.entries.length} entries`,
+       `${formattedEntries}`,
       `Role:       ${user.role}`,
       `Joined On:  ${new Date(user.createdAt).toLocaleString()}`,
       `===================`,
