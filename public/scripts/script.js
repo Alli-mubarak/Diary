@@ -37,7 +37,7 @@ const BACKEND_URL = '';
          </div>
          <div class="other-info">
            <h2>${data.user.displayName}</h2>
-           <p>${data.user.email}</p>
+           <p id="user-email">${data.user.email}</p>
            <p id="entries-amount">${data.user.entries.length} Entries</p>
            </div>
            </div>
