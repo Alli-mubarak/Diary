@@ -411,31 +411,31 @@ app.get('/user/download-txt', async (req, res) => {
   
   const userId = req.user.id
   try {
-    // 1. Fetch user data from MongoDB
+    // Fetch user data from MongoDB
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // 2. Format the user information nicely for the .txt file
+    //Format the user information nicely for the .txt file
     const fileContent = [
       `User Profile Report`,
       `===================`,
       `ID:         ${user._id}`,
       `Name:       ${user.displayName}`,
       `Email:      ${user.email}`,
-      `Entries:    ${user.entries.length} entries, ${user.entries}`,
+      `Entries:    ${user.entries.length} entries, ${user.entries.map(e => ({entryId:e._id, content:e.description, created:e.createdAt.toLocaleString(), lastUpdated:e.updatedAt.toLocaleString()}))}`,
       `Role:       ${user.role || 'User'}`,
-      `Joined On:  ${new Date(user.createdAt).toDateString()}`,
+      `Joined On:  ${new Date(user.createdAt).toLocaleString()}`,
       `===================`,
-      `Generated on: ${new Date().toISOString()}`
+      `Generated on: ${new Date().toLocaleString()}`
     ].join('\n'); // Separates lines correctly for text files
 
-    // 3. Set headers to force download and define the file extension
+    //Set headers to force download and define the file extension
     res.attachment(`${user.displayName.replace(/\s+/g, '_')}_profile.txt`);
     res.type('text/plain');
 
-    // 4. Send the text content out directly
+    // Send the text content out directly
     return res.send(fileContent);
 
   } catch (error) {
