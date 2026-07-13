@@ -408,8 +408,8 @@ app.get('/user/download-txt', async (req, res) => {
   if(!req.user) {
     return res.status(401).send('Unauthorized. Please log in.');
   }
-  const user = req.user; 
-  const userId = user.id || user._id;
+  const currentUser = req.user; 
+  const userId = currentUser.id || currentUser._id;
   try {
     // 1. Fetch user data from MongoDB
     const user = await User.findById(userId);
