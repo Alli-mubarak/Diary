@@ -20,6 +20,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "connect-mongo": "^5.1.0",
+    "geoip-lite": "^1.4.10",
     "nodemailer": "^6.9.0"
   },
   "license": "ISC",
