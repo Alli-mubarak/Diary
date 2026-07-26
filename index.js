@@ -32,6 +32,7 @@ app.use(express.json());
 
 app.use(express.static('icon'));
 const __dirname = import.meta.dirname;
+const countryNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' });
 
 //app.use(cors());
 
