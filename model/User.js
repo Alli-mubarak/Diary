@@ -32,6 +32,7 @@ const UserSchema = new mongoose.Schema({
   },
   firstName: String,
   lastName: String,
+  country: String,
   email: {
     type: String,
     required: true,
