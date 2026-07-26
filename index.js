@@ -75,10 +75,18 @@ let d = new Date();
   const clientIp = req.headers['x-forwarded-for']
   // Lookup geolocation data using geoip-lite
   const geo = geoip.lookup(clientIp);
-  const country = geo ? geo.country : 'Unknown';
+  let countryName = 'Unknown';
+  if (geo && geo.country) {
+    try {
+      // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
+      countryName = countryNamesInEnglish.of(geo.country);
+    } catch (error) {
+      // Fallback to the country code if the lookup fails for any reason
+      countryName = geo.country;
+    }
   
 let currentTime = d.toLocaleString();
-console.log(req.method, req.path, req.ip, country, currentTime,);
+console.log(req.method, req.path, req.ip, countryName, currentTime,);
   
 // console.log('--- Session Debug ---');
 //  console.log('Incoming Cookie:', req.headers.cookie);
@@ -105,7 +113,15 @@ passport.use(new GoogleStrategy({
   const clientIp = req.headers['x-forwarded-for']
   // Lookup geolocation data using geoip-lite
   const geo = geoip.lookup(clientIp);
-  const country = geo ? geo.country : 'Unknown';
+  let countryName = 'Unknown';
+  if (geo && geo.country) {
+    try {
+      // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
+      countryName = countryNamesInEnglish.of(geo.country);
+    } catch (error) {
+      // Fallback to the country code if the lookup fails for any reason
+      countryName = geo.country;
+    }
     // Structure the data coming from Google profile payload
     const newUser = {
      googleId: profile.id,
@@ -114,7 +130,7 @@ passport.use(new GoogleStrategy({
       lastName: profile.name.familyName,
       email: profile.emails[0].value,
       profilePic: profile.photos[0].value,
-      country: country
+      country: countryName
     };
 
     try {
@@ -202,12 +218,20 @@ app.post('/api/sign-up', async (req, res) => {
   const clientIp = req.headers['x-forwarded-for']
   // Lookup geolocation data using geoip-lite
   const geo = geoip.lookup(clientIp);
-  const country = geo ? geo.country : 'Unknown';
+  let countryName = 'Unknown';
+  if (geo && geo.country) {
+    try {
+      // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
+      countryName = countryNamesInEnglish.of(geo.country);
+    } catch (error) {
+      // Fallback to the country code if the lookup fails for any reason
+      countryName = geo.country;
+    }
 // Hash password and save user
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({ displayName: username, email,country, password: hashedPassword, profilePic: "/user.png"});
+    const newUser = new User({ displayName: username, email,country: countryName, password: hashedPassword, profilePic: "/user.png"});
     await newUser.save();
     // Log the user in automatically
     // Convert the Mongoose document to a plain JavaScript object
