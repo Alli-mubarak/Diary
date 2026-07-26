@@ -87,6 +87,7 @@ let d = new Date();
       // Fallback to the country code if the lookup fails for any reason
       countryName = geo.country;
     }
+  }
   
 let currentTime = d.toLocaleString();
 console.log(req.method, req.path, req.ip, countryName, currentTime,);
@@ -125,6 +126,7 @@ passport.use(new GoogleStrategy({
       // Fallback to the country code if the lookup fails for any reason
       countryName = geo.country;
     }
+  }
     // Structure the data coming from Google profile payload
     const newUser = {
      googleId: profile.id,
@@ -230,6 +232,7 @@ app.post('/api/sign-up', async (req, res) => {
       // Fallback to the country code if the lookup fails for any reason
       countryName = geo.country;
     }
+  }
 // Hash password and save user
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
