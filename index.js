@@ -35,6 +35,24 @@ const __dirname = import.meta.dirname;
 
 // Initialize the built-in JavaScript internationalization display names utility
 const countryNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' });
+//function for getting country from ip
+function getCountryNameFromReq(req) {
+  // Extract client IP address from request header
+  const clientIp = req.headers['x-forwarded-for']
+  // Lookup geolocation data using geoip-lite
+  const geo = geoip.lookup(clientIp);
+  let countryName = 'Unknown';
+  if (geo && geo.country) {
+    try {
+      // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
+      countryName = countryNamesInEnglish.of(geo.country);
+    } catch (error) {
+      // Fallback to the country code if the lookup fails for any reason
+      countryName = geo.country;
+    }
+    return countryName;
+  }
+}
 
 //app.use(cors());
 
@@ -74,21 +92,7 @@ app.use(passport.session());
 //middleware - logs the method, path, ip address and time to the console
 app.use(function middleware(req,res,next){
 let d = new Date();
-  // Extract client IP address from request header
-  const clientIp = req.headers['x-forwarded-for']
-  // Lookup geolocation data using geoip-lite
-  const geo = geoip.lookup(clientIp);
-  let countryName = 'Unknown';
-  if (geo && geo.country) {
-    try {
-      // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
-      countryName = countryNamesInEnglish.of(geo.country);
-    } catch (error) {
-      // Fallback to the country code if the lookup fails for any reason
-      countryName = geo.country;
-    }
-  }
-  
+const countryName = getCountryNameFromReq(req);
 let currentTime = d.toLocaleString();
 console.log(req.method, req.path, req.ip, countryName, currentTime,);
   
@@ -113,18 +117,7 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.CALLBACK_URL
   },
   async (req, accessToken, refreshToken, profile, done) => {
-
-  let country = profile._json.locale ? profile._json.locale.split('-')[1] : null;
-  let countryName = 'Unknown';
-  if (country) {
-    try {
-      // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
-      countryName = countryNamesInEnglish.of(country);
-    } catch (error) {
-      // Fallback to the country code if the lookup fails for any reason
-      countryName = country;
-    }
-  }
+    const countryName = getCountryNameFromReq(req);
     // Structure the data coming from Google profile payload
     const newUser = {
      googleId: profile.id,
@@ -217,20 +210,8 @@ app.post('/api/sign-up', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'Email already exists' });
     }
-    // Extract client IP address from request headers
-  const clientIp = req.headers['x-forwarded-for']
-  // Lookup geolocation data using geoip-lite
-  const geo = geoip.lookup(clientIp);
-  let countryName = 'Unknown';
-  if (geo && geo.country) {
-    try {
-      // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
-      countryName = countryNamesInEnglish.of(geo.country);
-    } catch (error) {
-      // Fallback to the country code if the lookup fails for any reason
-      countryName = geo.country;
-    }
-  }
+    const countryName = getCountryNameFromReq(req);
+  
 // Hash password and save user
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
