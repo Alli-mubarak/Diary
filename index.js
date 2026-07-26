@@ -112,7 +112,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.CALLBACK_URL
   },
-  async (accessToken, refreshToken, profile, done) => {
+  async (req, accessToken, refreshToken, profile, done) => {
     // Extract client IP address from request headers
   const clientIp = req.headers['x-forwarded-for']
   // Lookup geolocation data using geoip-lite
@@ -135,7 +135,7 @@ passport.use(new GoogleStrategy({
       lastName: profile.name.familyName,
       email: profile.emails[0].value,
       profilePic: profile.photos[0].value,
-    //  country: countryName
+      country: countryName
     };
 
     try {
