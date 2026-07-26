@@ -113,18 +113,16 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.CALLBACK_URL
   },
   async (req, accessToken, refreshToken, profile, done) => {
-    // Extract client IP address from request headers
-  const clientIp = req.headers['x-forwarded-for']
-  // Lookup geolocation data using geoip-lite
-  const geo = geoip.lookup(clientIp);
+
+  let country = profile._json.locale ? profile._json.locale.split('-')[1] : null;
   let countryName = 'Unknown';
-  if (geo && geo.country) {
+  if (country) {
     try {
       // Convert the 2-letter code (e.g., 'US') to full name (e.g., 'United States')
-      countryName = countryNamesInEnglish.of(geo.country);
+      countryName = countryNamesInEnglish.of(country);
     } catch (error) {
       // Fallback to the country code if the lookup fails for any reason
-      countryName = geo.country;
+      countryName = country;
     }
   }
     // Structure the data coming from Google profile payload
