@@ -135,7 +135,7 @@ passport.use(new GoogleStrategy({
       lastName: profile.name.familyName,
       email: profile.emails[0].value,
       profilePic: profile.photos[0].value,
-      country: countryName
+    //  country: countryName
     };
 
     try {
