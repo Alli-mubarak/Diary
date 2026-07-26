@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt';
 import {encrypt, decrypt} from './Utils/Crypt.js'; // encrypter and decrypter function import
 import {Router} from 'express'
 import cors from 'cors';
+import geoip from "geoip-lite";
 import dotenv from 'dotenv';
 import path from 'node:path';
 import bodyParser from 'body-parser';
@@ -70,8 +71,14 @@ app.use(passport.session());
 //middleware - logs the method, path, ip address and time to the console
 app.use(function middleware(req,res,next){
 let d = new Date();
+  // Extract client IP address from request header
+  const clientIp = req.headers['x-forwarded-for']
+  // Lookup geolocation data using geoip-lite
+  const geo = geoip.lookup(clientIp);
+  const country = geo ? geo.country : 'Unknown';
+  
 let currentTime = d.toLocaleString();
-console.log(req.method, req.path, req.ip, currentTime,);
+console.log(req.method, req.path, req.ip, country, currentTime,);
   
 // console.log('--- Session Debug ---');
 //  console.log('Incoming Cookie:', req.headers.cookie);
@@ -94,6 +101,11 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.CALLBACK_URL
   },
   async (accessToken, refreshToken, profile, done) => {
+    // Extract client IP address from request headers
+  const clientIp = req.headers['x-forwarded-for']
+  // Lookup geolocation data using geoip-lite
+  const geo = geoip.lookup(clientIp);
+  const country = geo ? geo.country : 'Unknown';
     // Structure the data coming from Google profile payload
     const newUser = {
      googleId: profile.id,
@@ -101,7 +113,8 @@ passport.use(new GoogleStrategy({
       firstName: profile.name.givenName,
       lastName: profile.name.familyName,
       email: profile.emails[0].value,
-      profilePic: profile.photos[0].value
+      profilePic: profile.photos[0].value,
+      country: country
     };
 
     try {
@@ -185,11 +198,16 @@ app.post('/api/sign-up', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'Email already exists' });
     }
+    // Extract client IP address from request headers
+  const clientIp = req.headers['x-forwarded-for']
+  // Lookup geolocation data using geoip-lite
+  const geo = geoip.lookup(clientIp);
+  const country = geo ? geo.country : 'Unknown';
 // Hash password and save user
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({ displayName: username, email, password: hashedPassword, profilePic: "/user.png"});
+    const newUser = new User({ displayName: username, email,country, password: hashedPassword, profilePic: "/user.png"});
     await newUser.save();
     // Log the user in automatically
     // Convert the Mongoose document to a plain JavaScript object
