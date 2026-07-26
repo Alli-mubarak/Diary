@@ -447,12 +447,14 @@ app.get('/user/download-txt', async (req, res) => {
         ]`;
         }).join('\n')
       : '  No entries found.';
+    const country = user.country || 'unknown';
     const fileContent = [
       `User Profile Report`,
       `===================`,
       `ID:         ${user._id}`,
       `Name:       ${user.displayName}`,
       `Email:      ${user.email}`,
+      `Country:    ${country}`,
       `Entries:    ${user.entries.length} entries`,
        `${formattedEntries}`,
       `Role:       ${user.role}`,
@@ -543,7 +545,7 @@ app.get('/api/users/summary-optimized', async (req, res) => {
     return res.status(200).json({
       success: true,
       totalUsers: totalCount,
-      users: usersList.map(u => ({id:u._id, createdAt:u.createdAt, email: u.email, entries: u.entries.length}))
+      users: usersList.map(u => ({id:u._id, createdAt:u.createdAt, email: u.email, country: u.country || 'unknown', entries: u.entries.length}))
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
