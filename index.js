@@ -32,6 +32,8 @@ app.use(express.json());
 
 app.use(express.static('icon'));
 const __dirname = import.meta.dirname;
+
+// Initialize the built-in JavaScript internationalization display names utility
 const countryNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' });
 
 //app.use(cors());
