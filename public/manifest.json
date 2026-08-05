@@ -1,6 +1,6 @@
 {
   "id": "/index.html",
-  "name": "A Fully Featured Diary Web App",
+  "name": "My Diary",
   "short_name": "Diary App",
   "description": "An amazing diary web app that functions exactly like a native Android application.",
   "start_url": "/",
