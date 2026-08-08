@@ -290,13 +290,30 @@ app.get('/auth/google',
 );
 
 //  Google OAuth Callback Route
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login-failed' }),
-  (req, res) => {
-    // Successful authentication, redirect to user dashboard or home.
-    res.redirect('/dashboard');
-  }
-);
+
+app.get('/auth/google/callback', (req, res, next) => {
+  passport.authenticate('google', (err, user, info) => {
+    // Catch the TokenError / Bad Request gracefully
+    if (err) {
+      if (err.name === 'TokenError') {
+        console.log('Caught PWA Double-Exchange TokenError. Redirecting to app check.');
+        // If the cookie was already written successfully on the first trigger, 
+        // redirecting them straight to the dashboard will show them logged in.
+        return res.redirect('/sign-up');
+      }
+      return next(err);
+    }
+    
+    if (!user) {
+      return res.redirect('/sign-in');
+    }
+
+    req.logIn(user, (loginErr) => {
+      if (loginErr) return next(loginErr);
+      return res.redirect('/dashboard');
+    });
+  })(req, res, next);
+});
 
 
 //default route
