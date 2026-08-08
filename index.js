@@ -55,6 +55,8 @@ function getCountryNameFromReq(req) {
 }
 
 //app.use(cors());
+app.set('trust proxy', 1); // Triggers Express to trust the HTTPS headers from your host
+
 
 app.use(cors({
   origin: 'https://diary-app-omega-lime.vercel.app/', 
@@ -78,7 +80,8 @@ app.use(session({
     cookie: {
         maxAge: 7 * 24 * 60 * 60 * 1000,      // Cookie expiration: 7 days (in milliseconds)
         httpOnly: true,                       // Protects against XSS attacks
-        secure: false                      // Set to true if using HTTPS in production
+        secure: true,
+        sameSite : 'lax'
     }
 }));
 
