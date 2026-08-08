@@ -23,7 +23,7 @@ import rateLimit  from 'express-rate-limit';
 
 const app = express();
 
-dotenv.config();
+dotenv.config() ;
 
 //configure helmet later
 //app.use(
