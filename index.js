@@ -38,6 +38,8 @@ app.use(
           "https://*.googleusercontent.com", 
           "https://*.gstatic.com"
         ],
+        //unblocks frontend scripts
+        script-src": ["'self'"],
       },
     },
   })
