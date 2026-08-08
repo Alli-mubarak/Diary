@@ -18,17 +18,27 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import MongoStore from 'connect-mongo'; // used insted of express session to save session in db
 import { sendCustomEmail } from './Utils/mailer.js';
+import helmet from 'helmet';
+import rateLimit  from 'express-rate-limit';
+import mongoSanitize from 'express-mongo-sanitize';
+import xss from 'xss-clean';
 
 const app = express();
 
 dotenv.config();
-
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json())
 
 // Middleware (e.g., JSON parsing)
 app.use(express.json());
+
+// Prevent NoSQL injection attacks
+app.use(mongoSanitize());
+
+// Prevent XSS attacks (removes HTML tags from user inputs)
+app.use(xss());
 
 app.use(express.static('icon'));
 const __dirname = import.meta.dirname;
@@ -62,6 +72,16 @@ app.use(cors({
   origin: 'https://diary-app-omega-lime.vercel.app/', 
   credentials: true // Crucial: Allows the browser to send cookies back and forth
 }));
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per window
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  message: 'Too many requests from this IP, please try again later.'
+});
+
+// Apply to all requests
+app.use(limiter);
 
 // Connect to the database
 connectDB();
