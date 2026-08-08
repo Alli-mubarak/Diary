@@ -20,7 +20,6 @@ import MongoStore from 'connect-mongo'; // used insted of express session to sav
 import { sendCustomEmail } from './Utils/mailer.js';
 import helmet from 'helmet';
 import rateLimit  from 'express-rate-limit';
-import xss from 'xss-clean';
 
 const app = express();
 
@@ -76,9 +75,6 @@ const limiter = rateLimit({
 
 // Apply to all requests
 app.use(limiter);
-
-// Prevent XSS attacks (removes HTML tags from user inputs)
-app.use(xss());
 
 // Connect to the database
 connectDB();
