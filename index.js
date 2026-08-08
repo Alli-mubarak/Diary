@@ -20,7 +20,6 @@ import MongoStore from 'connect-mongo'; // used insted of express session to sav
 import { sendCustomEmail } from './Utils/mailer.js';
 import helmet from 'helmet';
 import rateLimit  from 'express-rate-limit';
-import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
 
 const app = express();
@@ -34,11 +33,6 @@ app.use(bodyParser.json())
 // Middleware (e.g., JSON parsing)
 app.use(express.json());
 
-// Prevent NoSQL injection attacks
-app.use(mongoSanitize());
-
-// Prevent XSS attacks (removes HTML tags from user inputs)
-app.use(xss());
 
 app.use(express.static('icon'));
 const __dirname = import.meta.dirname;
@@ -82,6 +76,9 @@ const limiter = rateLimit({
 
 // Apply to all requests
 app.use(limiter);
+
+// Prevent XSS attacks (removes HTML tags from user inputs)
+app.use(xss());
 
 // Connect to the database
 connectDB();
