@@ -40,6 +40,10 @@ app.use(
         ],
         //unblocks frontend scripts
         script-src": ["'self'"],
+      "connect-src": [
+          "'self'", 
+          "https://*.google.com"       
+        ],
       },
     },
   })
