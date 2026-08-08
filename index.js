@@ -18,36 +18,39 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import MongoStore from 'connect-mongo'; // used insted of express session to save session in db
 import { sendCustomEmail } from './Utils/mailer.js';
-import helmet from 'helmet';
+//import helmet from 'helmet';
 import rateLimit  from 'express-rate-limit';
 
 const app = express();
 
 dotenv.config();
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        // Keep the defaults for all other resource types
-        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        
-        // Explicitly allow images from self and Google's picture servers
-        "img-src": [
-          "'self'", 
-          "data:", 
-          "https://*.googleusercontent.com", 
-          "https://*.gstatic.com"
-        ],
-        //unblocks frontend scripts
-        script-src": ["'self'"],
-      "connect-src": [
-          "'self'", 
-          "https://*.google.com"       
-        ],
-      },
-    },
-  })
-);
+
+//configure helmet later
+//app.use(
+//  helmet({
+//    contentSecurityPolicy: {
+//      directives: {
+//        // Keep the defaults for all other resource types
+//        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+//        
+//        // Explicitly allow images from self and Google's picture servers
+//        "img-src": [
+//          "'self'", 
+//          "data:", 
+//          "https://*.googleusercontent.com", 
+//          "https://*.gstatic.com"
+//        ],
+//        //unblocks frontend scripts
+//        script-src": ["'self'"],
+//      "connect-src": [
+//          "'self'", 
+//          "https://*.google.com"       
+//        ],
+//      },
+//    },
+//  })
+//);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json())
