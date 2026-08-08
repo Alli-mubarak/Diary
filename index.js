@@ -24,7 +24,24 @@ import rateLimit  from 'express-rate-limit';
 const app = express();
 
 dotenv.config();
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        // Keep the defaults for all other resource types
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        
+        // Explicitly allow images from self and Google's picture servers
+        "img-src": [
+          "'self'", 
+          "data:", 
+          "https://*.googleusercontent.com", 
+          "https://*.gstatic.com"
+        ],
+      },
+    },
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json())
